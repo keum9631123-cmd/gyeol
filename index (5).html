@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Gyeol — K-beauty picked for your skin, at a price you can check.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Gyeol Skin-Fit Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a quiet storefront on hanji paper — sticky header, one working view at a time (home, quiz, results, cart, checkout, survey, team), product detail as a side sheet. */
+:root{
+  --bg:#F5F0E8;        /* hanji */
+  --bg-2:#EAE2D6;      /* deeper hanji */
+  --paper:#FBF8F3;     /* card paper */
+  --ink:#221E1B;       /* meok ink */
+  --ink-soft:#5A524B;
+  --ink-mute:#6F665D;
+  --clay:#A4574A;      /* seal red-clay accent */
+  --clay-soft:#F0DCD6;
+  --line:#CDBBA9;
+  --ok:#3F6B55;
+  --warn:#8A5A12;
+  --tile-1:#E6D9C8; --tile-2:#E9D3CC; --tile-3:#D9DDCF; --tile-4:#DCD6E0;
+  --display:'Gowun Batang', 'Nanum Myeongjo', Georgia, serif;
+  --body:'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif;
+  --r:4px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1C1916; --bg-2:#26211D; --paper:#231F1B; --ink:#F2EBE1; --ink-soft:#C9BFB3; --ink-mute:#A99E92;
+    --clay:#D9927F; --clay-soft:#3A2722; --line:#433A33; --ok:#8CC4A6; --warn:#E0B062;
+    --tile-1:#2E2822; --tile-2:#33251F; --tile-3:#262B24; --tile-4:#2A2630; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1C1916; --bg-2:#26211D; --paper:#231F1B; --ink:#F2EBE1; --ink-soft:#C9BFB3; --ink-mute:#A99E92;
+  --clay:#D9927F; --clay-soft:#3A2722; --line:#433A33; --ok:#8CC4A6; --warn:#E0B062;
+  --tile-1:#2E2822; --tile-2:#33251F; --tile-3:#262B24; --tile-4:#2A2630; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--body);font-size:16px;line-height:1.6;padding-inline:clamp(16px,4vw,48px)}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.2;text-wrap:balance;margin:0}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--clay)}
+:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.wrap{max-width:1180px;margin-inline:auto}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);font-weight:500}
+.muted{color:var(--ink-soft)}
+.small{font-size:.86rem}
+.num{font-variant-numeric:tabular-nums}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:calc(-1 * clamp(16px,4vw,48px));padding:12px clamp(16px,4vw,48px)}
+.top .row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px;background:none;border:0;cursor:pointer;padding:0}
+.brand .ko{font-family:var(--display);font-size:1.9rem;line-height:1;color:var(--ink)}
+.brand .en{font-size:.78rem;letter-spacing:.24em;color:var(--ink-soft)}
+nav.main{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.navbtn{background:none;border:0;padding:8px 10px;cursor:pointer;color:var(--ink-soft);border-radius:var(--r)}
+.navbtn:hover,.navbtn[aria-current="page"]{color:var(--ink);background:var(--bg-2)}
+.cartbtn{display:inline-flex;gap:8px;align-items:center}
+.pill{display:inline-block;min-width:1.5em;text-align:center;padding:0 .45em;border-radius:99px;background:var(--clay);color:var(--bg);font-size:.8rem;line-height:1.5}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.lang button{background:none;border:0;padding:5px 12px;cursor:pointer;font-size:.85rem;color:var(--ink-soft)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+main{padding-block:32px 72px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:var(--r);border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer;font-weight:500;text-decoration:none}
+.btn:hover{background:var(--clay);border-color:var(--clay)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--bg-2);color:var(--ink);border-color:var(--ink)}
+.btn.sm{padding:8px 14px;font-size:.9rem}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn[disabled]:hover{background:var(--ink);border-color:var(--ink)}
+.linkbtn{background:none;border:0;padding:0;color:var(--clay);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* home */
+.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:0;border:1px solid var(--line);background:var(--paper)}
+.hero .copy{padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.6rem)}
+.hero .lead{font-size:1.1rem;color:var(--ink-soft);max-width:34em}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero .seal{background:var(--bg-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;min-width:0}
+.hero .seal .char{font-family:var(--display);font-size:clamp(7rem,16vw,13rem);line-height:1;color:var(--line)}
+.hero .seal p{font-size:.9rem;color:var(--ink-soft);text-align:center;max-width:18em}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:0;border:1px solid var(--line);border-top:0}
+.facts div{padding:18px 24px;border-left:1px solid var(--line);min-width:0}
+.facts div:first-child{border-left:0}
+.facts b{display:block;font-family:var(--display);font-size:1.5rem}
+.section{margin-top:56px;display:flex;flex-direction:column;gap:20px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.section-head h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--paper)}
+.why .step{padding:22px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.why .step:first-child{border-left:0}
+.why .step .date{color:var(--clay);font-size:.85rem;font-weight:500}
+.why .step h3{font-size:1.15rem}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 14px;cursor:pointer;font-size:.9rem;color:var(--ink-soft)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);min-width:0;cursor:pointer;text-align:left;padding:0}
+.card:hover{border-color:var(--ink)}
+.tile{aspect-ratio:4/3;max-width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:2.4rem;color:var(--ink-soft);position:relative}
+.tile .cat{position:absolute;left:12px;top:10px;font-family:var(--body);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
+.card .info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card .brandname{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)}
+.card .pname{font-weight:500;line-height:1.4}
+.priceRow{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.price{font-family:var(--display);font-size:1.35rem;font-weight:700}
+.was{color:var(--ink-mute);text-decoration:line-through;font-size:.9rem}
+.save{color:var(--ok);font-size:.85rem;font-weight:600}
+.note{font-size:.82rem;color:var(--ink-mute)}
+
+/* quiz */
+.quiz{max-width:720px;margin-inline:auto;display:flex;flex-direction:column;gap:24px}
+.progress{height:4px;background:var(--bg-2);border-radius:2px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--clay);transition:width .3s}
+.quiz h2{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.opt{border:1px solid var(--line);background:var(--paper);padding:16px 18px;text-align:left;cursor:pointer;border-radius:var(--r);display:flex;flex-direction:column;gap:2px}
+.opt:hover{border-color:var(--ink)}
+.opt[aria-pressed="true"]{border-color:var(--clay);box-shadow:inset 0 0 0 1px var(--clay);background:var(--clay-soft)}
+.opt b{font-weight:600}
+.opt span{font-size:.86rem;color:var(--ink-soft)}
+.qnav{display:flex;justify-content:space-between;gap:12px}
+
+/* results */
+.results{display:flex;flex-direction:column;gap:20px}
+.pick{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:24px;align-items:center;background:var(--paper);border:1px solid var(--line);padding:16px}
+.pick .tile{aspect-ratio:1/1;font-size:1.8rem}
+.pick .why-text{font-size:1.02rem;line-height:1.6}
+.pick .side{display:flex;flex-direction:column;gap:8px;align-items:flex-end;text-align:right}
+.thinking{padding:40px;text-align:center;border:1px dashed var(--line);color:var(--ink-soft)}
+.profile{display:flex;gap:8px;flex-wrap:wrap}
+.profile span{background:var(--bg-2);padding:4px 12px;border-radius:99px;font-size:.86rem}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(20,16,14,.45);z-index:40}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--bg);z-index:41;overflow-y:auto;padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(32px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:20px;border-left:1px solid var(--line)}
+.sheet .close{align-self:flex-end}
+.sheet h2{font-size:1.8rem}
+table.bd{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+table.bd td{padding:9px 0;border-bottom:1px solid var(--line)}
+table.bd td:last-child{text-align:right}
+table.bd tr.total td{border-bottom:2px solid var(--ink);font-weight:600;font-family:var(--display);font-size:1.15rem}
+table.bd tr.ref td{color:var(--ink-mute)}
+.tariffs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.qty{display:inline-flex;border:1px solid var(--line);border-radius:var(--r)}
+.qty button{background:none;border:0;width:36px;height:36px;cursor:pointer}
+.qty span{min-width:32px;display:flex;align-items:center;justify-content:center}
+.ings{display:flex;gap:6px;flex-wrap:wrap}
+.ings span{border:1px solid var(--line);padding:2px 10px;border-radius:99px;font-size:.84rem}
+
+/* cart / checkout */
+.two{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
+.line{display:grid;grid-template-columns:72px minmax(0,1fr) auto auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.line .tile{aspect-ratio:1/1;font-size:1.1rem}
+.summary{background:var(--paper);border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:12px}
+.summary .r{display:flex;justify-content:space-between;gap:12px}
+.summary .r.total{border-top:2px solid var(--ink);padding-top:12px;font-weight:600;font-family:var(--display);font-size:1.2rem}
+form.co{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form.co .full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;color:var(--ink-soft)}
+input,select,textarea{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
+.err{color:var(--clay);font-size:.86rem}
+.banner{border:1px solid var(--line);background:var(--bg-2);padding:14px 18px;font-size:.9rem;color:var(--ink-soft)}
+.done{max-width:640px;margin-inline:auto;text-align:center;display:flex;flex-direction:column;gap:16px;align-items:center;padding-block:32px}
+.done .seal-mark{width:96px;height:96px;border-radius:6px;background:var(--clay);color:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:2.4rem}
+
+/* survey */
+.survey{max-width:820px;margin-inline:auto;display:flex;flex-direction:column;gap:24px}
+.likert{display:flex;flex-direction:column;gap:10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.scale button{border:1px solid var(--line);background:var(--paper);padding:8px 4px;cursor:pointer;border-radius:var(--r);font-size:.82rem;line-height:1.3}
+.scale button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* team */
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:0;border:1px solid var(--line);background:var(--paper)}
+.stats div{padding:16px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats b{display:block;font-family:var(--display);font-size:1.7rem;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--paper)}
+table.data{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem;font-variant-numeric:tabular-nums}
+table.data th,table.data td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+table.data th{background:var(--bg-2);font-weight:600}
+table.data td.r,table.data th.r{text-align:right}
+.neg{color:var(--clay);font-weight:600}
+.pos{color:var(--ok);font-weight:600}
+.cfg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+
+footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.86rem;color:var(--ink-mute)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:var(--r);z-index:60;font-size:.92rem}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .hero .seal{padding:20px;flex-direction:row}
+  .hero .seal .char{font-size:5rem}
+  .why{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why .step:nth-child(3){border-left:0}
+  .why .step:nth-child(n+3){border-top:1px solid var(--line)}
+  .two{grid-template-columns:1fr}
+  .pick{grid-template-columns:96px minmax(0,1fr)}
+  .pick .side{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}
+}
+@media (max-width:560px){
+  .facts{grid-template-columns:1fr}
+  .facts div{border-left:0;border-top:1px solid var(--line)}
+  .facts div:first-child{border-top:0}
+  .why{grid-template-columns:1fr}
+  .why .step{border-left:0;border-top:1px solid var(--line)}
+  .why .step:first-child{border-top:0}
+  form.co{grid-template-columns:1fr}
+  .line{grid-template-columns:56px minmax(0,1fr) auto}
+  .line .lt{grid-column:2/-1;text-align:right}
+  nav.main{margin-left:0;width:100%}
+  .scale button{font-size:.72rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- storage (per-browser, prototype only) ---------- */
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem("gyeol:"+k); return v==null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem("gyeol:"+k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ---------- price model (example assumptions; team can edit in Team panel) ---------- */
+const DEFAULT_CFG = { tariff:0.125, shipPerUnit:2.00, margin:0.20, payPct:0.029, payFixed:0.30, amazonMonthly:39.99, freeShipOver:40, shipFee:4.95 };
+let CFG = Object.assign({}, DEFAULT_CFG, LS.get("cfg", {}));
+const TARIFFS = [0, 0.10, 0.125, 0.15];
+
+/* Example catalog. Prices are placeholders until the team's October 2026 price survey. */
+const PRODUCTS = [
+  { id:"cosrx-snail", brand:"COSRX", en:"Advanced Snail 96 Mucin Power Essence 100ml", ko:"어드밴스드 스네일 96 뮤신 파워 에센스 100ml", cat:"essence", tileKo:"에센스", tone:1,
+    kr:9.50, us:25.00, usSrc:"US retail", skin:["dry","combination","normal","sensitive"], concern:["hydration","dullness"], texture:"light",
+    ing:["Snail secretion filtrate 96%","Sodium hyaluronate"],
+    dEn:"A slippery, watery essence that calms and hydrates. The most searched K-beauty step on TikTok.", dKo:"촉촉하게 진정시켜 주는 워터리 에센스. 틱톡에서 가장 많이 찾는 K-뷰티 제품입니다." },
+  { id:"laneige-lip", brand:"LANEIGE", en:"Lip Sleeping Mask Berry 20g", ko:"립 슬리핑 마스크 베리 20g", cat:"lip", tileKo:"립", tone:2,
+    kr:12.00, us:24.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["lips","hydration"], texture:"rich",
+    ing:["Berry fruit complex","Shea butter","Vitamin C"],
+    dEn:"An overnight lip balm that leaves lips soft by morning.", dKo:"자는 동안 입술을 부드럽게 채워주는 나이트 립 마스크." },
+  { id:"torriden-serum", brand:"TORRIDEN", en:"DIVE-IN Low Molecular Hyaluronic Acid Serum 50ml", ko:"다이브인 저분자 히알루론산 세럼 50ml", cat:"serum", tileKo:"세럼", tone:3,
+    kr:11.00, us:22.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["hydration"], texture:"light",
+    ing:["5 types of hyaluronic acid","D-panthenol"],
+    dEn:"A thin, fast-absorbing serum with five types of hyaluronic acid.", dKo:"다섯 가지 히알루론산이 빠르게 흡수되는 가벼운 세럼." },
+  { id:"drjart-cica", brand:"DR.JART+", en:"Cicapair Tiger Grass Color Correcting Treatment 50ml", ko:"시카페어 타이거 그라스 컬러 코렉팅 트리트먼트 50ml", cat:"cream", tileKo:"크림", tone:3,
+    kr:24.00, us:52.00, usSrc:"US retail", skin:["sensitive","combination","normal"], concern:["redness"], texture:"rich",
+    ing:["Centella asiatica","Mineral SPF"],
+    dEn:"A green-to-beige cream that evens out visible redness.", dKo:"초록빛에서 베이지로 바뀌며 붉은기를 커버해 주는 크림." },
+  { id:"mediheal-teatree", brand:"MEDIHEAL", en:"Tea Tree Care Solution Essential Mask, 10 sheets", ko:"티트리 케어 솔루션 에센셜 마스크 10매", cat:"mask", tileKo:"마스크", tone:4,
+    kr:9.00, us:25.00, usSrc:"US retail", skin:["oily","combination","sensitive"], concern:["acne","redness"], texture:"light",
+    ing:["Tea tree leaf extract","Centella"],
+    dEn:"Cooling sheet masks for oily or breakout-prone days.", dKo:"유분이 많거나 트러블이 올라오는 날을 위한 쿨링 시트 마스크." },
+  { id:"purito-sun", brand:"PURITO", en:"Daily Go-To Sunscreen SPF 50+ 60ml", ko:"데일리 고투 선스크린 SPF 50+ 60ml", cat:"sun", tileKo:"선", tone:1,
+    kr:11.00, us:21.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["sun"], texture:"light",
+    ing:["Sunflower seed oil","Niacinamide"],
+    dEn:"A lightweight daily sunscreen with no white cast.", dKo:"백탁 없이 가볍게 바르는 데일리 선크림." },
+  { id:"peripera-tint", brand:"PERIPERA", en:"Ink Mood Glowy Tint", ko:"잉크 무드 글로이 틴트", cat:"tint", tileKo:"틴트", tone:2,
+    kr:7.00, us:14.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["lips"], texture:"light",
+    ing:["Glossy tint base"],
+    dEn:"A glossy lip tint with long-lasting color.", dKo:"오래 지속되는 발색의 글로시 립 틴트." },
+  { id:"medicube-pad", brand:"MEDICUBE", en:"Zero Pore Pad 2.0, 70 pads", ko:"제로 모공 패드 2.0 70매", cat:"pad", tileKo:"패드", tone:4,
+    kr:14.00, us:30.00, usSrc:"US retail", skin:["oily","combination","normal"], concern:["pores","acne","dullness"], texture:"light",
+    ing:["AHA","BHA","Witch hazel"],
+    dEn:"Two-sided toner pads that smooth rough texture and the look of pores.", dKo:"양면 토너 패드로 거친 결과 모공을 매끄럽게 정돈합니다." }
+];
+const byId = Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
+
+function money(n){ return "$" + (Math.round(n*100)/100).toFixed(2); }
+function pct(n){ return (n*100).toFixed(n*100 % 1 ? 1 : 0) + "%"; }
+function breakdown(p, rate){
+  rate = rate==null ? CFG.tariff : rate;
+  const duty = p.kr * rate;
+  const landed = p.kr + CFG.shipPerUnit + duty;
+  const raw = (landed*(1+CFG.margin) + CFG.payFixed) / (1 - CFG.payPct);
+  const price = Math.max(Math.ceil(raw) - 0.01, 0.99);
+  const fee = price*CFG.payPct + CFG.payFixed;
+  const margin = price - fee - landed;
+  return { kr:p.kr, ship:CFG.shipPerUnit, duty, rate, landed, fee, margin, price, us:p.us, saving: 1 - price/p.us };
+}
+function amazonPrice(p, rate){
+  const b = breakdown(p, rate);
+  const target = b.landed*(1+CFG.margin);
+  let price = target/(1-0.08);
+  if(price > 10) price = target/(1-0.15);
+  price = Math.ceil(price) - 0.01;
+  const feePct = price > 10 ? 0.15 : 0.08;
+  return { price, feePct, saving: 1 - price/p.us };
+}
+
+/* ---------- i18n ---------- */
+const T = {
+  en:{
+    shop:"Shop", quiz:"Skin quiz", whyNav:"Why this price", cart:"Cart", team:"Team panel",
+    heroEyebrow:"결 · the grain of your skin",
+    heroTitle:"K-beauty picked for your skin, at a price you can check.",
+    heroLead:"Answer five questions and we pick three products for you. Every price shows what it is made of: the Korean shelf price, shipping, import tax and our margin.",
+    startQuiz:"Take the skin quiz", browse:"Browse all products",
+    sealNote:"결 [gyeol] means the grain or texture of skin.",
+    f1:"Sourced in Korea", f1s:"Bought from Korean stores, shipped to the US",
+    f2:"Up to 12.5% import tax", f2s:"The current cap for most Korean goods",
+    f3:"8 products", f3s:"Bestsellers from TikTok and Korean shelves",
+    whyTitle:"Why prices changed this year",
+    w:[["Aug 29, 2025","No more tax-free small parcels","Orders under $800 now pay import tax."],
+       ["Feb 20, 2026","Court cancels the old tariffs","The Supreme Court strikes down the 2025 country-by-country tariffs."],
+       ["Feb–Jul 2026","A temporary 10% tariff","One flat rate for five months."],
+       ["Jul 24, 2026 · now","A new tariff, up to 12.5%","Most Korean goods pay 12.5% at most."]],
+    allProducts:"All products", all:"All",
+    cats:{essence:"Essence",lip:"Lip",serum:"Serum",cream:"Cream",mask:"Mask",sun:"Sun care",tint:"Tint",pad:"Pad"},
+    usRetail:"US retail", youSave:"You save", examplePrices:"Example prices. Real prices come from our October 2026 price survey.",
+    step:"Question", of:"of", back:"Back", next:"Next", seeResults:"See my picks", pickUpTo:"Pick up to two.",
+    q:[
+      {k:"skin", t:"What is your skin type?", multi:false, o:[["dry","Dry","Feels tight after washing"],["oily","Oily","Shiny by midday"],["combination","Combination","Oily T-zone, dry cheeks"],["sensitive","Sensitive","Reacts or turns red easily"],["normal","Normal","Rarely a problem"]]},
+      {k:"concern", t:"What would you most like to improve?", multi:true, o:[["hydration","Hydration","Dry or dehydrated skin"],["acne","Breakouts","Spots and clogged skin"],["redness","Redness","Visible redness"],["pores","Pores and texture","Rough or uneven feel"],["dullness","Dullness","Tired-looking skin"],["lips","Lips","Dry lips or lip color"],["sun","Sun protection","Daily SPF"]]},
+      {k:"budget", t:"How much do you want to spend per item?", multi:false, o:[["15","Under $15",""],["25","$15 to $25",""],["any","No limit",""]]},
+      {k:"routine", t:"How many steps do you like in a routine?", multi:false, o:[["minimal","1–2 steps","Quick and simple"],["balanced","3–4 steps","A steady routine"],["full","5 or more","I enjoy the ritual"]]},
+      {k:"texture", t:"Which textures do you prefer?", multi:false, o:[["light","Light and watery",""],["rich","Rich and creamy",""],["any","No preference",""]]}
+    ],
+    yourPicks:"Your three picks", yourProfile:"Your answers", retake:"Retake the quiz",
+    thinking:"Matching your answers to our products…", aiNote:"Picked by AI from our 8 products only.", ruleNote:"Picked by our matching rules.",
+    view:"View", addToCart:"Add to cart", added:"Added to cart",
+    bdTitle:"What this price is made of", bdKr:"Korean shelf price", bdShip:"Shipping to the US", bdDuty:"Import tax", bdFee:"Card payment fee", bdMargin:"Our margin", bdPrice:"Our price", bdUs:"US retail price", bdSave:"Your saving",
+    whatIf:"What if import tax changes?", keyIng:"Key ingredients", fits:"Good for",
+    skinNames:{dry:"Dry",oily:"Oily",combination:"Combination",sensitive:"Sensitive",normal:"Normal"},
+    cartTitle:"Your cart", empty:"Your cart is empty.", emptyHint:"Take the skin quiz or browse the shop to add products.",
+    subtotal:"Subtotal", shipping:"Shipping", free:"Free", tax:"Sales tax", taxLater:"Added when payment is set up", total:"Estimated total", checkout:"Continue to checkout", remove:"Remove",
+    freeOver:"Free US shipping over $40.",
+    coTitle:"Checkout", coLead:"We collect your order now and email you a secure payment link within 1 business day.",
+    name:"Full name", email:"Email", addr:"Street address", city:"City", state:"State", zip:"ZIP code",
+    placeOrder:"Place order", stripeTest:"Pay with card (Stripe test mode)", stripeSoon:"Available in the next version of the store.",
+    required:"Please fill in this field.", badEmail:"Enter an email like name@example.com.", badZip:"Enter a 5-digit ZIP code.",
+    protoBanner:"Prototype store. No payment is taken, and orders are saved in this browser only.",
+    thanks:"Order received", orderNo:"Order number", doneLead:"We will contact you at", doneLead2:"with a payment link and shipping details.",
+    giveFeedback:"Give 2-minute feedback", keepShopping:"Keep shopping",
+    svTitle:"Tell us how it went", svLead:"15 short statements. There are no right answers. Your answers are anonymous.",
+    sa:["Strongly disagree","Disagree","Neutral","Agree","Strongly agree"],
+    sus:["I think I would like to use this website often.","I found the website more complicated than it needed to be.","I thought the website was easy to use.","I think I would need help from a tech person to use this website.","I found the parts of this website worked well together.","I thought there was too much inconsistency on this website.","I think most people would learn to use this website very quickly.","I found the website awkward to use.","I felt confident using the website.","I needed to learn a lot before I could get going with this website."],
+    trust:["This store is honest about how its prices are set.","I trust that the products are authentic.","I would feel safe ordering from this store."],
+    intent:["I would buy a product this site recommended to me.","I would recommend this store to a friend."],
+    svSusHead:"Using the website", svTrustHead:"Trust", svIntentHead:"Buying",
+    submit:"Submit feedback", svMissing:"Please answer every statement.", svThanks:"Thank you. Your feedback was saved.",
+    footer:"Gyeol · Team 12 research prototype · Project Management with SaaS",
+    teamTitle:"Team panel", teamLead:"Research data collected in this browser, and the price model behind every product.",
+    group:"Test group", groupA:"A · price breakdown shown", groupB:"B · price only",
+    events:"Events", sessions:"Quiz completed", clicks:"Recommendation clicks", views:"Breakdown views", carts:"Add to cart", orders:"Orders", surveys:"Surveys",
+    avgSus:"Average SUS", byGroup:"By group",
+    priceModel:"Price model", assumptions:"Assumptions", tariff:"Import tax", shipU:"Shipping per unit ($)", marginL:"Target margin", reset:"Restore defaults",
+    colProduct:"Product", colKr:"KR price", colLanded:"Landed", colOur:"Our site", colSave:"Saving", colAmz:"Amazon", colAmzSave:"Saving", colUs:"US retail",
+    amzNote:"Amazon price keeps the same margin after the 8% (≤ $10) or 15% referral fee; the $39.99 monthly plan is not spread per unit.",
+    recentOrders:"Orders", noOrders:"No orders yet.", surveyRows:"Survey responses", noSurveys:"No responses yet.",
+    exportJson:"Export data (JSON)", exported:"File offered for saving.", exportFail:"Saving files is not available here.",
+    clearData:"Clear all research data", confirmClear:"Yes, clear everything", cancel:"Cancel", cleared:"Research data cleared.",
+    items:"items"
+  },
+  ko:{
+    shop:"쇼핑", quiz:"피부 퀴즈", whyNav:"가격 이야기", cart:"장바구니", team:"팀 패널",
+    heroEyebrow:"결 · 당신의 피부결",
+    heroTitle:"내 피부에 맞게 고르고, 가격은 투명하게.",
+    heroLead:"다섯 가지 질문에 답하면 제품 세 가지를 골라드립니다. 모든 가격에는 한국 판매가, 배송비, 관세, 저희 마진이 그대로 보입니다.",
+    startQuiz:"피부 퀴즈 시작하기", browse:"전체 제품 보기",
+    sealNote:"결은 피부의 결, 곧 피부의 질감을 뜻합니다.",
+    f1:"한국에서 직접 소싱", f1s:"한국 매장에서 구매해 미국으로 배송",
+    f2:"관세 최대 12.5%", f2s:"대부분의 한국 제품에 적용되는 현재 상한",
+    f3:"제품 8종", f3s:"틱톡과 한국 매장의 베스트셀러",
+    whyTitle:"올해 가격이 바뀐 이유",
+    w:[["2025년 8월 29일","소액 면세 폐지","800달러 미만 주문에도 관세가 붙습니다."],
+       ["2026년 2월 20일","기존 관세 무효 판결","대법원이 2025년 국가별 관세를 무효화했습니다."],
+       ["2026년 2~7월","임시 10% 관세","5개월 동안 모든 국가에 같은 세율."],
+       ["2026년 7월 24일 · 현재","새 관세, 최대 12.5%","대부분의 한국 제품은 최대 12.5%."]],
+    allProducts:"전체 제품", all:"전체",
+    cats:{essence:"에센스",lip:"립",serum:"세럼",cream:"크림",mask:"마스크",sun:"선케어",tint:"틴트",pad:"패드"},
+    usRetail:"미국 소매가", youSave:"절약", examplePrices:"예시 가격입니다. 실제 가격은 2026년 10월 가격 조사 후 반영됩니다.",
+    step:"질문", of:"/", back:"이전", next:"다음", seeResults:"추천 보기", pickUpTo:"최대 두 개까지 고를 수 있어요.",
+    q:[
+      {k:"skin", t:"피부 타입이 어떻게 되나요?", multi:false, o:[["dry","건성","세안 후 당기는 느낌"],["oily","지성","오후면 번들거림"],["combination","복합성","T존은 기름지고 볼은 건조"],["sensitive","민감성","쉽게 붉어지거나 자극받음"],["normal","중성","특별한 고민 없음"]]},
+      {k:"concern", t:"가장 개선하고 싶은 것은?", multi:true, o:[["hydration","수분","건조하거나 속당김"],["acne","트러블","뾰루지, 막힌 모공"],["redness","붉은기","눈에 띄는 홍조"],["pores","모공과 결","거칠고 고르지 않은 피부"],["dullness","칙칙함","피곤해 보이는 피부"],["lips","입술","건조한 입술, 립 컬러"],["sun","자외선 차단","매일 쓰는 선크림"]]},
+      {k:"budget", t:"제품 하나에 얼마까지 쓰고 싶나요?", multi:false, o:[["15","15달러 미만",""],["25","15~25달러",""],["any","상관없음",""]]},
+      {k:"routine", t:"루틴은 몇 단계가 좋나요?", multi:false, o:[["minimal","1~2단계","빠르고 간단하게"],["balanced","3~4단계","꾸준한 기본 루틴"],["full","5단계 이상","관리하는 시간이 즐거워요"]]},
+      {k:"texture", t:"어떤 제형을 좋아하나요?", multi:false, o:[["light","가볍고 촉촉한",""],["rich","쫀쫀하고 리치한",""],["any","상관없음",""]]}
+    ],
+    yourPicks:"추천 제품 세 가지", yourProfile:"내 답변", retake:"퀴즈 다시 하기",
+    thinking:"답변에 맞는 제품을 고르고 있어요…", aiNote:"AI가 저희 제품 8종 안에서만 골랐습니다.", ruleNote:"매칭 규칙으로 골랐습니다.",
+    view:"자세히", addToCart:"장바구니 담기", added:"장바구니에 담았어요",
+    bdTitle:"이 가격은 이렇게 만들어져요", bdKr:"한국 판매가", bdShip:"미국까지 배송비", bdDuty:"관세", bdFee:"카드 결제 수수료", bdMargin:"저희 마진", bdPrice:"판매가", bdUs:"미국 소매가", bdSave:"절약되는 금액",
+    whatIf:"관세가 바뀌면?", keyIng:"주요 성분", fits:"잘 맞는 피부",
+    skinNames:{dry:"건성",oily:"지성",combination:"복합성",sensitive:"민감성",normal:"중성"},
+    cartTitle:"장바구니", empty:"장바구니가 비어 있어요.", emptyHint:"피부 퀴즈를 하거나 쇼핑에서 제품을 담아보세요.",
+    subtotal:"상품 금액", shipping:"배송비", free:"무료", tax:"판매세", taxLater:"결제 단계에서 추가", total:"예상 합계", checkout:"주문하기", remove:"삭제",
+    freeOver:"40달러 이상 미국 내 무료 배송.",
+    coTitle:"주문서", coLead:"지금 주문을 받고, 영업일 1일 안에 안전한 결제 링크를 이메일로 보내드립니다.",
+    name:"이름", email:"이메일", addr:"주소", city:"도시", state:"주", zip:"우편번호",
+    placeOrder:"주문 접수", stripeTest:"카드 결제 (Stripe 테스트 모드)", stripeSoon:"다음 버전 스토어에서 제공됩니다.",
+    required:"이 항목을 입력해 주세요.", badEmail:"name@example.com 형식으로 입력해 주세요.", badZip:"우편번호 5자리를 입력해 주세요.",
+    protoBanner:"프로토타입 스토어입니다. 결제는 이루어지지 않으며, 주문은 이 브라우저에만 저장됩니다.",
+    thanks:"주문이 접수됐어요", orderNo:"주문 번호", doneLead:"", doneLead2:"(으)로 결제 링크와 배송 안내를 보내드릴게요.",
+    giveFeedback:"2분 피드백 남기기", keepShopping:"계속 쇼핑하기",
+    svTitle:"사용해 보니 어땠나요?", svLead:"짧은 문장 15개입니다. 정답은 없고, 응답은 익명으로 저장됩니다.",
+    sa:["전혀 아니다","아니다","보통","그렇다","매우 그렇다"],
+    sus:["이 웹사이트를 자주 쓰고 싶다.","이 웹사이트는 필요 이상으로 복잡했다.","이 웹사이트는 쓰기 쉬웠다.","이 웹사이트를 쓰려면 기술적인 도움이 필요할 것 같다.","이 웹사이트의 기능들이 잘 연결되어 있었다.","이 웹사이트는 일관성이 부족했다.","대부분의 사람들이 이 웹사이트를 금방 익힐 것 같다.","이 웹사이트는 쓰기 번거로웠다.","이 웹사이트를 자신 있게 사용했다.","이 웹사이트를 쓰기 전에 배워야 할 것이 많았다."],
+    trust:["이 스토어는 가격을 정하는 방식에 대해 정직하다.","제품이 정품이라고 믿는다.","이 스토어에서 주문해도 안심이 된다."],
+    intent:["이 사이트가 추천한 제품을 살 것 같다.","이 스토어를 친구에게 추천하겠다."],
+    svSusHead:"웹사이트 사용", svTrustHead:"신뢰", svIntentHead:"구매",
+    submit:"피드백 제출", svMissing:"모든 문항에 답해 주세요.", svThanks:"감사합니다. 피드백이 저장됐어요.",
+    footer:"결 · Team 12 연구용 프로토타입 · Project Management with SaaS",
+    teamTitle:"팀 패널", teamLead:"이 브라우저에 쌓인 연구 데이터와, 모든 제품 가격을 만드는 원가 모델입니다.",
+    group:"테스트 그룹", groupA:"A · 가격 분해표 표시", groupB:"B · 가격만 표시",
+    events:"이벤트", sessions:"퀴즈 완료", clicks:"추천 클릭", views:"분해표 열람", carts:"장바구니 담기", orders:"주문", surveys:"설문",
+    avgSus:"평균 SUS", byGroup:"그룹별",
+    priceModel:"가격 모델", assumptions:"가정값", tariff:"관세율", shipU:"개당 배송비 ($)", marginL:"목표 마진", reset:"기본값으로",
+    colProduct:"제품", colKr:"한국가", colLanded:"도착 원가", colOur:"자체 사이트", colSave:"절감률", colAmz:"아마존", colAmzSave:"절감률", colUs:"미국 소매가",
+    amzNote:"아마존 가격은 판매 수수료 8%(10달러 이하) 또는 15%를 뺀 뒤에도 같은 마진이 남도록 계산했습니다. 월 39.99달러 요금은 개당 가격에 넣지 않았습니다.",
+    recentOrders:"주문", noOrders:"아직 주문이 없어요.", surveyRows:"설문 응답", noSurveys:"아직 응답이 없어요.",
+    exportJson:"데이터 내보내기 (JSON)", exported:"파일 저장 창을 띄웠어요.", exportFail:"여기서는 파일 저장을 쓸 수 없어요.",
+    clearData:"연구 데이터 전체 삭제", confirmClear:"네, 모두 삭제", cancel:"취소", cleared:"연구 데이터를 삭제했어요.",
+    items:"개"
+  }
+};
+
+/* ---------- state ---------- */
+const S = {
+  lang: LS.get("lang","en"),
+  view: "home",
+  filter: "all",
+  quizStep: 0,
+  answers: { skin:null, concern:[], budget:null, routine:null, texture:null },
+  picks: LS.get("picks", null),
+  pickSource: LS.get("pickSource", null),
+  thinking: false,
+  sheet: null, sheetRate: null, sheetQty: 1,
+  cart: LS.get("cart", {}),
+  group: LS.get("group", null),
+  lastOrder: null,
+  survey: {},
+  coErrors: {},
+  confirmClear: false,
+  toast: ""
+};
+if(S.group !== "A" && S.group !== "B"){ S.group = Math.random() < 0.5 ? "A" : "B"; LS.set("group", S.group); }
+const t = k => (T[S.lang][k] ?? T.en[k]);
+const showBreakdown = () => S.group === "A";
+
+/* ---------- research log ---------- */
+function log(type, data){
+  const ev = LS.get("events", []);
+  ev.push({ at:new Date().toISOString(), type, group:S.group, lang:S.lang, data:data||{} });
+  LS.set("events", ev.slice(-800));
+}
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function pname(p){ return S.lang==="ko" ? p.ko : p.en; }
+function pdesc(p){ return S.lang==="ko" ? p.dKo : p.dEn; }
+function cartCount(){ return Object.values(S.cart).reduce((a,b)=>a+b,0); }
+function tileBg(p){ return "var(--tile-"+p.tone+")"; }
+function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span>${esc(p.tileKo)}</div>`; }
+function priceBlock(p){
+  const b = breakdown(p);
+  if(!showBreakdown()) return `<div class="priceRow"><span class="price num">${money(b.price)}</span></div>`;
+  return `<div class="priceRow"><span class="price num">${money(b.price)}</span><span class="was num">${money(p.us)}</span><span class="save num">${t("youSave")} ${pct(b.saving)}</span></div>`;
+}
+function toast(msg){ S.toast = msg; render(); clearTimeout(toast._t); toast._t = setTimeout(()=>{ S.toast=""; render(); }, 2200); }
+function go(view){ S.view = view; S.sheet = null; S.confirmClear = false; render(); window.scrollTo({top:0}); }
+function saveCart(){ LS.set("cart", S.cart); }
+
+/* ---------- views ---------- */
+function header(){
+  const nav = [["home",t("shop")],["quiz",t("quiz")]];
+  if(showBreakdown()) nav.push(["why",t("whyNav")]);
+  return `<header class="top"><div class="wrap row">
+    <button class="brand" data-go="home" aria-label="Gyeol home"><span class="ko">결</span><span class="en">GYEOL</span></button>
+    <nav class="main" aria-label="Main">
+      ${nav.map(([v,l])=>`<button class="navbtn" data-go="${v}" ${S.view===v?'aria-current="page"':''}>${esc(l)}</button>`).join("")}
+      <button class="navbtn cartbtn" data-go="cart" ${S.view==="cart"?'aria-current="page"':''}>${esc(t("cart"))} <span class="pill num">${cartCount()}</span></button>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="en" aria-pressed="${S.lang==="en"}">EN</button><button data-lang="ko" aria-pressed="${S.lang==="ko"}">한</button>
+    </div>
+  </div></header>`;
+}
+
+function homeView(){
+  const cats = ["all", ...new Set(PRODUCTS.map(p=>p.cat))];
+  const list = PRODUCTS.filter(p=>S.filter==="all"||p.cat===S.filter);
+  return `
+  <section class="hero">
+    <div class="copy">
+      <p class="eyebrow">${esc(t("heroEyebrow"))}</p>
+      <h1>${esc(t("heroTitle"))}</h1>
+      <p class="lead">${esc(showBreakdown()? t("heroLead") : t("heroLead").split(". ")[0] + ".")}</p>
+      <div class="actions"><button class="btn" data-go="quiz">${esc(t("startQuiz"))}</button><button class="btn ghost" data-scroll="products">${esc(t("browse"))}</button></div>
+    </div>
+    <div class="seal"><div class="char">결</div><p>${esc(t("sealNote"))}</p></div>
+  </section>
+  <div class="facts">
+    <div><b>${esc(t("f1"))}</b><span class="muted small">${esc(t("f1s"))}</span></div>
+    <div><b>${esc(t("f2"))}</b><span class="muted small">${esc(t("f2s"))}</span></div>
+    <div><b>${esc(t("f3"))}</b><span class="muted small">${esc(t("f3s"))}</span></div>
+  </div>
+  ${showBreakdown()? whySection() : ""}
+  <section class="section" id="products">
+    <div class="section-head"><h2>${esc(t("allProducts"))}</h2>
+      <div class="filters" role="group" aria-label="Category">${cats.map(c=>`<button class="chip" data-filter="${c}" aria-pressed="${S.filter===c}">${esc(c==="all"?t("all"):t("cats")[c])}</button>`).join("")}</div>
+    </div>
+    <div class="grid">${list.map(card).join("")}</div>
+    <p class="note">${esc(t("examplePrices"))}</p>
+  </section>`;
+}
+function whySection(){
+  return `<section class="section" id="why">
+    <div class="section-head"><h2>${esc(t("whyTitle"))}</h2></div>
+    <div class="why">${t("w").map(([d,h,b])=>`<div class="step"><span class="date">${esc(d)}</span><h3>${esc(h)}</h3><p class="muted small">${esc(b)}</p></div>`).join("")}</div>
+  </section>`;
+}
+function card(p){
+  return `<button class="card" data-open="${p.id}" data-src="grid">${tile(p)}
+    <div class="info"><span class="brandname">${esc(p.brand)}</span><span class="pname">${esc(pname(p))}</span>${priceBlock(p)}</div></button>`;
+}
+
+function quizView(){
+  const qs = t("q"), i = S.quizStep, q = qs[i];
+  const val = S.answers[q.k];
+  const chosen = v => q.multi ? val.includes(v) : val===v;
+  const canNext = q.multi ? val.length>0 : val!=null;
+  return `<section class="quiz">
+    <div class="progress" aria-hidden="true"><span style="width:${((i+1)/qs.length)*100}%"></span></div>
+    <p class="eyebrow">${esc(t("step"))} ${i+1} ${esc(t("of"))} ${qs.length}</p>
+    <h2>${esc(q.t)}</h2>
+    ${q.multi?`<p class="muted small">${esc(t("pickUpTo"))}</p>`:""}
+    <div class="opts">${q.o.map(([v,l,s])=>`<button class="opt" data-ans="${v}" aria-pressed="${chosen(v)}"><b>${esc(l)}</b>${s?`<span>${esc(s)}</span>`:""}</button>`).join("")}</div>
+    <div class="qnav">
+      <button class="btn ghost" data-qback ${i===0?"disabled":""}>${esc(t("back"))}</button>
+      <button class="btn" data-qnext ${canNext?"":"disabled"}>${esc(i===qs.length-1?t("seeResults"):t("next"))}</button>
+    </div>
+  </section>`;
+}
+
+function profileChips(){
+  const qs = t("q"); const out=[];
+  qs.forEach(q=>{ const v = S.answers[q.k]; const vals = Array.isArray(v)?v:[v];
+    vals.forEach(x=>{ const o = q.o.find(o=>o[0]===x); if(o) out.push(o[1]); }); });
+  return out.length? `<div class="profile">${out.map(x=>`<span>${esc(x)}</span>`).join("")}</div>` : "";
+}
+function resultsView(){
+  if(S.thinking) return `<section class="results"><p class="eyebrow">${esc(t("yourPicks"))}</p><div class="thinking">${esc(t("thinking"))}</div></section>`;
+  if(!S.picks) { return quizView(); }
+  return `<section class="results">
+    <div class="section-head"><h2>${esc(t("yourPicks"))}</h2><button class="btn ghost sm" data-retake>${esc(t("retake"))}</button></div>
+    ${profileChips()}
+    ${S.picks.map(pk=>{ const p = byId[pk.id]; const reason = (S.lang==="ko"? pk.ko : pk.en) || pk.en || pk.ko || "";
+      return `<article class="pick">${tile(p)}
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span class="card-brand eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h3 style="font-size:1.25rem">${esc(pname(p))}</h3><p class="why-text">${esc(reason)}</p></div>
+        <div class="side">${priceBlock(p)}<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" data-open="${p.id}" data-src="pick">${esc(t("view"))}</button><button class="btn sm" data-add="${p.id}" data-src="pick">${esc(t("addToCart"))}</button></div></div>
+      </article>`; }).join("")}
+    <p class="note">${esc(S.pickSource==="ai"? t("aiNote") : t("ruleNote"))} ${esc(t("examplePrices"))}</p>
+  </section>`;
+}
+
+function sheetView(){
+  const p = byId[S.sheet]; if(!p) return "";
+  const rate = S.sheetRate==null ? CFG.tariff : S.sheetRate;
+  const b = breakdown(p, rate);
+  const bd = showBreakdown() ? `
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h3 style="font-size:1.2rem">${esc(t("bdTitle"))}</h3>
+      <table class="bd"><tbody>
+        <tr><td>${esc(t("bdKr"))}</td><td>${money(b.kr)}</td></tr>
+        <tr><td>${esc(t("bdShip"))}</td><td>${money(b.ship)}</td></tr>
+        <tr><td>${esc(t("bdDuty"))} (${pct(rate)})</td><td>${money(b.duty)}</td></tr>
+        <tr><td>${esc(t("bdFee"))}</td><td>${money(b.fee)}</td></tr>
+        <tr><td>${esc(t("bdMargin"))}</td><td>${money(b.margin)}</td></tr>
+        <tr class="total"><td>${esc(t("bdPrice"))}</td><td>${money(b.price)}</td></tr>
+        <tr class="ref"><td>${esc(t("bdUs"))}</td><td>${money(p.us)}</td></tr>
+        <tr><td>${esc(t("bdSave"))}</td><td class="${b.saving>=0?"pos":"neg"}">${money(p.us-b.price)} · ${pct(b.saving)}</td></tr>
+      </tbody></table>
+      <div class="tariffs"><span class="small muted">${esc(t("whatIf"))}</span>${TARIFFS.map(r=>`<button class="chip" data-rate="${r}" aria-pressed="${Math.abs(r-rate)<1e-9}">${pct(r)}</button>`).join("")}</div>
+    </div>` : `<div class="priceRow"><span class="price num" style="font-size:1.8rem">${money(breakdown(p).price)}</span></div>`;
+  return `<div class="scrim" data-close></div>
+  <aside class="sheet" role="dialog" aria-modal="true" aria-label="${esc(pname(p))}">
+    <button class="btn ghost sm close" data-close>✕</button>
+    ${tile(p)}
+    <div style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h2>${esc(pname(p))}</h2><p class="muted">${esc(pdesc(p))}</p></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("fits"))}</span><div class="ings">${p.skin.map(s=>`<span>${esc(t("skinNames")[s])}</span>`).join("")}</div></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("keyIng"))}</span><div class="ings">${p.ing.map(s=>`<span>${esc(s)}</span>`).join("")}</div></div>
+    ${bd}
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <div class="qty"><button data-sq="-1" aria-label="Less">−</button><span class="num">${S.sheetQty}</span><button data-sq="1" aria-label="More">+</button></div>
+      <button class="btn" data-add="${p.id}" data-src="sheet">${esc(t("addToCart"))}</button>
+    </div>
+    <p class="note">${esc(t("examplePrices"))}</p>
+  </aside>`;
+}
+
+function totals(){
+  let sub = 0; for(const [id,q] of Object.entries(S.cart)){ if(byId[id]) sub += breakdown(byId[id]).price*q; }
+  const ship = sub===0 ? 0 : (sub >= CFG.freeShipOver ? 0 : CFG.shipFee);
+  return { sub, ship, total: sub+ship };
+}
+function cartView(){
+  const lines = Object.entries(S.cart).filter(([id,q])=>byId[id]&&q>0);
+  if(!lines.length) return `<section class="done"><h2>${esc(t("empty"))}</h2><p class="muted">${esc(t("emptyHint"))}</p><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center"><button class="btn" data-go="quiz">${esc(t("startQuiz"))}</button><button class="btn ghost" data-go="home">${esc(t("browse"))}</button></div></section>`;
+  const tt = totals();
+  return `<section class="section" style="margin-top:0">
+    <div class="section-head"><h2>${esc(t("cartTitle"))}</h2><span class="muted num">${cartCount()} ${esc(t("items"))}</span></div>
+    <div class="two">
+      <div>${lines.map(([id,q])=>{ const p=byId[id]; const pr=breakdown(p).price; return `<div class="line">${tile(p)}
+        <div style="min-width:0"><div class="small muted">${esc(p.brand)}</div><div>${esc(pname(p))}</div><button class="linkbtn small" data-rm="${id}">${esc(t("remove"))}</button></div>
+        <div class="qty"><button data-cq="${id}" data-d="-1" aria-label="Less">−</button><span class="num">${q}</span><button data-cq="${id}" data-d="1" aria-label="More">+</button></div>
+        <div class="lt num">${money(pr*q)}</div></div>`; }).join("")}</div>
+      ${summaryBox(tt, `<button class="btn" data-go="checkout">${esc(t("checkout"))}</button>`)}
+    </div>
+  </section>`;
+}
+function summaryBox(tt, action){
+  return `<aside class="summary">
+    <div class="r"><span>${esc(t("subtotal"))}</span><span class="num">${money(tt.sub)}</span></div>
+    <div class="r"><span>${esc(t("shipping"))}</span><span class="num">${tt.ship===0?esc(t("free")):money(tt.ship)}</span></div>
+    <div class="r"><span>${esc(t("tax"))}</span><span class="small muted">${esc(t("taxLater"))}</span></div>
+    <div class="r total"><span>${esc(t("total"))}</span><span class="num">${money(tt.total)}</span></div>
+    <p class="note">${esc(t("freeOver"))}</p>
+    ${action||""}
+  </aside>`;
+}
+const STATES = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
+function checkoutView(){
+  if(!cartCount()) return cartView();
+  const e = S.coErrors, d = LS.get("coDraft", {});
+  const f = (id, label, type, cls) => `<label class="${cls||""}" for="co-${id}">${esc(label)}<input id="co-${id}" name="${id}" type="${type||"text"}" value="${esc(d[id]||"")}" autocomplete="${({name:"name",email:"email",addr:"street-address",city:"address-level2",zip:"postal-code"})[id]||"on"}">${e[id]?`<span class="err">${esc(e[id])}</span>`:""}</label>`;
+  return `<section class="section" style="margin-top:0">
+    <div class="section-head"><h2>${esc(t("coTitle"))}</h2></div>
+    <p class="banner">${esc(t("protoBanner"))}</p>
+    <div class="two">
+      <form class="co" id="coForm" novalidate>
+        <p class="full muted">${esc(t("coLead"))}</p>
+        ${f("name",t("name"),"text","full")}
+        ${f("email",t("email"),"email","full")}
+        ${f("addr",t("addr"),"text","full")}
+        ${f("city",t("city"))}
+        <label for="co-state">${esc(t("state"))}<select id="co-state" name="state">${STATES.map(s=>`<option ${ (d.state||"CA")===s?"selected":""}>${s}</option>`).join("")}</select></label>
+        ${f("zip",t("zip"))}
+        <div class="full" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button class="btn" type="submit">${esc(t("placeOrder"))}</button>
+          <button class="btn ghost" type="button" disabled title="${esc(t("stripeSoon"))}">${esc(t("stripeTest"))}</button>
+          <span class="note">${esc(t("stripeSoon"))}</span>
+        </div>
+      </form>
+      ${summaryBox(totals())}
+    </div>
+  </section>`;
+}
+function doneView(){
+  const o = S.lastOrder; if(!o) return homeView();
+  return `<section class="done">
+    <div class="seal-mark">결</div>
+    <h2>${esc(t("thanks"))}</h2>
+    <p class="muted">${esc(t("orderNo"))} <b class="num">${esc(o.no)}</b></p>
+    <p>${esc(t("doneLead"))} <b>${esc(o.email)}</b> ${esc(t("doneLead2"))}</p>
+    <p class="banner">${esc(t("protoBanner"))}</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center"><button class="btn" data-go="survey">${esc(t("giveFeedback"))}</button><button class="btn ghost" data-go="home">${esc(t("keepShopping"))}</button></div>
+  </section>`;
+}
+
+function surveyView(){
+  const block = (head, key, arr) => `<div><h3 style="font-size:1.25rem;margin-bottom:4px">${esc(head)}</h3>${arr.map((s,i)=>{ const id=key+(i+1); const v=S.survey[id];
+    return `<div class="likert"><span>${i+1}. ${esc(s)}</span><div class="scale" role="group" aria-label="${esc(s)}">${t("sa").map((l,j)=>`<button data-sv="${id}" data-v="${j+1}" aria-pressed="${v===j+1}">${esc(l)}</button>`).join("")}</div></div>`; }).join("")}</div>`;
+  return `<section class="survey">
+    <div><p class="eyebrow">${esc(t("giveFeedback"))}</p><h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem)">${esc(t("svTitle"))}</h2><p class="muted" style="margin-top:8px">${esc(t("svLead"))}</p></div>
+    ${block(t("svSusHead"),"sus",t("sus"))}
+    ${block(t("svTrustHead"),"trust",t("trust"))}
+    ${block(t("svIntentHead"),"intent",t("intent"))}
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn" data-svsubmit>${esc(t("submit"))}</button>${S.svErr?`<span class="err">${esc(t("svMissing"))}</span>`:""}</div>
+  </section>`;
+}
+function susScore(r){ let s=0; for(let i=1;i<=10;i++){ const v=r["sus"+i]; s += (i%2 ? v-1 : 5-v); } return s*2.5; }
+function mean(a){ return a.length ? a.reduce((x,y)=>x+y,0)/a.length : null; }
+
+function teamView(){
+  const ev = LS.get("events", []), orders = LS.get("orders", []), sv = LS.get("surveys", []);
+  const c = type => ev.filter(e=>e.type===type).length;
+  const cg = (type,g) => ev.filter(e=>e.type===type && e.group===g).length;
+  const susBy = g => mean(sv.filter(r=>r.group===g).map(r=>r.sus));
+  const trustBy = g => mean(sv.filter(r=>r.group===g).map(r=>r.trust));
+  const f1 = n => n==null ? "–" : n.toFixed(1);
+  const statRows = [["quiz_done",t("sessions")],["pick_click",t("clicks")],["breakdown_view",t("views")],["add_to_cart",t("carts")],["order",t("orders")]];
+  return `<section class="section" style="margin-top:0">
+    <div class="section-head"><div><p class="eyebrow">Team 12</p><h2>${esc(t("teamTitle"))}</h2></div>
+      <div class="filters" role="group" aria-label="${esc(t("group"))}"><span class="small muted" style="align-self:center">${esc(t("group"))}</span>
+        <button class="chip" data-group="A" aria-pressed="${S.group==="A"}">${esc(t("groupA"))}</button>
+        <button class="chip" data-group="B" aria-pressed="${S.group==="B"}">${esc(t("groupB"))}</button></div>
+    </div>
+    <p class="muted">${esc(t("teamLead"))}</p>
+    <p class="banner">${esc(t("protoBanner"))}</p>
+    <div class="stats">
+      ${statRows.map(([k,l])=>`<div><span class="small muted">${esc(l)}</span><b>${c(k)}</b><span class="small muted num">A ${cg(k,"A")} · B ${cg(k,"B")}</span></div>`).join("")}
+      <div><span class="small muted">${esc(t("surveys"))}</span><b>${sv.length}</b><span class="small muted num">A ${sv.filter(r=>r.group==="A").length} · B ${sv.filter(r=>r.group==="B").length}</span></div>
+      <div><span class="small muted">${esc(t("avgSus"))}</span><b>${f1(mean(sv.map(r=>r.sus)))}</b><span class="small muted num">A ${f1(susBy("A"))} · B ${f1(susBy("B"))}</span></div>
+      <div><span class="small muted">Trust (1–5)</span><b>${f1(mean(sv.map(r=>r.trust)))}</b><span class="small muted num">A ${f1(trustBy("A"))} · B ${f1(trustBy("B"))}</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>${esc(t("priceModel"))}</h2><button class="btn ghost sm" data-cfgreset>${esc(t("reset"))}</button></div>
+    <div class="cfg">
+      <label for="cfg-tariff">${esc(t("tariff"))}<select id="cfg-tariff" data-cfg="tariff">${TARIFFS.map(r=>`<option value="${r}" ${Math.abs(r-CFG.tariff)<1e-9?"selected":""}>${pct(r)}</option>`).join("")}</select></label>
+      <label for="cfg-ship">${esc(t("shipU"))}<input id="cfg-ship" type="number" step="0.25" min="0" value="${CFG.shipPerUnit}" data-cfg="shipPerUnit"></label>
+      <label for="cfg-margin">${esc(t("marginL"))}<select id="cfg-margin" data-cfg="margin">${[0.1,0.15,0.2,0.25,0.3,0.4].map(m=>`<option value="${m}" ${Math.abs(m-CFG.margin)<1e-9?"selected":""}>${pct(m)}</option>`).join("")}</select></label>
+    </div>
+    <div class="scroll"><table class="data"><thead><tr><th>${esc(t("colProduct"))}</th><th class="r">${esc(t("colKr"))}</th><th class="r">${esc(t("colLanded"))}</th><th class="r">${esc(t("colOur"))}</th><th class="r">${esc(t("colSave"))}</th><th class="r">${esc(t("colAmz"))}</th><th class="r">${esc(t("colAmzSave"))}</th><th class="r">${esc(t("colUs"))}</th></tr></thead><tbody>
+      ${PRODUCTS.map(p=>{ const b=breakdown(p), a=amazonPrice(p); return `<tr><td>${esc(p.brand)} · ${esc(p.en.split(" ").slice(0,4).join(" "))}</td><td class="r">${money(p.kr)}</td><td class="r">${money(b.landed)}</td><td class="r">${money(b.price)}</td><td class="r ${b.saving>=0?"pos":"neg"}">${pct(b.saving)}</td><td class="r">${money(a.price)}</td><td class="r ${a.saving>=0?"pos":"neg"}">${pct(a.saving)}</td><td class="r">${money(p.us)}</td></tr>`; }).join("")}
+    </tbody></table></div>
+    <p class="note">${esc(t("amzNote"))} ${esc(t("examplePrices"))}</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>${esc(t("recentOrders"))}</h2></div>
+    ${orders.length? `<div class="scroll"><table class="data"><thead><tr><th>No.</th><th>Date</th><th>Group</th><th>Items</th><th class="r">Total</th><th>State</th></tr></thead><tbody>${orders.slice().reverse().map(o=>`<tr><td>${esc(o.no)}</td><td>${esc(o.at.slice(0,16).replace("T"," "))}</td><td>${esc(o.group)}</td><td>${esc(o.items.map(i=>byId[i.id]?byId[i.id].brand+" ×"+i.q:i.id).join(", "))}</td><td class="r">${money(o.total)}</td><td>${esc(o.state)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">${esc(t("noOrders"))}</p>`}
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>${esc(t("surveyRows"))}</h2></div>
+    ${sv.length? `<div class="scroll"><table class="data"><thead><tr><th>Date</th><th>Group</th><th class="r">SUS</th><th class="r">Trust</th><th class="r">Intent</th></tr></thead><tbody>${sv.slice().reverse().map(r=>`<tr><td>${esc(r.at.slice(0,16).replace("T"," "))}</td><td>${esc(r.group)}</td><td class="r">${r.sus.toFixed(1)}</td><td class="r">${r.trust.toFixed(2)}</td><td class="r">${r.intent.toFixed(2)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">${esc(t("noSurveys"))}</p>`}
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <button class="btn ghost" data-export>${esc(t("exportJson"))}</button>
+      ${S.confirmClear? `<button class="btn" data-clearyes>${esc(t("confirmClear"))}</button><button class="btn ghost" data-clearno>${esc(t("cancel"))}</button>` : `<button class="linkbtn" data-clear>${esc(t("clearData"))}</button>`}
+    </div>
+  </section>`;
+}
+
+function render(){
+  document.documentElement.lang = S.lang;
+  let body;
+  switch(S.view){
+    case "quiz": body = quizView(); break;
+    case "results": body = resultsView(); break;
+    case "cart": body = cartView(); break;
+    case "checkout": body = checkoutView(); break;
+    case "done": body = doneView(); break;
+    case "survey": body = surveyView(); break;
+    case "team": body = teamView(); break;
+    default: body = homeView();
+  }
+  document.getElementById("app").innerHTML = header() + `<main class="wrap">${body}</main>
+    <footer class="foot wrap"><span>${esc(t("footer"))}</span><span style="display:flex;gap:16px;flex-wrap:wrap"><button class="linkbtn" data-go="survey">${esc(t("giveFeedback"))}</button><button class="linkbtn" data-go="team">${esc(t("team"))}</button></span></footer>
+    ${S.sheet? sheetView() : ""}${S.toast?`<div class="toast" role="status">${esc(S.toast)}</div>`:""}`;
+}
+
+/* ---------- recommendation ---------- */
+function ruleScore(p, a){
+  let s = 0;
+  if(a.skin && p.skin.includes(a.skin)) s += 3;
+  a.concern.forEach(c=>{ if(p.concern.includes(c)) s += 4; });
+  if(a.texture && a.texture!=="any" && p.texture===a.texture) s += 1;
+  const price = breakdown(p).price;
+  if(a.budget==="15" && price>=15) s -= 3;
+  if(a.budget==="25" && price>25) s -= 3;
+  if(a.routine==="minimal" && ["sun","essence","serum"].includes(p.cat)) s += 1;
+  if(a.routine==="full" && ["mask","pad"].includes(p.cat)) s += 1;
+  return s;
+}
+function rulePicks(a){
+  const ranked = PRODUCTS.map(p=>({p, s:ruleScore(p,a)})).sort((x,y)=>y.s-x.s).slice(0,3);
+  return ranked.map(({p})=>{
+    const skinEn = a.skin? T.en.skinNames[a.skin].toLowerCase() : "", skinKo = a.skin? T.ko.skinNames[a.skin] : "";
+    const hit = a.concern.filter(c=>p.concern.includes(c));
+    const cEn = hit.map(c=>T.en.q[1].o.find(o=>o[0]===c)[1].toLowerCase()).join(" and ");
+    const cKo = hit.map(c=>T.ko.q[1].o.find(o=>o[0]===c)[1]).join(", ");
+    return { id:p.id,
+      en: hit.length ? `Chosen for ${cEn}, and it suits ${skinEn} skin. ${p.dEn}` : `A gentle all-rounder that suits ${skinEn} skin. ${p.dEn}`,
+      ko: hit.length ? `${cKo} 고민에 맞춰 골랐고, ${skinKo} 피부에도 잘 맞아요. ${p.dKo}` : `${skinKo} 피부에 무난하게 잘 맞는 제품이에요. ${p.dKo}` };
+  });
+}
+async function recommend(){
+  const a = JSON.parse(JSON.stringify(S.answers));
+  S.thinking = true; S.view = "results"; render(); window.scrollTo({top:0});
+  log("quiz_done", { answers:a });
+  let picks = null, source = "rules";
+  try{
+    const sample = window.claude ? await window.claude.use("sample") : null;
+    if(sample){
+      const catalog = PRODUCTS.map(p=>({ id:p.id, brand:p.brand, name:p.en, category:p.cat, goodForSkin:p.skin, targets:p.concern, texture:p.texture, priceUSD:breakdown(p).price, keyIngredients:p.ing }));
+      const prompt = `You are the product advisor for Gyeol, a small K-beauty store. Pick exactly 3 different products for this shopper, ONLY from the catalog below (use the exact "id" values).
+Shopper answers: ${JSON.stringify(a)}
+(budget "15" = under $15 per item, "25" = $15 to $25, "any" = no limit; routine = how many steps they like; concern = what they want to improve.)
+Catalog: ${JSON.stringify(catalog)}
+Rules: respect the budget where you can; match skin type and concerns first; no medical or treatment claims; each reason is one or two plain sentences (max 30 words) that mention why it fits THEIR answers.
+Reply with only JSON: {"picks":[{"id":"...","en":"reason in English","ko":"같은 이유를 자연스러운 한국어로"}]}`;
+      const out = await sample.json(prompt, { modelTier:"quick" });
+      const arr = out && Array.isArray(out.picks) ? out.picks : [];
+      const seen = new Set(); const clean = [];
+      arr.forEach(x=>{ const id = String(x && x.id || ""); if(byId[id] && !seen.has(id)){ seen.add(id); clean.push({ id, en:String(x.en||""), ko:String(x.ko||"") }); } });
+      if(clean.length >= 3){ picks = clean.slice(0,3); source = "ai"; }
+      else if(clean.length){ const fill = rulePicks(a).filter(r=>!seen.has(r.id)); picks = clean.concat(fill).slice(0,3); source = "ai"; }
+    }
+  }catch(e){ /* fall back to rules: not_granted, rate_limited, invalid_json, etc. */ }
+  if(!picks) picks = rulePicks(a);
+  S.picks = picks; S.pickSource = source; S.thinking = false;
+  LS.set("picks", picks); LS.set("pickSource", source);
+  log("recommend", { source, ids:picks.map(p=>p.id) });
+  render();
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", async e=>{
+  const el = e.target.closest("button, [data-close]"); if(!el) return;
+  const d = el.dataset;
+  if(d.go){ if(d.go==="why"){ go("home"); setTimeout(()=>document.getElementById("why")?.scrollIntoView({behavior:"smooth"}),30); return; }
+    if(d.go==="quiz" && S.picks && S.view!=="results" && el.closest("header")){ go("results"); return; }
+    if(d.go==="quiz"){ S.quizStep = 0; } go(d.go); if(d.go==="checkout") log("checkout_start"); return; }
+  if(d.lang){ S.lang = d.lang; LS.set("lang", S.lang); render(); return; }
+  if(d.scroll){ document.getElementById(d.scroll)?.scrollIntoView({behavior:"smooth"}); return; }
+  if(d.filter){ S.filter = d.filter; render(); return; }
+  if(d.ans!=null){ const q = T.en.q[S.quizStep];
+    if(q.multi){ const arr = S.answers[q.k]; const i = arr.indexOf(d.ans); if(i>=0) arr.splice(i,1); else { arr.push(d.ans); if(arr.length>2) arr.shift(); } }
+    else S.answers[q.k] = d.ans;
+    render(); return; }
+  if(el.hasAttribute("data-qback")){ if(S.quizStep>0){ S.quizStep--; render(); } return; }
+  if(el.hasAttribute("data-qnext")){ if(S.quizStep < T.en.q.length-1){ S.quizStep++; render(); window.scrollTo({top:0}); } else recommend(); return; }
+  if(el.hasAttribute("data-retake")){ S.picks=null; S.answers={skin:null,concern:[],budget:null,routine:null,texture:null}; S.quizStep=0; LS.set("picks",null); go("quiz"); return; }
+  if(d.open){ S.sheet = d.open; S.sheetRate = null; S.sheetQty = 1; if(d.src==="pick") log("pick_click",{id:d.open}); log("product_view",{id:d.open, src:d.src}); if(showBreakdown()) log("breakdown_view",{id:d.open}); render(); return; }
+  if(el.hasAttribute("data-close")){ S.sheet = null; render(); return; }
+  if(d.rate!=null){ S.sheetRate = Number(d.rate); log("tariff_toggle",{id:S.sheet, rate:S.sheetRate}); render(); return; }
+  if(d.sq){ S.sheetQty = Math.max(1, Math.min(9, S.sheetQty + Number(d.sq))); render(); return; }
+  if(d.add){ const q = d.src==="sheet" ? S.sheetQty : 1; S.cart[d.add] = (S.cart[d.add]||0) + q; saveCart(); log("add_to_cart",{id:d.add, q, src:d.src}); if(d.src==="sheet") S.sheet=null; toast(t("added")); return; }
+  if(d.cq){ const n = (S.cart[d.cq]||0) + Number(d.d); if(n<=0) delete S.cart[d.cq]; else S.cart[d.cq] = Math.min(n,9); saveCart(); render(); return; }
+  if(d.rm){ delete S.cart[d.rm]; saveCart(); render(); return; }
+  if(d.sv){ S.survey[d.sv] = Number(d.v); S.svErr=false; render(); return; }
+  if(el.hasAttribute("data-svsubmit")){
+    const keys = [...Array(10)].map((_,i)=>"sus"+(i+1)).concat(["trust1","trust2","trust3","intent1","intent2"]);
+    if(keys.some(k=>!S.survey[k])){ S.svErr = true; render(); return; }
+    const r = Object.assign({}, S.survey);
+    const row = { at:new Date().toISOString(), group:S.group, lang:S.lang, answers:r, sus:susScore(r), trust:mean([r.trust1,r.trust2,r.trust3]), intent:mean([r.intent1,r.intent2]) };
+    const sv = LS.get("surveys", []); sv.push(row); LS.set("surveys", sv); log("survey",{sus:row.sus});
+    S.survey = {}; go("home"); toast(t("svThanks")); return; }
+  if(d.group){ S.group = d.group; LS.set("group", S.group); log("group_switch",{to:S.group}); render(); return; }
+  if(el.hasAttribute("data-cfgreset")){ CFG = Object.assign({}, DEFAULT_CFG); LS.set("cfg", {}); render(); return; }
+  if(el.hasAttribute("data-export")){
+    const payload = { exportedAt:new Date().toISOString(), group:S.group, config:CFG, events:LS.get("events",[]), orders:LS.get("orders",[]), surveys:LS.get("surveys",[]) };
+    if(!window.claude){ try{ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"})); a.download="gyeol-research-data.json"; document.body.appendChild(a); a.click(); a.remove(); toast(t("exported")); }catch(err){ toast(t("exportFail")); } return; }
+    try{ const dl = window.claude ? await window.claude.use("downloads") : null; if(!dl) throw 0;
+      await dl.save({ filename:"gyeol-research-data.json", data:JSON.stringify(payload,null,2) }); toast(t("exported")); }
+    catch(err){ if(!(err && err.code==="declined")) toast(t("exportFail")); }
+    return; }
+  if(el.hasAttribute("data-clear")){ S.confirmClear = true; render(); return; }
+  if(el.hasAttribute("data-clearno")){ S.confirmClear = false; render(); return; }
+  if(el.hasAttribute("data-clearyes")){ ["events","orders","surveys"].forEach(k=>LS.set(k,[])); S.confirmClear=false; toast(t("cleared")); return; }
+});
+document.addEventListener("change", e=>{
+  const el = e.target; if(!el.dataset || !el.dataset.cfg) return;
+  const v = Number(el.value); if(!isFinite(v) || v<0) return;
+  CFG[el.dataset.cfg] = v; const saved = LS.get("cfg", {}); saved[el.dataset.cfg] = v; LS.set("cfg", saved); render();
+});
+document.addEventListener("input", e=>{
+  const el = e.target; if(!el.closest || !el.closest("#coForm")) return;
+  const d = LS.get("coDraft", {}); d[el.name] = el.value; LS.set("coDraft", d);
+});
+document.addEventListener("submit", e=>{
+  if(e.target.id!=="coForm") return;
+  e.preventDefault();
+  const fd = Object.fromEntries(new FormData(e.target).entries());
+  const err = {};
+  ["name","email","addr","city","zip"].forEach(k=>{ if(!String(fd[k]||"").trim()) err[k] = t("required"); });
+  if(fd.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fd.email)) err.email = t("badEmail");
+  if(fd.zip && !/^\d{5}(-\d{4})?$/.test(fd.zip.trim())) err.zip = t("badZip");
+  S.coErrors = err; LS.set("coDraft", fd);
+  if(Object.keys(err).length){ render(); return; }
+  const tt = totals();
+  const no = "GY-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+  const order = { no, at:new Date().toISOString(), group:S.group, items:Object.entries(S.cart).map(([id,q])=>({id,q,price:breakdown(byId[id]).price})), subtotal:tt.sub, shipping:tt.ship, total:tt.total, state:fd.state, email:fd.email };
+  const orders = LS.get("orders", []); orders.push(order); LS.set("orders", orders);
+  log("order",{ no, total:tt.total, items:order.items.length });
+  S.cart = {}; saveCart(); LS.set("coDraft", {}); S.lastOrder = order; go("done");
+});
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && S.sheet){ S.sheet=null; render(); } });
+
+if(S.picks && !S.picks.every(p=>byId[p.id])) S.picks = null;
+log("visit");
+render();
+})();
+</script>
+
+</body>
+</html>
