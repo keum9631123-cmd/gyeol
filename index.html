@@ -108,8 +108,12 @@ main{padding-block:32px 72px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
 .card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);min-width:0;cursor:pointer;text-align:left;padding:0}
 .card:hover{border-color:var(--ink)}
-.tile{aspect-ratio:4/3;max-width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:2.4rem;color:var(--ink-soft);position:relative}
-.tile .cat{position:absolute;left:12px;top:10px;font-family:var(--body);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
+.tile{aspect-ratio:4/3;max-width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:2.4rem;color:#4A423B;position:relative;overflow:hidden}
+.tile .cat{color:#5A524B!important}
+.tile img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:100%}
+.tile .step{position:absolute;right:10px;top:8px;font-family:var(--body);font-size:.72rem;color:var(--ink-mute);border:1px solid var(--line);border-radius:99px;padding:0 8px;background:var(--paper)}
+.searchbox{max-width:320px;width:100%}
+.tile .cat{z-index:1;position:absolute;left:12px;top:10px;font-family:var(--body);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
 .card .info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
 .card .brandname{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)}
 .card .pname{font-weight:500;line-height:1.4}
@@ -228,7 +232,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;display:fle
 
 </head>
 <body>
-<div id="app"></div>
+<div id="app"><noscript><div style="max-width:560px;margin:80px auto;font-family:Georgia,serif;line-height:1.6;color:#221E1B"><h1 style="font-size:2rem">결 Gyeol</h1><p>This store needs JavaScript. Open this page in Chrome, Safari or Edge from its web address, not as a file preview.</p><p>이 페이지는 자바스크립트가 필요합니다. 파일 미리보기가 아니라 Chrome, Safari, Edge 브라우저에서 웹 주소로 열어주세요.</p></div></noscript></div>
 
 <script>
 (function(){
@@ -247,38 +251,126 @@ const TARIFFS = [0, 0.10, 0.125, 0.15];
 
 /* Example catalog. Prices are placeholders until the team's October 2026 price survey. */
 const PRODUCTS = [
-  { id:"cosrx-snail", brand:"COSRX", en:"Advanced Snail 96 Mucin Power Essence 100ml", ko:"어드밴스드 스네일 96 뮤신 파워 에센스 100ml", cat:"essence", tileKo:"에센스", tone:1,
-    kr:9.50, us:25.00, usSrc:"US retail", skin:["dry","combination","normal","sensitive"], concern:["hydration","dullness"], texture:"light",
-    ing:["Snail secretion filtrate 96%","Sodium hyaluronate"],
-    dEn:"A slippery, watery essence that calms and hydrates. The most searched K-beauty step on TikTok.", dKo:"촉촉하게 진정시켜 주는 워터리 에센스. 틱톡에서 가장 많이 찾는 K-뷰티 제품입니다." },
-  { id:"laneige-lip", brand:"LANEIGE", en:"Lip Sleeping Mask Berry 20g", ko:"립 슬리핑 마스크 베리 20g", cat:"lip", tileKo:"립", tone:2,
-    kr:12.00, us:24.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["lips","hydration"], texture:"rich",
-    ing:["Berry fruit complex","Shea butter","Vitamin C"],
-    dEn:"An overnight lip balm that leaves lips soft by morning.", dKo:"자는 동안 입술을 부드럽게 채워주는 나이트 립 마스크." },
-  { id:"torriden-serum", brand:"TORRIDEN", en:"DIVE-IN Low Molecular Hyaluronic Acid Serum 50ml", ko:"다이브인 저분자 히알루론산 세럼 50ml", cat:"serum", tileKo:"세럼", tone:3,
-    kr:11.00, us:22.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["hydration"], texture:"light",
-    ing:["5 types of hyaluronic acid","D-panthenol"],
-    dEn:"A thin, fast-absorbing serum with five types of hyaluronic acid.", dKo:"다섯 가지 히알루론산이 빠르게 흡수되는 가벼운 세럼." },
-  { id:"drjart-cica", brand:"DR.JART+", en:"Cicapair Tiger Grass Color Correcting Treatment 50ml", ko:"시카페어 타이거 그라스 컬러 코렉팅 트리트먼트 50ml", cat:"cream", tileKo:"크림", tone:3,
-    kr:24.00, us:52.00, usSrc:"US retail", skin:["sensitive","combination","normal"], concern:["redness"], texture:"rich",
-    ing:["Centella asiatica","Mineral SPF"],
-    dEn:"A green-to-beige cream that evens out visible redness.", dKo:"초록빛에서 베이지로 바뀌며 붉은기를 커버해 주는 크림." },
-  { id:"mediheal-teatree", brand:"MEDIHEAL", en:"Tea Tree Care Solution Essential Mask, 10 sheets", ko:"티트리 케어 솔루션 에센셜 마스크 10매", cat:"mask", tileKo:"마스크", tone:4,
-    kr:9.00, us:25.00, usSrc:"US retail", skin:["oily","combination","sensitive"], concern:["acne","redness"], texture:"light",
-    ing:["Tea tree leaf extract","Centella"],
-    dEn:"Cooling sheet masks for oily or breakout-prone days.", dKo:"유분이 많거나 트러블이 올라오는 날을 위한 쿨링 시트 마스크." },
-  { id:"purito-sun", brand:"PURITO", en:"Daily Go-To Sunscreen SPF 50+ 60ml", ko:"데일리 고투 선스크린 SPF 50+ 60ml", cat:"sun", tileKo:"선", tone:1,
-    kr:11.00, us:21.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["sun"], texture:"light",
-    ing:["Sunflower seed oil","Niacinamide"],
-    dEn:"A lightweight daily sunscreen with no white cast.", dKo:"백탁 없이 가볍게 바르는 데일리 선크림." },
-  { id:"peripera-tint", brand:"PERIPERA", en:"Ink Mood Glowy Tint", ko:"잉크 무드 글로이 틴트", cat:"tint", tileKo:"틴트", tone:2,
-    kr:7.00, us:14.00, usSrc:"US retail", skin:["dry","combination","normal","oily","sensitive"], concern:["lips"], texture:"light",
-    ing:["Glossy tint base"],
-    dEn:"A glossy lip tint with long-lasting color.", dKo:"오래 지속되는 발색의 글로시 립 틴트." },
-  { id:"medicube-pad", brand:"MEDICUBE", en:"Zero Pore Pad 2.0, 70 pads", ko:"제로 모공 패드 2.0 70매", cat:"pad", tileKo:"패드", tone:4,
-    kr:14.00, us:30.00, usSrc:"US retail", skin:["oily","combination","normal"], concern:["pores","acne","dullness"], texture:"light",
+  { id:"cosrx-cleanser", brand:"COSRX", en:"Low pH Good Morning Gel Cleanser", ko:"약산성 굿모닝 젤 클렌저", size:"150ml", cat:"cleanser", tileKo:"클렌저", tone:3,
+    kr:7.50, us:14.00, skin:["oily","combination","normal","sensitive"], concern:["acne","pores"], texture:"light",
+    ing:["BHA (betaine salicylate)","Tea tree leaf oil"],
+    dEn:"A mild, low-pH gel cleanser that washes away oil without the tight feeling. A steady first step for oily or breakout-prone skin.", dKo:"당김 없이 유분을 씻어내는 약산성 젤 클렌저. 지성·트러블 피부의 기본 첫 단계입니다.",
+    useEn:"Lather a small amount with water, massage for 30 seconds, rinse. Morning and night.", useKo:"소량을 물과 거품 내 30초 마사지 후 헹굽니다. 아침저녁 사용." },
+  { id:"banila-balm", brand:"BANILA CO", en:"Clean It Zero Cleansing Balm Original", ko:"클린 잇 제로 클렌징 밤 오리지널", size:"100ml", cat:"cleanser", tileKo:"클렌저", tone:2,
+    kr:13.00, us:22.00, skin:["dry","combination","normal","oily"], concern:["pores","dullness"], texture:"rich",
+    ing:["Sherbet balm texture","Melts into oil"],
+    dEn:"A solid balm that melts into oil and lifts sunscreen and makeup in one pass. Rinses clean with no greasy film.", dKo:"오일로 녹아 선크림과 메이크업을 한 번에 지우는 클렌징 밤. 헹군 뒤 기름막이 남지 않아요.",
+    useEn:"Massage one scoop onto dry skin, add a little water until milky, rinse. Follow with a gel cleanser.", useKo:"마른 얼굴에 한 스쿱 마사지 후 물을 조금 더해 유화시키고 헹굽니다. 이후 젤 클렌저로 마무리." },
+  { id:"anua-toner", brand:"ANUA", en:"Heartleaf 77% Soothing Toner", ko:"어성초 77% 수딩 토너", size:"250ml", cat:"toner", tileKo:"토너", tone:3,
+    kr:15.00, us:29.00, skin:["sensitive","oily","combination"], concern:["redness","acne"], texture:"light",
+    ing:["Heartleaf extract 77%","Low pH"],
+    dEn:"A watery toner built around heartleaf, a Korean favorite for calming irritated skin. One of the most reordered toners on TikTok Shop.", dKo:"예민해진 피부를 진정시키는 어성초 토너. 틱톡샵에서 재구매가 가장 많은 토너 중 하나입니다.",
+    useEn:"Pat onto clean skin with hands or a cotton pad. Layer twice on dry days.", useKo:"세안 후 손이나 화장솜으로 두드려 흡수시킵니다. 건조한 날은 두 번 레이어링." },
+  { id:"roundlab-toner", brand:"ROUND LAB", en:"1025 Dokdo Toner", ko:"1025 독도 토너", size:"200ml", cat:"toner", tileKo:"토너", tone:1,
+    kr:12.00, us:22.00, skin:["dry","combination","normal","sensitive"], concern:["hydration","pores"], texture:"light",
+    ing:["Deep sea water","Panthenol"],
+    dEn:"A gentle exfoliating toner made with deep sea water from Ulleungdo. Smooths rough spots while keeping skin hydrated.", dKo:"울릉도 해양심층수로 만든 순한 각질 토너. 거친 결은 정돈하고 촉촉함은 지켜요.",
+    useEn:"Sweep over the face with a cotton pad after cleansing.", useKo:"세안 후 화장솜에 덜어 피부결을 따라 닦아냅니다." },
+  { id:"somebymi-toner", brand:"SOME BY MI", en:"AHA BHA PHA 30 Days Miracle Toner", ko:"AHA BHA PHA 30데이즈 미라클 토너", size:"150ml", cat:"toner", tileKo:"토너", tone:4,
+    kr:10.00, us:16.00, skin:["oily","combination"], concern:["acne","pores","dullness"], texture:"light",
+    ing:["AHA","BHA","PHA","Tea tree"],
+    dEn:"A three-acid toner for clogged pores and rough texture, with tea tree to keep it calm.", dKo:"세 가지 산 성분으로 막힌 모공과 거친 결을 관리하고, 티트리로 진정시키는 토너.",
+    useEn:"Use once a day at night to start, then build up. Wear sunscreen the next morning.", useKo:"처음에는 밤에 하루 한 번 사용하고 점차 늘립니다. 다음 날 아침 선크림 필수." },
+  { id:"medicube-pad", brand:"MEDICUBE", en:"Zero Pore Pad 2.0", ko:"제로 모공 패드 2.0", size:"70 pads", cat:"pad", tileKo:"패드", tone:4,
+    kr:14.00, us:30.00, skin:["oily","combination","normal"], concern:["pores","acne","dullness"], texture:"light",
     ing:["AHA","BHA","Witch hazel"],
-    dEn:"Two-sided toner pads that smooth rough texture and the look of pores.", dKo:"양면 토너 패드로 거친 결과 모공을 매끄럽게 정돈합니다." }
+    dEn:"Two-sided toner pads: the textured side smooths, the soft side soothes. A quick pore routine in one swipe.", dKo:"엠보 면은 결 정돈, 부드러운 면은 진정. 한 장으로 끝나는 모공 루틴.",
+    useEn:"Wipe with the textured side, then pat with the smooth side. 3–4 times a week.", useKo:"엠보 면으로 닦고 부드러운 면으로 두드려 줍니다. 주 3~4회." },
+  { id:"cosrx-snail", brand:"COSRX", en:"Advanced Snail 96 Mucin Power Essence", ko:"어드밴스드 스네일 96 뮤신 파워 에센스", size:"100ml", cat:"essence", tileKo:"에센스", tone:1,
+    kr:9.50, us:25.00, skin:["dry","combination","normal","sensitive"], concern:["hydration","dullness"], texture:"light",
+    ing:["Snail secretion filtrate 96%","Sodium hyaluronate"],
+    dEn:"A slippery, watery essence that calms and hydrates. The most searched K-beauty step on TikTok.", dKo:"촉촉하게 진정시켜 주는 워터리 에센스. 틱톡에서 가장 많이 찾는 K-뷰티 제품입니다.",
+    useEn:"After toner, press 2–3 drops into the skin until absorbed.", useKo:"토너 후 2~3방울을 피부에 눌러 흡수시킵니다." },
+  { id:"torriden-serum", brand:"TORRIDEN", en:"DIVE-IN Low Molecular Hyaluronic Acid Serum", ko:"다이브인 저분자 히알루론산 세럼", size:"50ml", cat:"serum", tileKo:"세럼", tone:3,
+    kr:11.00, us:22.00, skin:["dry","combination","normal","oily","sensitive"], concern:["hydration"], texture:"light",
+    ing:["5 types of hyaluronic acid","D-panthenol"],
+    dEn:"A thin, fast-absorbing serum with five types of hyaluronic acid. Hydrates without feeling heavy, even on oily skin.", dKo:"다섯 가지 히알루론산이 빠르게 흡수되는 가벼운 세럼. 지성 피부도 무겁지 않게 수분을 채워요.",
+    useEn:"Apply 2–3 drops on damp skin, then seal with a cream.", useKo:"촉촉한 피부에 2~3방울 바른 뒤 크림으로 마무리합니다." },
+  { id:"boj-glow", brand:"BEAUTY OF JOSEON", en:"Glow Serum: Propolis + Niacinamide", ko:"광채 프로폴리스 세럼", size:"30ml", cat:"serum", tileKo:"세럼", tone:2,
+    kr:10.00, us:17.00, skin:["oily","combination","normal","dry"], concern:["dullness","acne"], texture:"light",
+    ing:["Propolis extract","Niacinamide"],
+    dEn:"A honey-toned serum that brings back glow to tired skin and helps keep breakouts in check.", dKo:"피곤해 보이는 피부에 윤기를 되살리고 트러블 관리까지 돕는 꿀빛 세럼.",
+    useEn:"Use 2 drops after toner, morning or night.", useKo:"토너 후 2방울, 아침이나 저녁에 사용합니다." },
+  { id:"skin1004-ampoule", brand:"SKIN1004", en:"Madagascar Centella Ampoule", ko:"마다가스카르 센텔라 앰플", size:"100ml", cat:"ampoule", tileKo:"앰플", tone:3,
+    kr:12.00, us:24.00, skin:["sensitive","combination","oily","normal"], concern:["redness","acne"], texture:"light",
+    ing:["Centella asiatica extract 100%"],
+    dEn:"A single-ingredient ampoule of centella from Madagascar. Watery, calming and easy to layer.", dKo:"마다가스카르 센텔라 한 가지 성분으로 만든 앰플. 물처럼 가볍고 진정 효과가 좋아요.",
+    useEn:"Pat 3–4 drops onto red or irritated areas after toner.", useKo:"토너 후 붉거나 예민한 부위에 3~4방울 두드려 줍니다." },
+  { id:"drjart-cica", brand:"DR.JART+", en:"Cicapair Tiger Grass Color Correcting Treatment", ko:"시카페어 타이거 그라스 컬러 코렉팅 트리트먼트", size:"50ml", cat:"cream", tileKo:"크림", tone:3,
+    kr:24.00, us:52.00, skin:["sensitive","combination","normal"], concern:["redness"], texture:"rich",
+    ing:["Centella asiatica","Mineral SPF"],
+    dEn:"A green-to-beige cream that evens out visible redness. Works as the last skincare step before makeup.", dKo:"초록빛에서 베이지로 바뀌며 붉은기를 커버하는 크림. 메이크업 전 마지막 단계로 좋아요.",
+    useEn:"Spread a thin layer and let it adjust for a minute. Build up on red areas.", useKo:"얇게 펴 바르고 1분 기다리면 톤이 맞춰집니다. 붉은 부위는 덧발라 주세요." },
+  { id:"laneige-waterbank", brand:"LANEIGE", en:"Water Bank Blue Hyaluronic Cream", ko:"워터뱅크 블루 히알루로닉 크림", size:"50ml", cat:"cream", tileKo:"크림", tone:1,
+    kr:22.00, us:40.00, skin:["dry","normal","combination"], concern:["hydration","dullness"], texture:"rich",
+    ing:["Blue hyaluronic acid","Peptides"],
+    dEn:"A soft, bouncy cream that locks in moisture for dry or tired skin.", dKo:"건조하고 지친 피부에 수분을 오래 잡아두는 쫀쫀한 크림.",
+    useEn:"Warm a pea-sized amount between fingertips and press onto the face.", useKo:"완두콩 크기를 손끝에서 데운 뒤 얼굴에 눌러 바릅니다." },
+  { id:"illiyoon-cream", brand:"ILLIYOON", en:"Ceramide Ato Concentrate Cream", ko:"세라마이드 아토 집중 크림", size:"200ml", cat:"cream", tileKo:"크림", tone:4,
+    kr:14.00, us:26.00, skin:["dry","sensitive","normal"], concern:["hydration","redness"], texture:"rich",
+    ing:["Ceramides","Fragrance-free"],
+    dEn:"A fragrance-free ceramide cream for face and body. A family favorite in Korean drugstores for very dry skin.", dKo:"얼굴과 몸에 모두 쓰는 무향 세라마이드 크림. 한국 드럭스토어의 건성 피부 스테디셀러.",
+    useEn:"Apply generously after showering or as the last skincare step at night.", useKo:"샤워 후나 밤 스킨케어 마지막 단계에 넉넉히 바릅니다." },
+  { id:"drg-cream", brand:"DR.G", en:"Red Blemish Clear Soothing Cream", ko:"레드 블레미쉬 클리어 수딩 크림", size:"70ml", cat:"cream", tileKo:"크림", tone:2,
+    kr:15.00, us:28.00, skin:["oily","combination","sensitive"], concern:["acne","redness"], texture:"light",
+    ing:["Centella asiatica","Madecassoside"],
+    dEn:"A light gel-cream that soothes redness and breakouts without clogging pores.", dKo:"모공을 막지 않고 붉은기와 트러블을 진정시키는 가벼운 젤 크림.",
+    useEn:"Apply as your moisturizer, morning and night.", useKo:"아침저녁 보습 단계에 사용합니다." },
+  { id:"medicube-pdrn", brand:"MEDICUBE", en:"PDRN Pink Peptide Serum", ko:"PDRN 핑크 펩타이드 세럼", size:"30ml", cat:"serum", tileKo:"세럼", tone:2,
+    kr:16.00, us:30.00, skin:["dry","combination","normal","sensitive"], concern:["dullness","hydration"], texture:"light",
+    ing:["PDRN","Peptides"],
+    dEn:"A pink, lightweight serum with PDRN and peptides for skin that looks tired or dull. One of Medicube's most talked-about launches.", dKo:"PDRN과 펩타이드를 담은 가벼운 핑크 세럼. 칙칙하고 지친 피부를 위한 메디큐브의 화제 제품입니다.",
+    useEn:"After toner, apply 2–3 pumps and pat until absorbed.", useKo:"토너 후 2~3펌프를 바르고 흡수될 때까지 두드립니다." },
+  { id:"medicube-porserum", brand:"MEDICUBE", en:"Zero Pore One-Day Serum", ko:"제로 모공 원데이 세럼", size:"30ml", cat:"serum", tileKo:"세럼", tone:4,
+    kr:14.00, us:27.00, skin:["oily","combination","normal"], concern:["pores","acne"], texture:"light",
+    ing:["Niacinamide","BHA"],
+    dEn:"A pore-focused serum that pairs with the Zero Pore Pad for a two-step pore routine.", dKo:"제로 모공 패드와 함께 쓰는 모공 집중 세럼. 두 단계 모공 루틴을 완성해요.",
+    useEn:"Apply after the pad, focusing on the nose and cheeks.", useKo:"패드 사용 후 코와 볼 위주로 바릅니다." },
+  { id:"medicube-collagen", brand:"MEDICUBE", en:"Collagen Night Wrapping Mask", ko:"콜라겐 나이트 랩핑 마스크", size:"75ml", cat:"mask", tileKo:"마스크", tone:1,
+    kr:17.00, us:34.00, skin:["dry","normal","combination"], concern:["hydration","dullness"], texture:"rich",
+    ing:["Collagen","Peel-off film"],
+    dEn:"An overnight peel-off mask that wraps skin in moisture while you sleep. Viral on TikTok for the morning peel.", dKo:"자는 동안 피부를 감싸 수분을 채우는 필오프 나이트 마스크. 아침에 떼어내는 영상으로 틱톡에서 유명해졌어요.",
+    useEn:"Spread an even layer as the last night step, sleep, and peel off in the morning.", useKo:"밤 마지막 단계에 고르게 펴 바르고 자고, 아침에 떼어냅니다." },
+  { id:"medicube-vitac", brand:"MEDICUBE", en:"Deep Vita C Capsule Cream", ko:"딥 비타C 캡슐 크림", size:"55g", cat:"cream", tileKo:"크림", tone:3,
+    kr:15.00, us:29.00, skin:["dry","normal","combination","oily"], concern:["dullness"], texture:"rich",
+    ing:["Vitamin C capsules","Niacinamide"],
+    dEn:"A cream with vitamin C capsules that burst as you apply, for a brighter-looking finish.", dKo:"바를 때 터지는 비타민C 캡슐 크림. 맑고 환한 피부 표현을 도와요.",
+    useEn:"Apply a small amount as your moisturizer, morning or night. Wear sunscreen in the day.", useKo:"보습 단계에서 소량 사용합니다. 낮에는 선크림을 함께 바르세요." },
+  { id:"purito-sun", brand:"PURITO", en:"Daily Go-To Sunscreen SPF 50+", ko:"데일리 고투 선스크린 SPF 50+", size:"60ml", cat:"sun", tileKo:"선", tone:1,
+    kr:11.00, us:21.00, skin:["dry","combination","normal","oily","sensitive"], concern:["sun"], texture:"light",
+    ing:["Sunflower seed oil","Niacinamide"],
+    dEn:"A lightweight daily sunscreen with no white cast. Sits well under makeup.", dKo:"백탁 없이 가볍게 바르는 데일리 선크림. 메이크업 밀림이 적어요.",
+    useEn:"Apply two finger-lengths as the last morning step. Reapply every 2 hours outdoors.", useKo:"아침 마지막 단계에 손가락 두 마디만큼 바릅니다. 야외에서는 2시간마다 덧바르기." },
+  { id:"boj-sun", brand:"BEAUTY OF JOSEON", en:"Relief Sun: Rice + Probiotics SPF50+", ko:"맑은쌀 선크림 SPF50+", size:"50ml", cat:"sun", tileKo:"선", tone:2,
+    kr:10.00, us:18.00, skin:["dry","combination","normal","sensitive"], concern:["sun","hydration"], texture:"rich",
+    ing:["Rice extract","Probiotics"],
+    dEn:"A creamy, dewy sunscreen that feels like a moisturizer. One of the best-known Korean sunscreens in the US.", dKo:"보습 크림처럼 촉촉한 선크림. 미국에서 가장 유명한 한국 선크림 중 하나입니다.",
+    useEn:"Apply as the last morning step, two finger-lengths for the face.", useKo:"아침 마지막 단계에 얼굴 기준 손가락 두 마디만큼 바릅니다." },
+  { id:"mediheal-teatree", brand:"MEDIHEAL", en:"Tea Tree Care Solution Essential Mask", ko:"티트리 케어 솔루션 에센셜 마스크", size:"10 sheets", cat:"mask", tileKo:"마스크", tone:4,
+    kr:9.00, us:25.00, skin:["oily","combination","sensitive"], concern:["acne","redness"], texture:"light",
+    ing:["Tea tree leaf extract","Centella"],
+    dEn:"Cooling sheet masks for oily or breakout-prone days. The price gap on this one is among the largest in our range.", dKo:"유분이 많거나 트러블이 올라오는 날을 위한 쿨링 시트 마스크. 한미 가격 차이가 가장 큰 제품 중 하나예요.",
+    useEn:"After toner, leave on for 15–20 minutes, then pat in the rest.", useKo:"토너 후 15~20분 붙였다가 떼고 남은 에센스를 두드려 흡수시킵니다." },
+  { id:"laneige-lip", brand:"LANEIGE", en:"Lip Sleeping Mask Berry", ko:"립 슬리핑 마스크 베리", size:"20g", cat:"lip", tileKo:"립", tone:2,
+    kr:12.00, us:24.00, skin:["dry","combination","normal","oily","sensitive"], concern:["lips","hydration"], texture:"rich",
+    ing:["Berry fruit complex","Shea butter","Vitamin C"],
+    dEn:"An overnight lip balm that leaves lips soft by morning.", dKo:"자는 동안 입술을 부드럽게 채워주는 나이트 립 마스크.",
+    useEn:"Apply a thick layer before bed. Wipe off any excess in the morning.", useKo:"자기 전 두껍게 바르고, 아침에 남은 것을 닦아냅니다." },
+  { id:"peripera-tint", brand:"PERIPERA", en:"Ink Mood Glowy Tint", ko:"잉크 무드 글로이 틴트", size:"4g", cat:"tint", tileKo:"틴트", tone:2,
+    kr:7.00, us:14.00, skin:["dry","combination","normal","oily","sensitive"], concern:["lips"], texture:"light",
+    ing:["Glossy tint base"],
+    dEn:"A glossy lip tint with long-lasting color.", dKo:"오래 지속되는 발색의 글로시 립 틴트.",
+    useEn:"Apply to the center of the lips and blend outward for a gradient look.", useKo:"입술 안쪽에 바르고 바깥으로 펴 발라 그라데이션을 만듭니다." },
+  { id:"romand-tint", brand:"ROM&ND", en:"Juicy Lasting Tint", ko:"쥬시 래스팅 틴트", size:"5.5g", cat:"tint", tileKo:"틴트", tone:1,
+    kr:7.50, us:13.00, skin:["dry","combination","normal","oily","sensitive"], concern:["lips"], texture:"light",
+    ing:["Juicy glass-shine finish"],
+    dEn:"A juicy, glass-shine tint in fruit-inspired shades. A best seller in Olive Young for years.", dKo:"과즙 같은 컬러와 유리알 광택의 틴트. 올리브영 스테디셀러입니다.",
+    useEn:"Swipe on for full color or dab on for a soft stain.", useKo:"그대로 바르면 선명하게, 톡톡 두드리면 은은하게 연출됩니다." }
 ];
 const byId = Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
 
@@ -315,14 +407,14 @@ const T = {
     sealNote:"결 [gyeol] means the grain or texture of skin.",
     f1:"Sourced in Korea", f1s:"Bought from Korean stores, shipped to the US",
     f2:"Up to 12.5% import tax", f2s:"The current cap for most Korean goods",
-    f3:"8 products", f3s:"Bestsellers from TikTok and Korean shelves",
+    f3:"24 products", f3s:"Bestsellers from TikTok and Olive Young shelves",
     whyTitle:"Why prices changed this year",
     w:[["Aug 29, 2025","No more tax-free small parcels","Orders under $800 now pay import tax."],
        ["Feb 20, 2026","Court cancels the old tariffs","The Supreme Court strikes down the 2025 country-by-country tariffs."],
        ["Feb–Jul 2026","A temporary 10% tariff","One flat rate for five months."],
        ["Jul 24, 2026 · now","A new tariff, up to 12.5%","Most Korean goods pay 12.5% at most."]],
     allProducts:"All products", all:"All",
-    cats:{essence:"Essence",lip:"Lip",serum:"Serum",cream:"Cream",mask:"Mask",sun:"Sun care",tint:"Tint",pad:"Pad"},
+    cats:{cleanser:"Cleanser",toner:"Toner",pad:"Pad",essence:"Essence",serum:"Serum",ampoule:"Ampoule",cream:"Moisturizer",sun:"Sun care",mask:"Mask",lip:"Lip care",tint:"Tint"},
     usRetail:"US retail", youSave:"You save", examplePrices:"Example prices. Real prices come from our October 2026 price survey.",
     step:"Question", of:"of", back:"Back", next:"Next", seeResults:"See my picks", pickUpTo:"Pick up to two.",
     q:[
@@ -333,10 +425,10 @@ const T = {
       {k:"texture", t:"Which textures do you prefer?", multi:false, o:[["light","Light and watery",""],["rich","Rich and creamy",""],["any","No preference",""]]}
     ],
     yourPicks:"Your three picks", yourProfile:"Your answers", retake:"Retake the quiz",
-    thinking:"Matching your answers to our products…", aiNote:"Picked by AI from our 8 products only.", ruleNote:"Picked by our matching rules.",
+    thinking:"Matching your answers to our products…", aiNote:"Picked by AI from our 24 products only.", ruleNote:"Picked by our matching rules.",
     view:"View", addToCart:"Add to cart", added:"Added to cart",
     bdTitle:"What this price is made of", bdKr:"Korean shelf price", bdShip:"Shipping to the US", bdDuty:"Import tax", bdFee:"Card payment fee", bdMargin:"Our margin", bdPrice:"Our price", bdUs:"US retail price", bdSave:"Your saving",
-    whatIf:"What if import tax changes?", keyIng:"Key ingredients", fits:"Good for",
+    whatIf:"What if import tax changes?", keyIng:"Key ingredients", fits:"Good for", howTo:"How to use", sizeL:"Size", stepL:"Routine step", search:"Search products or brands", noMatch:"No products match your search.", photoSoon:"Product photo coming soon",
     skinNames:{dry:"Dry",oily:"Oily",combination:"Combination",sensitive:"Sensitive",normal:"Normal"},
     cartTitle:"Your cart", empty:"Your cart is empty.", emptyHint:"Take the skin quiz or browse the shop to add products.",
     subtotal:"Subtotal", shipping:"Shipping", free:"Free", tax:"Sales tax", taxLater:"Added when payment is set up", total:"Estimated total", checkout:"Continue to checkout", remove:"Remove",
@@ -377,14 +469,14 @@ const T = {
     sealNote:"결은 피부의 결, 곧 피부의 질감을 뜻합니다.",
     f1:"한국에서 직접 소싱", f1s:"한국 매장에서 구매해 미국으로 배송",
     f2:"관세 최대 12.5%", f2s:"대부분의 한국 제품에 적용되는 현재 상한",
-    f3:"제품 8종", f3s:"틱톡과 한국 매장의 베스트셀러",
+    f3:"제품 24종", f3s:"틱톡과 올리브영의 베스트셀러",
     whyTitle:"올해 가격이 바뀐 이유",
     w:[["2025년 8월 29일","소액 면세 폐지","800달러 미만 주문에도 관세가 붙습니다."],
        ["2026년 2월 20일","기존 관세 무효 판결","대법원이 2025년 국가별 관세를 무효화했습니다."],
        ["2026년 2~7월","임시 10% 관세","5개월 동안 모든 국가에 같은 세율."],
        ["2026년 7월 24일 · 현재","새 관세, 최대 12.5%","대부분의 한국 제품은 최대 12.5%."]],
     allProducts:"전체 제품", all:"전체",
-    cats:{essence:"에센스",lip:"립",serum:"세럼",cream:"크림",mask:"마스크",sun:"선케어",tint:"틴트",pad:"패드"},
+    cats:{cleanser:"클렌저",toner:"토너",pad:"패드",essence:"에센스",serum:"세럼",ampoule:"앰플",cream:"크림",sun:"선케어",mask:"마스크",lip:"립케어",tint:"틴트"},
     usRetail:"미국 소매가", youSave:"절약", examplePrices:"예시 가격입니다. 실제 가격은 2026년 10월 가격 조사 후 반영됩니다.",
     step:"질문", of:"/", back:"이전", next:"다음", seeResults:"추천 보기", pickUpTo:"최대 두 개까지 고를 수 있어요.",
     q:[
@@ -395,10 +487,10 @@ const T = {
       {k:"texture", t:"어떤 제형을 좋아하나요?", multi:false, o:[["light","가볍고 촉촉한",""],["rich","쫀쫀하고 리치한",""],["any","상관없음",""]]}
     ],
     yourPicks:"추천 제품 세 가지", yourProfile:"내 답변", retake:"퀴즈 다시 하기",
-    thinking:"답변에 맞는 제품을 고르고 있어요…", aiNote:"AI가 저희 제품 8종 안에서만 골랐습니다.", ruleNote:"매칭 규칙으로 골랐습니다.",
+    thinking:"답변에 맞는 제품을 고르고 있어요…", aiNote:"AI가 저희 제품 24종 안에서만 골랐습니다.", ruleNote:"매칭 규칙으로 골랐습니다.",
     view:"자세히", addToCart:"장바구니 담기", added:"장바구니에 담았어요",
     bdTitle:"이 가격은 이렇게 만들어져요", bdKr:"한국 판매가", bdShip:"미국까지 배송비", bdDuty:"관세", bdFee:"카드 결제 수수료", bdMargin:"저희 마진", bdPrice:"판매가", bdUs:"미국 소매가", bdSave:"절약되는 금액",
-    whatIf:"관세가 바뀌면?", keyIng:"주요 성분", fits:"잘 맞는 피부",
+    whatIf:"관세가 바뀌면?", keyIng:"주요 성분", fits:"잘 맞는 피부", howTo:"사용법", sizeL:"용량", stepL:"루틴 단계", search:"제품이나 브랜드 검색", noMatch:"검색 결과가 없어요.", photoSoon:"제품 사진 준비 중",
     skinNames:{dry:"건성",oily:"지성",combination:"복합성",sensitive:"민감성",normal:"중성"},
     cartTitle:"장바구니", empty:"장바구니가 비어 있어요.", emptyHint:"피부 퀴즈를 하거나 쇼핑에서 제품을 담아보세요.",
     subtotal:"상품 금액", shipping:"배송비", free:"무료", tax:"판매세", taxLater:"결제 단계에서 추가", total:"예상 합계", checkout:"주문하기", remove:"삭제",
@@ -437,6 +529,7 @@ const S = {
   lang: LS.get("lang","en"),
   view: "home",
   filter: "all",
+  q: "",
   quizStep: 0,
   answers: { skin:null, concern:[], budget:null, routine:null, texture:null },
   picks: LS.get("picks", null),
@@ -467,8 +560,12 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;
 function pname(p){ return S.lang==="ko" ? p.ko : p.en; }
 function pdesc(p){ return S.lang==="ko" ? p.dKo : p.dEn; }
 function cartCount(){ return Object.values(S.cart).reduce((a,b)=>a+b,0); }
-function tileBg(p){ return "var(--tile-"+p.tone+")"; }
-function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span>${esc(p.tileKo)}</div>`; }
+const BG = {cleanser:"celadon",toner:"celadon",pad:"celadon",essence:"butter",serum:"butter",ampoule:"butter",cream:"lilac",mask:"lilac",sun:"blush",lip:"blush",tint:"blush"};
+function tileBg(p){ return `var(--tile-${p.tone}) url(images/bg/${BG[p.cat]}.jpg) center/cover`; }
+const STEP = {cleanser:"1",toner:"2",pad:"2",essence:"3",serum:"3",ampoule:"3",cream:"4",sun:"5",mask:"+",lip:"+",tint:"+"};
+const CAT_ORDER = ["cleanser","toner","pad","essence","serum","ampoule","cream","sun","mask","lip","tint"];
+/* Product photos: put a file named images/<product id>.jpg next to index.html and it replaces the letter tile automatically. */
+function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span>${esc(p.tileKo)}<img class="ph" src="images/${p.id}.jpg" alt="" loading="lazy" onerror="this.remove()"></div>`; }
 function priceBlock(p){
   const b = breakdown(p);
   if(!showBreakdown()) return `<div class="priceRow"><span class="price num">${money(b.price)}</span></div>`;
@@ -495,8 +592,7 @@ function header(){
 }
 
 function homeView(){
-  const cats = ["all", ...new Set(PRODUCTS.map(p=>p.cat))];
-  const list = PRODUCTS.filter(p=>S.filter==="all"||p.cat===S.filter);
+  const cats = ["all", ...CAT_ORDER.filter(c=>PRODUCTS.some(p=>p.cat===c))];
   return `
   <section class="hero">
     <div class="copy">
@@ -517,7 +613,8 @@ function homeView(){
     <div class="section-head"><h2>${esc(t("allProducts"))}</h2>
       <div class="filters" role="group" aria-label="Category">${cats.map(c=>`<button class="chip" data-filter="${c}" aria-pressed="${S.filter===c}">${esc(c==="all"?t("all"):t("cats")[c])}</button>`).join("")}</div>
     </div>
-    <div class="grid">${list.map(card).join("")}</div>
+    <input id="search" class="searchbox" type="search" placeholder="${esc(t("search"))}" value="${esc(S.q||"")}" aria-label="${esc(t("search"))}">
+    <div id="gridArea">${gridHtml()}</div>
     <p class="note">${esc(t("examplePrices"))}</p>
   </section>`;
 }
@@ -527,9 +624,15 @@ function whySection(){
     <div class="why">${t("w").map(([d,h,b])=>`<div class="step"><span class="date">${esc(d)}</span><h3>${esc(h)}</h3><p class="muted small">${esc(b)}</p></div>`).join("")}</div>
   </section>`;
 }
+function gridHtml(){
+  const q = (S.q||"").trim().toLowerCase();
+  const list = PRODUCTS.filter(p=>(S.filter==="all"||p.cat===S.filter) && (!q || (p.brand+" "+p.en+" "+p.ko+" "+t("cats")[p.cat]).toLowerCase().includes(q)))
+    .sort((a,b)=>CAT_ORDER.indexOf(a.cat)-CAT_ORDER.indexOf(b.cat));
+  return list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="muted">${esc(t("noMatch"))}</p>`;
+}
 function card(p){
   return `<button class="card" data-open="${p.id}" data-src="grid">${tile(p)}
-    <div class="info"><span class="brandname">${esc(p.brand)}</span><span class="pname">${esc(pname(p))}</span>${priceBlock(p)}</div></button>`;
+    <div class="info"><span class="brandname">${esc(p.brand)}</span><span class="pname">${esc(pname(p))}</span><span class="small muted">${esc(p.size)} · ${esc(t("stepL"))} ${STEP[p.cat]}</span>${priceBlock(p)}</div></button>`;
 }
 
 function quizView(){
@@ -594,7 +697,8 @@ function sheetView(){
   <aside class="sheet" role="dialog" aria-modal="true" aria-label="${esc(pname(p))}">
     <button class="btn ghost sm close" data-close>✕</button>
     ${tile(p)}
-    <div style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h2>${esc(pname(p))}</h2><p class="muted">${esc(pdesc(p))}</p></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h2>${esc(pname(p))}</h2><p class="muted">${esc(pdesc(p))}</p><p class="small muted">${esc(t("sizeL"))} ${esc(p.size)} · ${esc(t("stepL"))} ${STEP[p.cat]}</p></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("howTo"))}</span><p>${esc(S.lang==="ko"?p.useKo:p.useEn)}</p></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("fits"))}</span><div class="ings">${p.skin.map(s=>`<span>${esc(t("skinNames")[s])}</span>`).join("")}</div></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("keyIng"))}</span><div class="ings">${p.ing.map(s=>`<span>${esc(s)}</span>`).join("")}</div></div>
     ${bd}
@@ -769,7 +873,8 @@ function ruleScore(p, a){
   if(a.budget==="15" && price>=15) s -= 3;
   if(a.budget==="25" && price>25) s -= 3;
   if(a.routine==="minimal" && ["sun","essence","serum"].includes(p.cat)) s += 1;
-  if(a.routine==="full" && ["mask","pad"].includes(p.cat)) s += 1;
+  if(a.routine==="full" && ["mask","pad","toner","ampoule"].includes(p.cat)) s += 1;
+  if(a.routine==="balanced" && ["toner","cream","serum"].includes(p.cat)) s += 1;
   return s;
 }
 function rulePicks(a){
@@ -823,7 +928,7 @@ document.addEventListener("click", async e=>{
     if(d.go==="quiz"){ S.quizStep = 0; } go(d.go); if(d.go==="checkout") log("checkout_start"); return; }
   if(d.lang){ S.lang = d.lang; LS.set("lang", S.lang); render(); return; }
   if(d.scroll){ document.getElementById(d.scroll)?.scrollIntoView({behavior:"smooth"}); return; }
-  if(d.filter){ S.filter = d.filter; render(); return; }
+  if(d.filter){ S.filter = d.filter; document.querySelectorAll("[data-filter]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.filter===S.filter))); const g=document.getElementById("gridArea"); if(g) g.innerHTML = gridHtml(); else render(); return; }
   if(d.ans!=null){ const q = T.en.q[S.quizStep];
     if(q.multi){ const arr = S.answers[q.k]; const i = arr.indexOf(d.ans); if(i>=0) arr.splice(i,1); else { arr.push(d.ans); if(arr.length>2) arr.shift(); } }
     else S.answers[q.k] = d.ans;
@@ -865,7 +970,8 @@ document.addEventListener("change", e=>{
   CFG[el.dataset.cfg] = v; const saved = LS.get("cfg", {}); saved[el.dataset.cfg] = v; LS.set("cfg", saved); render();
 });
 document.addEventListener("input", e=>{
-  const el = e.target; if(!el.closest || !el.closest("#coForm")) return;
+  const el = e.target;
+  if(el.id==="search"){ S.q = el.value; const g=document.getElementById("gridArea"); if(g) g.innerHTML = gridHtml(); return; } if(!el.closest || !el.closest("#coForm")) return;
   const d = LS.get("coDraft", {}); d[el.name] = el.value; LS.set("coDraft", d);
 });
 document.addEventListener("submit", e=>{
