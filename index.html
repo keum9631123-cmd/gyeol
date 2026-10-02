@@ -450,11 +450,11 @@ function pname(p){ return S.lang==="ko" ? p.ko : p.en; }
 function pdesc(p){ return S.lang==="ko" ? p.dKo : p.dEn; }
 function cartCount(){ return Object.values(S.cart).reduce((a,b)=>a+b,0); }
 const BG = {cleanser:"celadon",toner:"celadon",pad:"celadon",essence:"butter",serum:"butter",ampoule:"butter",cream:"lilac",mask:"lilac",sun:"blush",lip:"blush",tint:"blush"};
-function tileBg(p){ return `var(--tile-${p.tone}) url(images/cat-${p.cat}.jpg) center/cover`; }
+function tileBg(p){ return `var(--tile-${p.tone}) url(cat-${p.cat}.jpg) center/cover`; }
 const STEP = {cleanser:"1",toner:"2",pad:"2",essence:"3",serum:"3",ampoule:"3",cream:"4",sun:"5",mask:"+",lip:"+",tint:"+"};
 const CAT_ORDER = ["cleanser","toner","pad","essence","serum","ampoule","cream","sun","mask","lip","tint"];
 /* Product photos: images/<product id>.jpg replaces the vessel illustration automatically when the file exists. */
-function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span><span class="illu">${esc(t("illu"))}</span><img class="ph" src="images/${p.id}.jpg" alt="" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div>`; }
+function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span><span class="illu">${esc(t("illu"))}</span><img class="ph" src="${p.id}.jpg" alt="" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div>`; }
 function priceBlock(p){
   const b = breakdown(p);
   if(!showBreakdown()) return `<div class="priceRow"><span class="price num">${money(b.price)}</span></div>`;
