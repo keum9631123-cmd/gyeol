@@ -348,6 +348,26 @@ html:lang(zh) .slide-copy h1, html:lang(ja) .slide-copy h1{font-size:clamp(1.6re
 @media (max-width:600px){.story{grid-template-columns:1fr;gap:6px}.story-no{font-size:1.8rem}}
 .tile .cat{max-width:calc(100% - 20px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 html:lang(ja) h1, html:lang(ja) h2{word-break:auto-phrase}
+
+/* v15: dark-mode safe colors for new components */
+.langsel{background:#221E1B !important;border:1px solid rgba(242,201,76,.55) !important;color:#FBF5EC}
+.langsel select{color:#FBF5EC !important}
+.langsel select option{color:#FBF5EC;background:#221E1B}
+.hero2 .arrow{color:#221E1B}
+.searchbox{background:var(--paper);color:var(--ink)}
+.mini{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.mini b{color:var(--ink-mute)}
+.mini .num{color:var(--ink);font-weight:700}
+.pillar b{background:var(--paper);color:var(--ink)}
+.pillar.on b{background:var(--pc);color:#fff}
+.news-head .mock{background:var(--bg-2);color:var(--ink-soft)}
+.story-tip{background:var(--bg-2);color:var(--ink);border-left-color:#5f9a83}
+.story-tip b{color:#2f6b55}
+.story-shop>.small{font-weight:700;color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .story-tip b{color:#8CC4A6}:root:not([data-theme="light"]) .story-no{color:#E0B062}}
+:root[data-theme="dark"] .story-tip b{color:#8CC4A6}
+.story-no{color:#9A7434}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.chip-deal{color:#FF9A9E;border-color:#FF9A9E}:root:not([data-theme="light"]) .chip.chip-deal[aria-pressed="true"]{color:#fff;background:#d9363e}}
 </style>
 
 </head>
