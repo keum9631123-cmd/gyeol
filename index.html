@@ -375,7 +375,7 @@ html:lang(ja) h1, html:lang(ja) h2{word-break:auto-phrase}
 .hero2{overflow:hidden}
 .hero2 .slide{opacity:1 !important;transition:none;transform:translateX(100%);visibility:hidden}
 .hero2 .slide.on{transform:translateX(0);visibility:visible;z-index:1}
-@media (prefers-reduced-motion:reduce){.hero2 .slide{transition:none !important}}
+
 </style>
 
 </head>
@@ -1277,7 +1277,7 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape" && S.sheet){ S.she
 if(S.picks && !S.picks.every(p=>byId[p.id])) S.picks = null;
 log("visit");
 render();
-const EASE="transform .9s cubic-bezier(.65,0,.35,1)";
+const EASE = matchMedia("(prefers-reduced-motion: reduce)").matches ? "transform .35s ease" : "transform .9s cubic-bezier(.65,0,.35,1)";
 function showSlide(n, dir){
   const els=[...document.querySelectorAll(".hero2 .slide")]; n=(n+SLIDES.length)%SLIDES.length;
   const old=S.slide; if(n===old) return; S.slide=n;
@@ -1295,7 +1295,7 @@ function showSlide(n, dir){
   document.querySelectorAll(".dots button").forEach((el,j)=>el.setAttribute("aria-pressed",String(j===n)));
 }
 S.slideHold = 0;
-setInterval(()=>{ if(S.view==="home" && !S.sheet && Date.now()>S.slideHold && !document.hidden && !matchMedia("(prefers-reduced-motion: reduce)").matches) showSlide(S.slide+1, 1); }, 3000);
+setInterval(()=>{ if(S.view==="home" && !S.sheet && Date.now()>S.slideHold && !document.hidden) showSlide(S.slide+1, 1); }, 3000);
 })();
 </script>
 
