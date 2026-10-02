@@ -232,6 +232,45 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;display:fle
   .scale button{font-size:.72rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* hero carousel */
+.hero2{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1800/640;min-height:320px;background:#efe6da;margin-top:8px}
+.hero2 .slide{position:absolute;inset:0;background-size:cover;background-position:center right;opacity:0;transition:opacity .7s ease;display:flex;align-items:center}
+.hero2 .slide.on{opacity:1;z-index:1}
+.hero2 .slide::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,245,238,.94) 0%,rgba(250,245,238,.78) 38%,rgba(250,245,238,0) 62%)}
+.slide-copy{word-break:keep-all;position:relative;max-width:520px;padding:0 clamp(20px,5vw,64px);display:flex;flex-direction:column;gap:12px}
+.slide-copy .eyebrow{display:inline-block;align-self:flex-start;background:var(--ink,#2b2420);color:#fff;padding:5px 12px;border-radius:999px;font-size:.78rem;letter-spacing:.08em}
+.slide-copy h1{font-size:clamp(1.8rem,3.8vw,2.9rem);line-height:1.08;margin:0}
+.slide-copy .lead{font-size:clamp(.98rem,1.5vw,1.15rem);margin:0;color:var(--ink-soft,#4a403a)}
+.slide-copy .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.hero2 .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.85);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.hero2 .arrow.prev{left:12px}.hero2 .arrow.next{right:12px}
+.hero2 .dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:2;display:flex;gap:8px}
+.hero2 .dots button{width:9px;height:9px;border-radius:999px;border:0;background:rgba(43,36,32,.3);padding:0;cursor:pointer;transition:width .3s}
+.hero2 .dots button[aria-pressed="true"]{width:26px;background:var(--ink,#2b2420)}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 4px}
+.pillar{border:1px solid var(--line,#e4dacd);background:var(--paper,#fffaf3);border-radius:14px;padding:12px 10px;font:inherit;cursor:pointer;text-align:center}
+.pillar.on{background:var(--ink,#2b2420);color:#fff;border-color:transparent}
+/* deals */
+.line .tile .deal,.line .tile .cat,.line .tile .illu{display:none}
+.tile{position:relative}
+.deal{position:absolute;top:10px;right:10px;z-index:2;background:#d9363e;color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.04em;padding:6px 10px;border-radius:8px;box-shadow:0 3px 10px rgba(217,54,62,.35);transform:rotate(3deg)}
+.deal-inline{background:#d9363e;color:#fff;font-weight:800;font-size:.8rem;padding:4px 9px;border-radius:7px}
+.chip.chip-deal{border-color:#d9363e;color:#b5262d;font-weight:700}
+.chip.chip-deal[aria-pressed="true"]{background:#d9363e;color:#fff}
+#deals .section-head h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:#d9363e;margin-right:10px;vertical-align:middle}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,240px);gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+.rail .card{scroll-snap-align:start}
+.searchbox{padding:9px 14px;border-radius:999px;border:1px solid var(--line,#e4dacd);font:inherit;min-width:0;width:min(260px,100%);background:#fff}
+@media (max-width:720px){
+ .hero2{aspect-ratio:auto;min-height:500px}
+ .hero2 .slide{align-items:flex-end;background-size:auto 62%;background-repeat:no-repeat;background-position:78% 0;background-color:#efe3d0}
+ .hero2 .slide::before{background:linear-gradient(0deg,rgba(250,245,238,.97) 0%,rgba(250,245,238,.92) 40%,rgba(250,245,238,0) 52%)}
+ .slide-copy{padding:0 18px 40px;gap:8px}
+ .hero2 .arrow{display:none}
+ .pillars{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.hero2 .slide{transition:none}}
 </style>
 
 </head>
@@ -288,6 +327,14 @@ function amazonPrice(p, rate){
 /* ---------- i18n ---------- */
 const T = {
   en:{
+    dealDouble:"2 FOR 1", dealGift:"GIFT SET", bannerAria:"Featured", shopNow:"Shop the picks", prev:"Previous",
+    b_rare_eyebrow:"Not sold in the US", b_rare_title:"Korean beauty you can't buy here", b_rare_lead:"The Seoul bestsellers US stores don't carry, brought straight from Korea.",
+    b_real_eyebrow:"What Korean women really use", b_real_title:"The real everyday shelf", b_real_lead:"Not ads. The drugstore staples Korean and Asian women actually rebuy.",
+    b_idol_eyebrow:"K-idol makeup", b_idol_title:"Get the idol glow", b_idol_lead:"Glass-skin cushions, juicy tints and the base backstage artists swear by.",
+    b_youtube_eyebrow:"Seen on YouTube", b_youtube_title:"From your feed to your shelf", b_youtube_lead:"The products Korean beauty YouTubers keep showing, finally in your cart.",
+    dealsTitle:"Korean deals", dealsSub:"1+1, double packs and gift sets, as sold in Korea", dealsChip:"🎁 Deals",
+    priceNote:"Prices include shipping from Korea. Sales tax is added at checkout.", shipTo:"Ship to (state)",
+    taxNote:"State base sales tax. Final tax is confirmed by your address at payment.",
     shop:"Shop", quiz:"Skin quiz", whyNav:"Why this price", cart:"Cart", team:"Team panel",
     heroEyebrow:"결 · the grain of your skin",
     heroTitle:"K-beauty picked for your skin, at a price you can check.",
@@ -350,6 +397,14 @@ const T = {
     items:"items"
   },
   ko:{
+    dealDouble:"2개 구성", dealGift:"기획 세트", bannerAria:"추천 배너", shopNow:"꿀템 보러가기", prev:"이전",
+    b_rare_eyebrow:"미국에서 못 사는", b_rare_title:"미국엔 없는 한국 꿀템", b_rare_lead:"미국 매장에 없는 한국 베스트셀러를 한국에서 바로 가져와요.",
+    b_real_eyebrow:"진짜 쓰는 화장품", b_real_title:"광고 말고, 진짜 파우치", b_real_lead:"한국·아시아 여성들이 실제로 재구매하는 올리브영 스테디템.",
+    b_idol_eyebrow:"아이돌 메이크업", b_idol_title:"아이돌 광채 그대로", b_idol_lead:"물광 쿠션, 맑은 틴트, 메이크업 아티스트들이 쓰는 그 베이스.",
+    b_youtube_eyebrow:"유튜브에서만 보던", b_youtube_title:"영상 속 그 제품, 이제 장바구니로", b_youtube_lead:"한국 뷰티 유튜버들이 계속 보여주던 제품을 미국에서 받아보세요.",
+    dealsTitle:"한국 행사템", dealsSub:"1+1, 더블 기획, 선물 세트 — 한국 행사 구성 그대로", dealsChip:"🎁 행사",
+    priceNote:"가격에 한국발 배송비가 포함돼 있어요. 세일즈 택스는 결제 시 추가됩니다.", shipTo:"배송 주(State)",
+    taxNote:"주별 기본 세일즈 택스 기준이며, 최종 세금은 결제 시 주소로 확정됩니다.",
     shop:"쇼핑", quiz:"피부 퀴즈", whyNav:"가격 이야기", cart:"장바구니", team:"팀 패널",
     heroEyebrow:"결 · 당신의 피부결",
     heroTitle:"내 피부에 맞게 고르고, 가격은 투명하게.",
@@ -419,6 +474,7 @@ const S = {
   view: "home",
   filter: "all",
   q: "",
+  slide: 0,
   quizStep: 0,
   answers: { skin:null, concern:[], budget:null, routine:null, texture:null },
   picks: LS.get("picks", null),
@@ -454,12 +510,12 @@ function tileBg(p){ return `var(--tile-${p.tone}) url(cat-${p.cat}.jpg) center/c
 const STEP = {cleanser:"1",toner:"2",pad:"2",essence:"3",serum:"3",ampoule:"3",cream:"4",sun:"5",mask:"+",lip:"+",tint:"+"};
 const CAT_ORDER = ["cleanser","toner","pad","essence","serum","ampoule","cream","sun","mask","lip","tint"];
 /* Product photos: images/<product id>.jpg replaces the vessel illustration automatically when the file exists. */
-function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span><span class="illu">${esc(t("illu"))}</span><img class="ph" src="${p.id}.jpg" alt="" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div>`; }
+function tile(p, cls){ return `<div class="tile ${cls||""}" style="background:${tileBg(p)}" aria-hidden="true"><span class="cat">${esc(t("cats")[p.cat])}</span>${dealOf(p)?`<span class="deal">${esc(dealLabel(dealOf(p)))}</span>`:""}<span class="illu">${esc(t("illu"))}</span><img class="ph" src="${p.id}.jpg" alt="" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div>`; }
+function dealOf(p){ const n=p.en; if(/\(1\+1\)/.test(n)) return "1+1"; if(/double|2-pack/i.test(n)) return "2X"; if(/\bset\b/i.test(n)) return "GIFT"; return null; }
+function dealLabel(d){ return d==="1+1" ? "1+1" : d==="2X" ? t("dealDouble") : t("dealGift"); }
 function priceBlock(p){
   const b = breakdown(p);
-  if(!showBreakdown()) return `<div class="priceRow"><span class="price num">${money(b.price)}</span></div>`;
-  if(p.usNone) return `<div class="priceRow"><span class="price num">${money(b.price)}</span><span class="rare">${esc(t("rareL"))}</span></div>`;
-  return `<div class="priceRow"><span class="price num">${money(b.price)}</span><span class="was num">${money(p.us)}</span><span class="save num">${t("youSave")} ${pct(b.saving)}</span></div>`;
+  return `<div class="priceRow"><span class="price num">${money(b.price)}</span>${p.usNone?`<span class="rare">${esc(t("rareL"))}</span>`:""}</div>`;
 }
 function toast(msg){ S.toast = msg; render(); clearTimeout(toast._t); toast._t = setTimeout(()=>{ S.toast=""; render(); }, 2200); }
 function go(view){ S.view = view; S.sheet = null; S.confirmClear = false; render(); window.scrollTo({top:0}); }
@@ -468,7 +524,6 @@ function saveCart(){ LS.set("cart", S.cart); }
 /* ---------- views ---------- */
 function header(){
   const nav = [["home",t("shop")],["quiz",t("quiz")]];
-  if(showBreakdown()) nav.push(["why",t("whyNav")]);
   return `<header class="top"><div class="wrap row">
     <button class="brand" data-go="home" aria-label="Gyeol home"><span class="ko">결</span><span class="en">GYEOL</span></button>
     <nav class="main" aria-label="Main">
@@ -481,42 +536,41 @@ function header(){
   </div></header>`;
 }
 
+const SLIDES = ["rare","real","idol","youtube"];
 function homeView(){
-  const cats = ["all", ...CAT_ORDER.filter(c=>shelf().some(p=>p.cat===c))];
+  const cats = ["all", "deals", ...CAT_ORDER.filter(c=>shelf().some(p=>p.cat===c))];
+  const deals = shelf().filter(dealOf);
+  const i = S.slide % SLIDES.length, k = SLIDES[i];
   return `
-  <section class="hero">
-    <div class="copy">
-      <p class="eyebrow">${esc(t("heroEyebrow"))}</p>
-      <h1>${esc(t("heroTitle"))}</h1>
-      <p class="lead">${esc(showBreakdown()? t("heroLead") : t("heroLead").split(". ")[0] + ".")}</p>
-      <div class="actions"><button class="btn" data-go="quiz">${esc(t("startQuiz"))}</button><button class="btn ghost" data-scroll="products">${esc(t("browse"))}</button></div>
-    </div>
-    <div class="seal"><div class="char">결</div><p>${esc(t("sealNote"))}</p></div>
+  <section class="hero2" aria-roledescription="carousel" aria-label="${esc(t("bannerAria"))}">
+    ${SLIDES.map((key,j)=>`<div class="slide ${j===i?"on":""}" style="background-image:url(banner-${key}.jpg)" aria-hidden="${j!==i}">
+      <div class="slide-copy">
+        <p class="eyebrow">${esc(t("b_"+key+"_eyebrow"))}</p>
+        <h1>${esc(t("b_"+key+"_title"))}</h1>
+        <p class="lead">${esc(t("b_"+key+"_lead"))}</p>
+        <div class="actions"><button class="btn" data-scroll="products" tabindex="${j===i?0:-1}">${esc(t("shopNow"))}</button><button class="btn ghost" data-go="quiz" tabindex="${j===i?0:-1}">${esc(t("startQuiz"))}</button></div>
+      </div></div>`).join("")}
+    <button class="arrow prev" data-slide="-1" aria-label="${esc(t("prev"))}">‹</button>
+    <button class="arrow next" data-slide="1" aria-label="${esc(t("next"))}">›</button>
+    <div class="dots">${SLIDES.map((key,j)=>`<button data-dot="${j}" aria-label="${esc(t("b_"+key+"_eyebrow"))}" aria-pressed="${j===i}"></button>`).join("")}</div>
   </section>
-  <div class="facts">
-    <div><b>${esc(t("f1"))}</b><span class="muted small">${esc(t("f1s"))}</span></div>
-    <div><b>${esc(t("f2"))}</b><span class="muted small">${esc(t("f2s"))}</span></div>
-    <div><b>${esc(t("f3"))}</b><span class="muted small">${esc(t("f3s"))}</span></div>
-  </div>
-  ${showBreakdown()? whySection() : ""}
+  <div class="pillars">${SLIDES.map((key,j)=>`<button class="pillar ${j===i?"on":""}" data-dot="${j}"><b>${esc(t("b_"+key+"_eyebrow"))}</b></button>`).join("")}</div>
+  ${deals.length?`<section class="section" id="deals">
+    <div class="section-head"><h2>${esc(t("dealsTitle"))}</h2><span class="muted small">${esc(t("dealsSub"))}</span></div>
+    <div class="rail">${deals.map(card).join("")}</div>
+  </section>`:""}
   <section class="section" id="products">
     <div class="section-head"><h2>${esc(t("allProducts"))}</h2>
-      <div class="filters" role="group" aria-label="Category">${cats.map(c=>`<button class="chip" data-filter="${c}" aria-pressed="${S.filter===c}">${esc(c==="all"?t("all"):t("cats")[c])}</button>`).join("")}</div>
+      <input id="search" class="searchbox" type="search" placeholder="${esc(t("search"))}" value="${esc(S.q||"")}" aria-label="${esc(t("search"))}">
     </div>
-    <input id="search" class="searchbox" type="search" placeholder="${esc(t("search"))}" value="${esc(S.q||"")}" aria-label="${esc(t("search"))}">
+    <div class="filters" role="group" aria-label="Category">${cats.map(c=>`<button class="chip ${c==="deals"?"chip-deal":""}" data-filter="${c}" aria-pressed="${S.filter===c}">${esc(c==="all"?t("all"):c==="deals"?t("dealsChip"):t("cats")[c])}</button>`).join("")}</div>
     <div id="gridArea">${gridHtml()}</div>
-    <p class="note">${esc(t("examplePrices"))}</p>
-  </section>`;
-}
-function whySection(){
-  return `<section class="section" id="why">
-    <div class="section-head"><h2>${esc(t("whyTitle"))}</h2></div>
-    <div class="why">${t("w").map(([d,h,b])=>`<div class="step"><span class="date">${esc(d)}</span><h3>${esc(h)}</h3><p class="muted small">${esc(b)}</p></div>`).join("")}</div>
+    <p class="note">${esc(t("priceNote"))}</p>
   </section>`;
 }
 function gridHtml(){
   const q = (S.q||"").trim().toLowerCase();
-  const list = shelf().filter(p=>(S.filter==="all"||p.cat===S.filter) && (!q || (p.brand+" "+p.en+" "+p.ko+" "+t("cats")[p.cat]).toLowerCase().includes(q)))
+  const list = shelf().filter(p=>(S.filter==="all"||(S.filter==="deals"?!!dealOf(p):p.cat===S.filter)) && (!q || (p.brand+" "+p.en+" "+p.ko+" "+t("cats")[p.cat]).toLowerCase().includes(q)))
     .sort((a,b)=>CAT_ORDER.indexOf(a.cat)-CAT_ORDER.indexOf(b.cat));
   return list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="muted">${esc(t("noMatch"))}</p>`;
 }
@@ -560,51 +614,36 @@ function resultsView(){
         <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span class="card-brand eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h3 style="font-size:1.25rem">${esc(pname(p))}</h3><p class="why-text">${esc(reason)}</p></div>
         <div class="side">${priceBlock(p)}<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" data-open="${p.id}" data-src="pick">${esc(t("view"))}</button><button class="btn sm" data-add="${p.id}" data-src="pick">${esc(t("addToCart"))}</button></div></div>
       </article>`; }).join("")}
-    <p class="note">${esc(S.pickSource==="ai"? t("aiNote") : t("ruleNote"))} ${esc(t("examplePrices"))}</p>
+    <p class="note">${esc(S.pickSource==="ai"? t("aiNote") : t("ruleNote"))}</p>
   </section>`;
 }
 
 function sheetView(){
   const p = byId[S.sheet]; if(!p) return "";
-  const rate = S.sheetRate==null ? CFG.tariff : S.sheetRate;
-  const b = breakdown(p, rate);
-  const bd = showBreakdown() ? `
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <h3 style="font-size:1.2rem">${esc(t("bdTitle"))}</h3>
-      <table class="bd"><tbody>
-        <tr><td>${esc(t("bdKr"))} <span class="muted small">${won(b.krw)} ÷ ${CFG.fx.toLocaleString("en-US")}</span></td><td>${money(b.kr)}</td></tr>
-        <tr><td>${esc(t("bdShip"))}</td><td>${money(b.ship)}</td></tr>
-        <tr><td>${esc(t("bdDuty"))} (${pct(rate)})</td><td>${money(b.duty)}</td></tr>
-        <tr><td>${esc(t("bdFee"))}</td><td>${money(b.fee)}</td></tr>
-        <tr><td>${esc(t("bdMargin"))}</td><td>${money(b.margin)}</td></tr>
-        <tr class="total"><td>${esc(t("bdPrice"))}</td><td>${money(b.price)}</td></tr>
-        ${p.usNone ? `<tr class="ref"><td>${esc(t("bdUs"))}</td><td>${esc(t("rareShort"))}</td></tr>` : `<tr class="ref"><td>${esc(t("bdUs"))}</td><td>${money(p.us)}</td></tr>
-        <tr><td>${esc(t("bdSave"))}</td><td class="${b.saving>=0?"pos":"neg"}">${money(p.us-b.price)} · ${pct(b.saving)}</td></tr>`}
-      </tbody></table>
-      <p class="note">${p.checked?`${esc(t("checkedL"))} ${esc(p.checked)} · ${esc(t("krSrcL"))} ${esc(p.krSrc)} · ${esc(t("usSrcL"))} ${esc(p.usSrc)}${p.usNote?" · "+esc(p.usNote):""}`:esc(t("exampleOne"))}</p>
-      <div class="tariffs"><span class="small muted">${esc(t("whatIf"))}</span>${TARIFFS.map(r=>`<button class="chip" data-rate="${r}" aria-pressed="${Math.abs(r-rate)<1e-9}">${pct(r)}</button>`).join("")}</div>
-    </div>` : `<div class="priceRow"><span class="price num" style="font-size:1.8rem">${money(breakdown(p).price)}</span></div>`;
+  const b = breakdown(p);
+  const bd = `<div class="priceRow"><span class="price num" style="font-size:1.9rem">${money(b.price)}</span>${dealOf(p)?`<span class="deal-inline">${esc(dealLabel(dealOf(p)))}</span>`:""}${p.usNone?`<span class="rare">${esc(t("rareL"))}</span>`:""}</div>`;
   return `<div class="scrim" data-close></div>
   <aside class="sheet" role="dialog" aria-modal="true" aria-label="${esc(pname(p))}">
     <button class="btn ghost sm close" data-close>✕</button>
     ${tile(p)}
-    <div style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h2>${esc(pname(p))}</h2><p class="muted">${esc(pdesc(p))}</p>${p.award?`<p class="award">★ ${esc(p.award)}</p>`:""}<p class="small muted">${esc(t("sizeL"))} ${esc(p.size)} · ${esc(t("stepL"))} ${STEP[p.cat]}</p></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h2>${esc(pname(p))}</h2>${bd}<p class="muted">${esc(pdesc(p))}</p>${p.award?`<p class="award">★ ${esc(p.award)}</p>`:""}<p class="small muted">${esc(t("sizeL"))} ${esc(p.size)} · ${esc(t("stepL"))} ${STEP[p.cat]}</p></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("howTo"))}</span><p>${esc(S.lang==="ko"?p.useKo:p.useEn)}</p></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("fits"))}</span><div class="ings">${p.skin.map(s=>`<span>${esc(t("skinNames")[s])}</span>`).join("")}</div></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("keyIng"))}</span><div class="ings">${p.ing.map(s=>`<span>${esc(s)}</span>`).join("")}</div></div>
-    ${bd}
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
       <div class="qty"><button data-sq="-1" aria-label="Less">−</button><span class="num">${S.sheetQty}</span><button data-sq="1" aria-label="More">+</button></div>
       <button class="btn" data-add="${p.id}" data-src="sheet">${esc(t("addToCart"))}</button>
     </div>
-    <p class="note">${esc(t("examplePrices"))}</p>
   </aside>`;
 }
 
+/* State base sales tax rates (no local add-ons). Final tax is set at payment by address. */
+const STATE_TAX = {AL:.04,AK:0,AZ:.056,AR:.065,CA:.0725,CO:.029,CT:.0635,DE:0,DC:.06,FL:.06,GA:.04,HI:.04,ID:.06,IL:.0625,IN:.07,IA:.06,KS:.065,KY:.06,LA:.05,ME:.055,MD:.06,MA:.0625,MI:.06,MN:.06875,MS:.07,MO:.04225,MT:0,NE:.055,NV:.0685,NH:0,NJ:.06625,NM:.04875,NY:.04,NC:.0475,ND:.05,OH:.0575,OK:.045,OR:0,PA:.06,RI:.07,SC:.06,SD:.042,TN:.07,TX:.0625,UT:.0485,VT:.06,VA:.053,WA:.065,WV:.06,WI:.05,WY:.04};
+function taxState(){ return S.taxState || LS.get("coDraft",{}).state || "CA"; }
 function totals(){
   let sub = 0; for(const [id,q] of Object.entries(S.cart)){ if(byId[id]) sub += breakdown(byId[id]).price*q; }
-  const ship = sub===0 ? 0 : (sub >= CFG.freeShipOver ? 0 : CFG.shipFee);
-  return { sub, ship, total: sub+ship };
+  const st = taxState(), rate = STATE_TAX[st] ?? 0, tax = Math.round(sub*rate*100)/100;
+  return { sub, tax, rate, st, total: sub+tax };
 }
 function cartView(){
   const lines = Object.entries(S.cart).filter(([id,q])=>byId[id]&&q>0);
@@ -617,17 +656,17 @@ function cartView(){
         <div style="min-width:0"><div class="small muted">${esc(p.brand)}</div><div>${esc(pname(p))}</div><button class="linkbtn small" data-rm="${id}">${esc(t("remove"))}</button></div>
         <div class="qty"><button data-cq="${id}" data-d="-1" aria-label="Less">−</button><span class="num">${q}</span><button data-cq="${id}" data-d="1" aria-label="More">+</button></div>
         <div class="lt num">${money(pr*q)}</div></div>`; }).join("")}</div>
-      ${summaryBox(tt, `<button class="btn" data-go="checkout">${esc(t("checkout"))}</button>`)}
+      ${summaryBox(tt, `<button class="btn" data-go="checkout">${esc(t("checkout"))}</button>`, true)}
     </div>
   </section>`;
 }
-function summaryBox(tt, action){
+function summaryBox(tt, action, withPicker){
   return `<aside class="summary">
     <div class="r"><span>${esc(t("subtotal"))}</span><span class="num">${money(tt.sub)}</span></div>
-    <div class="r"><span>${esc(t("shipping"))}</span><span class="num">${tt.ship===0?esc(t("free")):money(tt.ship)}</span></div>
-    <div class="r"><span>${esc(t("tax"))}</span><span class="small muted">${esc(t("taxLater"))}</span></div>
+    <div class="r"><span>${esc(t("tax"))} <span class="small muted">(${esc(tt.st)} ${(tt.rate*100).toFixed(tt.rate*1000%1?3:2).replace(/0+$/,"").replace(/\.$/,"")}%)</span></span><span class="num">${money(tt.tax)}</span></div>
+    ${withPicker?`<label class="small" for="tax-state">${esc(t("shipTo"))}<select id="tax-state" data-taxstate>${STATES.map(x=>`<option ${tt.st===x?"selected":""}>${x}</option>`).join("")}</select></label>`:""}
     <div class="r total"><span>${esc(t("total"))}</span><span class="num">${money(tt.total)}</span></div>
-    <p class="note">${esc(t("freeOver"))}</p>
+    <p class="note">${esc(t("taxNote"))}</p>
     ${action||""}
   </aside>`;
 }
@@ -646,7 +685,7 @@ function checkoutView(){
         ${f("email",t("email"),"email","full")}
         ${f("addr",t("addr"),"text","full")}
         ${f("city",t("city"))}
-        <label for="co-state">${esc(t("state"))}<select id="co-state" name="state">${STATES.map(s=>`<option ${ (d.state||"CA")===s?"selected":""}>${s}</option>`).join("")}</select></label>
+        <label for="co-state">${esc(t("state"))}<select id="co-state" name="state" data-taxstate>${STATES.map(s=>`<option ${ taxState()===s?"selected":""}>${s}</option>`).join("")}</select></label>
         ${f("zip",t("zip"))}
         <div class="full" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
           <button class="btn" type="submit">${esc(t("placeOrder"))}</button>
@@ -765,6 +804,7 @@ function ruleScore(p, a){
   if(a.skin && p.skin.includes(a.skin)) s += 3;
   a.concern.forEach(c=>{ if(p.concern.includes(c)) s += 4; });
   if(a.texture && a.texture!=="any" && p.texture===a.texture) s += 1;
+  if(p.usNone) s += 0.5; if(p.award) s += 0.3;
   const price = breakdown(p).price;
   if(a.budget==="15" && price>=15) s -= 3;
   if(a.budget==="25" && price>25) s -= 3;
@@ -793,12 +833,12 @@ async function recommend(){
   try{
     const sample = window.claude ? await window.claude.use("sample") : null;
     if(sample){
-      const catalog = shelf().map(p=>({ id:p.id, brand:p.brand, name:p.en, cat:p.cat, skin:p.skin, targets:p.concern, texture:p.texture, usd:breakdown(p).price, award:p.award?1:0 }));
+      const catalog = shelf().map(p=>({ id:p.id, brand:p.brand, name:p.en, cat:p.cat, skin:p.skin, targets:p.concern, texture:p.texture, usd:breakdown(p).price, award:p.award?1:0, koreaOnly:p.usNone?1:0, deal:dealOf(p)||"" }));
       const prompt = `You are the product advisor for Gyeol, a small K-beauty store. Pick exactly 3 different products for this shopper, ONLY from the catalog below (use the exact "id" values).
 Shopper answers: ${JSON.stringify(a)}
 (budget "15" = under $15 per item, "25" = $15 to $25, "any" = no limit; routine = how many steps they like; concern = what they want to improve.)
 Catalog: ${JSON.stringify(catalog)}
-Rules: respect the budget where you can; match skin type and concerns first; no medical or treatment claims; each reason is one or two plain sentences (max 30 words) that mention why it fits THEIR answers.
+Rules: our store sells Korean favorites that are hard to find in the US, so when two products fit equally, prefer koreaOnly=1; respect the budget where you can; match skin type and concerns first; no medical or treatment claims; each reason is one or two plain sentences (max 30 words) that mention why it fits THEIR answers.
 Reply with only JSON: {"picks":[{"id":"...","en":"reason in English","ko":"같은 이유를 자연스러운 한국어로"}]}`;
       const out = await sample.json(prompt, { modelTier:"quick" });
       const arr = out && Array.isArray(out.picks) ? out.picks : [];
@@ -822,6 +862,8 @@ document.addEventListener("click", async e=>{
   if(d.go){ if(d.go==="why"){ go("home"); setTimeout(()=>document.getElementById("why")?.scrollIntoView({behavior:"smooth"}),30); return; }
     if(d.go==="quiz" && S.picks && S.view!=="results" && el.closest("header")){ go("results"); return; }
     if(d.go==="quiz"){ S.quizStep = 0; } go(d.go); if(d.go==="checkout") log("checkout_start"); return; }
+  if(d.slide){ S.slide = (S.slide + Number(d.slide) + SLIDES.length) % SLIDES.length; S.slidePaused = true; render(); return; }
+  if(d.dot!=null){ S.slide = Number(d.dot); S.slidePaused = true; render(); return; }
   if(d.lang){ S.lang = d.lang; LS.set("lang", S.lang); render(); return; }
   if(d.scroll){ document.getElementById(d.scroll)?.scrollIntoView({behavior:"smooth"}); return; }
   if(d.filter){ S.filter = d.filter; document.querySelectorAll("[data-filter]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.filter===S.filter))); const g=document.getElementById("gridArea"); if(g) g.innerHTML = gridHtml(); else render(); return; }
@@ -861,7 +903,8 @@ document.addEventListener("click", async e=>{
   if(el.hasAttribute("data-clearyes")){ ["events","orders","surveys"].forEach(k=>LS.set(k,[])); S.confirmClear=false; toast(t("cleared")); return; }
 });
 document.addEventListener("change", e=>{
-  const el = e.target; if(!el.dataset || !el.dataset.cfg) return;
+  const el = e.target;
+  if(el.dataset && el.dataset.taxstate!=null){ S.taxState = el.value; const d=LS.get("coDraft",{}); d.state=el.value; LS.set("coDraft", d); render(); return; } if(!el.dataset || !el.dataset.cfg) return;
   const v = Number(el.value); if(!isFinite(v) || v<0) return;
   CFG[el.dataset.cfg] = v; const saved = LS.get("cfg3", {}); saved[el.dataset.cfg] = v; LS.set("cfg3", saved); render();
 });
@@ -882,7 +925,7 @@ document.addEventListener("submit", e=>{
   if(Object.keys(err).length){ render(); return; }
   const tt = totals();
   const no = "GY-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
-  const order = { no, at:new Date().toISOString(), group:S.group, items:Object.entries(S.cart).map(([id,q])=>({id,q,price:breakdown(byId[id]).price})), subtotal:tt.sub, shipping:tt.ship, total:tt.total, state:fd.state, email:fd.email };
+  const order = { no, at:new Date().toISOString(), group:S.group, items:Object.entries(S.cart).map(([id,q])=>({id,q,price:breakdown(byId[id]).price})), subtotal:tt.sub, tax:tt.tax, taxRate:tt.rate, total:tt.total, state:fd.state, email:fd.email };
   const orders = LS.get("orders", []); orders.push(order); LS.set("orders", orders);
   log("order",{ no, total:tt.total, items:order.items.length });
   S.cart = {}; saveCart(); LS.set("coDraft", {}); S.lastOrder = order; go("done");
@@ -892,6 +935,7 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape" && S.sheet){ S.she
 if(S.picks && !S.picks.every(p=>byId[p.id])) S.picks = null;
 log("visit");
 render();
+setInterval(()=>{ if(S.view==="home" && !S.sheet && !S.slidePaused && !document.hidden && !matchMedia("(prefers-reduced-motion: reduce)").matches){ S.slide=(S.slide+1)%SLIDES.length; const els=document.querySelectorAll(".hero2 .slide, .pillar, .dots button"); if(els.length){ document.querySelectorAll(".hero2 .slide").forEach((el,j)=>{el.classList.toggle("on",j===S.slide);el.setAttribute("aria-hidden",String(j!==S.slide));}); document.querySelectorAll(".pillar").forEach((el,j)=>el.classList.toggle("on",j===S.slide)); document.querySelectorAll(".dots button").forEach((el,j)=>el.setAttribute("aria-pressed",String(j===S.slide))); } } }, 5500);
 })();
 </script>
 
