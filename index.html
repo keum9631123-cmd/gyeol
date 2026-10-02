@@ -306,6 +306,48 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;display:fle
 .slide.has-photo .slide-art{display:none}
 .slide.has-photo .slide-copy{background:color-mix(in srgb,var(--pc) 92%,transparent)}
 @media (max-width:720px){.slide-photo{object-position:76% 12%;height:60%}.slide.has-photo{background:var(--pc)!important}}
+
+/* v14: CJK line breaking — keep-all only for Korean */
+.slide-copy{word-break:normal;overflow-wrap:anywhere}
+html:lang(ko) .slide-copy, html:lang(ko) h1, html:lang(ko) h2{word-break:keep-all}
+html:lang(zh) body, html:lang(ja) body{line-break:strict;overflow-wrap:anywhere}
+html:lang(zh) .eyebrow, html:lang(ja) .eyebrow{letter-spacing:.04em}
+html:lang(zh) .slide-copy h1, html:lang(ja) .slide-copy h1{font-size:clamp(1.6rem,3.2vw,2.5rem);line-height:1.25}
+.btn,.chip,.pillar b,.deal{overflow-wrap:anywhere}
+/* language select: ink pill */
+.langsel{background:var(--ink,#2b2420);border-color:var(--ink,#2b2420);color:#fbf5ec;padding:2px 10px 2px 12px;position:relative}
+.langsel select{color:#fbf5ec;font-weight:600;appearance:none;-webkit-appearance:none;padding:7px 18px 7px 2px;background:transparent}
+.langsel::after{content:"";position:absolute;right:13px;top:50%;width:6px;height:6px;border-right:2px solid #f2c94c;border-bottom:2px solid #f2c94c;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.langsel select option{color:#2b2420;background:#fffaf3}
+.langsel:focus-within{outline:2px solid #f2c94c;outline-offset:2px}
+.langsel .globe{filter:grayscale(1) brightness(2.2)}
+/* news */
+.news{max-width:880px;margin:8px auto 0}
+.news-head{display:flex;flex-direction:column;gap:10px;padding:8px 0 18px;border-bottom:2px solid var(--ink,#2b2420)}
+.news-head h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin:0}
+.news-head .mock{font-size:.82rem;color:var(--ink-mute);background:#f3ead9;border-radius:10px;padding:8px 12px;margin:0}
+.news-cover{height:clamp(180px,30vw,300px);border-radius:18px;background-size:cover;background-position:center 25%;margin:20px 0 6px}
+.stories{list-style:none;margin:0;padding:0}
+.story{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:26px 0;border-bottom:1px solid var(--line,#e4dacd)}
+.story-no{font-family:var(--display);font-size:2.4rem;line-height:1;color:#c9a96e}
+.story-body{display:flex;flex-direction:column;gap:10px;min-width:0}
+.story-tag{align-self:flex-start;background:#6b2433;color:#fbf5ec;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:999px}
+.story h2{font-size:clamp(1.25rem,2.4vw,1.6rem);margin:0;line-height:1.3}
+.story-sum{margin:0;color:var(--ink-soft)}
+.story-pts{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+.story-tip{margin:0;background:#eef3ee;border-left:4px solid #24483c;padding:10px 14px;border-radius:0 10px 10px 0}
+.story-tip b{color:#24483c;margin-right:6px}
+.mini-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.mini{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;text-align:left;border:1px solid var(--line,#e4dacd);background:#fffaf3;border-radius:12px;padding:6px 12px 6px 6px;font:inherit;cursor:pointer;flex:1 1 240px;min-width:0}
+.mini .tile{width:52px;height:52px;border-radius:8px}
+.mini .tile .cat,.mini .tile .illu,.mini .tile .deal{display:none}
+.mini span{display:flex;flex-direction:column;font-size:.85rem;min-width:0}
+.mini b{font-size:.7rem;letter-spacing:.08em;color:var(--ink-mute)}
+.story-src{margin:0;color:var(--ink-mute)}
+.story-src a{color:inherit}
+@media (max-width:600px){.story{grid-template-columns:1fr;gap:6px}.story-no{font-size:1.8rem}}
+.tile .cat{max-width:calc(100% - 20px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html:lang(ja) h1, html:lang(ja) h2{word-break:auto-phrase}
 </style>
 
 </head>
@@ -623,6 +665,116 @@ const PX = {
 };
 function ptxt(p, i){ const x = PX[p.id] && PX[p.id][S.lang]; return x ? x[i] : null; }
 
+/* ---------- Gyeol Beauty Weekly. Add a new object at the TOP of NEWS each week. ---------- */
+Object.assign(T.en,{news:"News", newsTitle:"Gyeol Beauty Weekly", newsLead:"What Korea is buying this week, explained in two minutes.", newsVol:"Vol.", newsTip:"Gyeol tip", newsShop:"On our shelf", newsSrc:"Source", newsNoShelf:"Not on our shelf yet. Tell us in the feedback form if you want it.", newsNext:"A new issue every Monday.", newsMock:"Practice issue for our class project. Every fact comes from the Korean source listed under each story.", newsRead:"Read this issue", newsArchive:"Past issues"});
+Object.assign(T.ko,{news:"뉴스", newsTitle:"결 뷰티 위클리", newsLead:"이번 주 한국에서 뜨는 화장품, 2분 만에 정리해 드려요.", newsVol:"Vol.", newsTip:"결 팁", newsShop:"우리 매장에 있어요", newsSrc:"출처", newsNoShelf:"아직 매장에 없어요. 원하시면 피드백에 남겨 주세요.", newsNext:"매주 월요일 새 호가 올라와요.", newsMock:"수업 프로젝트용 모의 발행호입니다. 모든 내용은 각 기사 아래의 한국 출처를 기준으로 했어요.", newsRead:"이번 호 읽기", newsArchive:"지난 호"});
+Object.assign(T.zh,{news:"资讯", newsTitle:"Gyeol 美妆周刊", newsLead:"两分钟看懂本周韩国人在买什么。", newsVol:"第", newsTip:"Gyeol 小贴士", newsShop:"本店有售", newsSrc:"来源", newsNoShelf:"本店暂未上架，想要的话请在反馈中告诉我们。", newsNext:"每周一更新。", newsMock:"课程项目的模拟刊。所有内容均来自每篇下方列出的韩国来源。", newsRead:"阅读本期", newsArchive:"往期"});
+Object.assign(T.ja,{news:"ニュース", newsTitle:"Gyeol ビューティー ウィークリー", newsLead:"今週の韓国で売れているコスメを2分で解説。", newsVol:"Vol.", newsTip:"Gyeolのひとこと", newsShop:"当店で買えます", newsSrc:"出典", newsNoShelf:"まだ取り扱いがありません。ご希望はフィードバックでお知らせください。", newsNext:"毎週月曜日に更新。", newsMock:"授業プロジェクト用の模擬号です。内容はすべて各記事の下に記載した韓国の出典に基づいています。", newsRead:"今号を読む", newsArchive:"バックナンバー"});
+
+const NEWS = [{
+  vol: 1, date: "2026-10-01",
+  week: {en:"Week of Sep 28 – Oct 4, 2026", ko:"2026년 9월 28일 – 10월 4일", zh:"2026年9月28日 – 10月4日", ja:"2026年9月28日〜10月4日"},
+  cover: "hero-real.jpg",
+  title: {en:"Korea goes 'dermo', masks take over, and fall makeup gets quieter",
+          ko:"'더모'가 일상이 되고, 팩이 뜨고, 가을 메이크업은 힘을 뺐다",
+          zh:"“医美级护肤”成日常、面膜大热、秋季妆容更低调",
+          ja:"“ダーモ”が日常に、パックが大人気、秋メイクは引き算へ"},
+  stories: [
+    { tag:{en:"Skincare",ko:"스킨케어",zh:"护肤",ja:"スキンケア"},
+      title:{en:"Dermo-cosmetics are now everyday skincare",ko:"더모 코스메틱, 이제 매일 쓰는 스킨케어",zh:"医学护肤品成了日常护肤",ja:"ダーモコスメが毎日のスキンケアに"},
+      sum:{en:"Olive Young says Koreans no longer shop for just 'gentle' products. They read ingredients and the research behind them.",
+           ko:"올리브영은 이제 소비자가 '순한 화장품'만 찾지 않고, 성분과 연구 과정까지 꼼꼼히 본다고 분석했어요.",
+           zh:"Olive Young 指出，韩国消费者不再只找“温和”的产品，而是会看成分和背后的研究。",
+           ja:"オリーブヤングによると、韓国の消費者は“やさしい”だけでなく、成分や研究の裏付けまで見て選ぶようになりました。"},
+      pts:{en:["Olive Young's derma category grew about 24% a year on average since 2020.","Q1 2026 sales were up 205% compared with 2020.","Searches moved from 'acne' to 'barrier, pores, sebum, daily care'. Rising ingredients: silk peptide, EGF, niacinamide, madecassoside, tranexamic acid."],
+           ko:["올리브영 더마 카테고리는 2020년 이후 매년 평균 약 24% 성장했어요.","2026년 1분기 매출은 2020년보다 205% 늘었어요.","검색어가 '트러블·여드름'에서 '장벽·모공·피지·데일리 케어'로 바뀌었어요. 뜨는 성분: 실크 펩타이드, EGF, 나이아신아마이드, 마데카소사이드, 트라넥삼산."],
+           zh:["自 2020 年起，Olive Young 的皮肤科护肤品类平均每年增长约 24%。","2026 年第一季度销售额比 2020 年增长 205%。","搜索词从“痘痘”转向“屏障、毛孔、皮脂、日常护理”。热门成分：丝肽、EGF、烟酰胺、积雪草苷、传明酸。"],
+           ja:["オリーブヤングのダーマカテゴリーは2020年以降、年平均約24%成長。","2026年第1四半期の売上は2020年比で205%増。","検索ワードは「ニキビ」から「バリア・毛穴・皮脂・デイリーケア」へ。注目成分：シルクペプチド、EGF、ナイアシンアミド、マデカソサイド、トラネキサム酸。"]},
+      tip:{en:"Pick one barrier cream and use it every day before adding strong actives.",ko:"강한 기능성 제품을 늘리기 전에, 장벽 크림 하나를 매일 꾸준히 써 보세요.",zh:"先每天坚持用一款修护屏障的面霜，再考虑加功效型产品。",ja:"強い美容成分を足す前に、まずバリアクリームを1つ毎日使いましょう。"},
+      shop:["drg-cream","beplain-cicaterol-cream","centellian-madeca","skinfood-potato"],
+      src:[["CJ Olive Young Editorial · 2026.09.29","https://corp.oliveyoung.com/ko/newsroom/editorial/144"]] },
+    { tag:{en:"Olive Young sale",ko:"올영세일",zh:"Olive Young 大促",ja:"オリヤンセール"},
+      title:{en:"September sale: pore-clearing packs searches jumped about 500%",ko:"9월 올영세일, 흡착팩 검색 약 500% 급증",zh:"9 月大促：吸附型清洁面膜搜索量暴涨约 500%",ja:"9月セール：吸着パックの検索が約500%急増"},
+      sum:{en:"In the Aug 30 – Sep 5 sale, shoppers looked for home-spa care, from pore packs to hair and hand packs.",
+           ko:"8월 30일~9월 5일 올영세일에서 흡착팩부터 헤어팩·핸드팩까지 '홈스파' 관리가 크게 늘었어요.",
+           zh:"在 8 月 30 日至 9 月 5 日的大促中，从清洁面膜到发膜、手膜，“居家 SPA”护理需求大增。",
+           ja:"8月30日〜9月5日のセールでは、毛穴パックからヘア・ハンドパックまで“おうちスパ”ケアが人気に。"},
+      pts:{en:["Absorption (pore) packs: about +500% in searches; thermal packs: over +200%.","Hair packs +68% and hand packs +69% versus last year.","Sanrio and Hello Kitty collaborations were top-3 searches on day one."],
+           ko:["흡착팩 검색 약 500%↑, 온열팩 200% 이상↑.","헤어팩 68%↑, 핸드팩 69%↑ (전년 대비).","산리오·헬로키티 협업이 세일 첫날 검색어 TOP 3에 들었어요."],
+           zh:["吸附型面膜搜索量增长约 500%，热敷面膜增长 200% 以上。","发膜增长 68%，手膜增长 69%（同比）。","三丽鸥和 Hello Kitty 联名在大促首日进入搜索前三。"],
+           ja:["吸着パックの検索は約500%増、温感パックは200%以上増。","ヘアパック68%増、ハンドパック69%増（前年比）。","サンリオ・ハローキティとのコラボがセール初日の検索TOP3入り。"]},
+      tip:{en:"Use a mud or wash-off pack once or twice a week, then a hydrating sheet mask the same night.",ko:"주 1~2회 머드·워시오프 팩으로 모공을 정리하고, 같은 날 밤 수분 시트 마스크로 마무리하세요.",zh:"每周 1–2 次用泥膜或水洗面膜清洁毛孔，当晚再敷一片补水面膜。",ja:"週1〜2回、泥パックや洗い流すパックで毛穴ケアをして、その夜は保湿シートマスクで仕上げを。"},
+      shop:["brmud-mask","skinfood-sugarmask","torriden-mask"],
+      src:[["Newspim · 2026.09.06","https://www.newspim.com/news/view/20260906000111"],["Cosmorning · 2026.08.28","https://www.cosmorning.com/news/article.html?no=53409"]] },
+    { tag:{en:"Makeup",ko:"메이크업",zh:"彩妆",ja:"メイク"},
+      title:{en:"Fall 2026 makeup: semi-glow skin, nude lips, almost no blush",ko:"2026 가을 메이크업: 세미 글로우 피부, 누드 립, 안티 블러셔",zh:"2026 秋季妆容：半光泽肌、裸色唇、几乎不打腮红",ja:"2026秋メイク：セミグロウ肌、ヌードリップ、チークはほぼなし"},
+      sum:{en:"Allure Korea's five fall trends all point the same way: less product, more skin texture.",
+           ko:"얼루어 코리아가 꼽은 가을 트렌드 5가지는 모두 '덜 바르고 피부 결을 살리기'로 모여요.",
+           zh:"Allure Korea 选出的 5 个秋季趋势，方向一致：少涂一点，突出肌肤质感。",
+           ja:"アリュール コリアが挙げた秋の5トレンドは、どれも「塗りすぎず肌の質感を生かす」方向です。"},
+      pts:{en:["Semi-glow skin: between dewy and matte, with a soft sheen.","Nude lips in beige, brown and rose-brown instead of classic fall reds.","Also trending: thin '90s brows, anti-blush and pastel mint or lilac eyeshadow."],
+           ko:["세미 글로우: 물광과 매트 사이, 은은한 윤기.","가을 레드 대신 베이지·브라운·로즈브라운 누드 립.","가느다란 90년대 눈썹, 안티 블러셔, 민트·라일락 파스텔 섀도도 함께 떠요."],
+           zh:["半光泽肌：介于水光和哑光之间，带一点柔和光泽。","用米色、棕色、玫瑰棕裸色唇代替传统秋季红唇。","同时流行：90 年代细眉、“反腮红”、薄荷或丁香色系的粉彩眼影。"],
+           ja:["セミグロウ肌：ツヤとマットの中間の、やわらかな光沢。","定番の秋レッドの代わりに、ベージュ・ブラウン・ローズブラウンのヌードリップ。","90年代風の細眉、アンチチーク、ミントやライラックのパステルシャドウも注目。"]},
+      tip:{en:"Semi-glow starts with skincare: a milky toner and a tone-up sun cushion do most of the work.",ko:"세미 글로우는 스킨케어에서 시작돼요. 크림 스킨과 톤업 선쿠션이면 절반은 끝나요.",zh:"半光泽肌从护肤开始：一瓶乳状化妆水加一块提亮防晒气垫就完成大半。",ja:"セミグロウはスキンケアから。ミルキーな化粧水とトーンアップサンクッションで仕上がりの半分が決まります。"},
+      shop:["laneige-creamskin","athe-suncushion","drbelmeur-cicalip"],
+      src:[["Allure Korea · 2026.09.27","https://www.allurekorea.com/2026/09/27/%EB%A9%80%EB%A9%80%ED%95%9C-%EC%9E%85%EC%88%A0%EB%B6%80%ED%84%B0-%ED%9E%98%EC%9D%84-%EB%BA%80-%EB%88%88%EC%8D%B9%EA%B9%8C%EC%A7%80-%EA%B0%80%EC%9D%84-%EB%A9%94%EC%9D%B4%ED%81%AC%EC%97%85-%ED%8A%B8"]] },
+    { tag:{en:"Ingredients",ko:"성분",zh:"成分",ja:"成分"},
+      title:{en:"After summer, Korea searches for brightening",ko:"여름이 끝나자 '미백·톤 케어' 검색이 늘었다",zh:"夏天一过，韩国人开始搜“提亮”",ja:"夏が終わると“美白・トーンケア”検索が増加"},
+      sum:{en:"Hwahae's app data (Jun 24 – Aug 22) shows tone and pigment ingredients rising even while total searches fell about 14%.",
+           ko:"화해 앱 데이터(6/24~8/22)를 보면 전체 검색은 약 14% 줄었는데, 미백·색소 성분은 오히려 올랐어요.",
+           zh:"Hwahae 应用数据（6/24–8/22）显示，整体搜索下降约 14%，提亮与淡斑成分却在上升。",
+           ja:"ファヘのアプリデータ（6/24〜8/22）では、検索全体が約14%減る中で、美白・色素ケア成分は上昇しました。"},
+      pts:{en:["Vitamin C searches +31.2%, the only top-5 ingredient that grew.","Azelaic acid and redness or tone care: +32%.","Arbutin: +17%."],
+           ko:["비타민C 검색 31.2%↑, TOP 5 성분 중 유일하게 증가.","아젤라익애씨드·홍조/톤 케어 32%↑.","알부틴 17%↑."],
+           zh:["维生素 C 搜索量增长 31.2%，是前五成分中唯一增长的。","壬二酸及泛红、肤色护理增长 32%。","熊果苷增长 17%。"],
+           ja:["ビタミンCの検索が31.2%増、TOP5成分で唯一の増加。","アゼライン酸・赤み／トーンケアが32%増。","アルブチンが17%増。"]},
+      tip:{en:"Brightening works best on calm skin. Soothe first, and always wear SPF the next morning.",ko:"미백 성분은 피부가 진정된 상태에서 효과가 좋아요. 먼저 진정시키고, 다음 날 아침엔 꼭 자외선 차단제를 바르세요.",zh:"提亮成分在肌肤稳定时效果最好。先舒缓，第二天早上一定要防晒。",ja:"美白成分は肌が落ち着いている時に効果的。まず鎮静し、翌朝は必ず日焼け止めを。"},
+      shop:[],
+      src:[["Hwahae Insight · 2026.08.24","https://business.hwahae.co.kr/insight/trendreport-26-3q-trend-snap/"]] },
+    { tag:{en:"Brand story",ko:"브랜드 스토리",zh:"品牌故事",ja:"ブランドストーリー"},
+      title:{en:"Cell Fusion C: from Gangnam clinics to a 'national item'",ko:"셀퓨전씨: 강남 피부과에서 '국민템'이 되기까지",zh:"Cell Fusion C：从江南皮肤科到“国民单品”",ja:"セルフュージョンC：江南の皮膚科から“国民的アイテム”へ"},
+      sum:{en:"The brand began in 2001 to protect skin after laser treatments, then grew through Olive Young from 2017.",
+           ko:"2001년 레이저 시술 후 피부를 위한 선크림으로 시작해, 2017년 올리브영 입점 후 대중 브랜드가 됐어요.",
+           zh:"品牌于 2001 年为激光术后肌肤推出防晒，2017 年进入 Olive Young 后走向大众。",
+           ja:"2001年、レーザー施術後の肌のための日焼け止めから始まり、2017年のオリーブヤング入店で一気に大衆ブランドに。"},
+      pts:{en:["2001: founded for post-laser skin care.","2017: entered Olive Young with a mass-market version of its sunscreen.","August 2026: launched at US Sephora; cooling masks and pads were reordered right away."],
+           ko:["2001년: 레이저 시술 후 피부 관리를 위해 시작.","2017년: 선크림을 대중용으로 다듬어 올리브영 입점.","2026년 8월: 미국 세포라 입점, 쿨링 마스크·패드가 바로 재주문됐어요."],
+           zh:["2001 年：为激光术后护理而创立。","2017 年：推出大众版防晒，进入 Olive Young。","2026 年 8 月：登陆美国 Sephora，冰凉面膜和棉片立刻补货。"],
+           ja:["2001年：レーザー施術後のケアのために創業。","2017年：日焼け止めを一般向けに改良しオリーブヤングへ。","2026年8月：アメリカのセフォラに上陸、クーリングマスクとパッドはすぐ追加発注に。"]},
+      tip:{en:"Our Korean 1+1 cooling pad pack gives you two jars, the way it is sold in Korea.",ko:"저희는 한국 행사 구성 그대로 1+1 쿨링 패드를 가져와요.",zh:"本店引进的是韩国同款 1+1 冰凉棉片组合。",ja:"当店では韓国と同じ1+1のクーリングパッドセットをお届けします。"},
+      shop:["cellfusion-pad"],
+      src:[["CJ Olive Young Editorial · 2026.09.28","https://corp.oliveyoung.com/ko/newsroom/editorial/239"]] }
+  ]
+}];
+const L = o => (o && (o[S.lang] || o.en)) || "";
+function newsView(){
+  const iss = NEWS[0];
+  return `<section class="news">
+    <div class="news-head">
+      <p class="eyebrow">${esc(t("newsTitle"))} · ${esc(t("newsVol"))}${iss.vol} · ${esc(L(iss.week))}</p>
+      <h1>${esc(L(iss.title))}</h1>
+      <p class="lead">${esc(t("newsLead"))}</p>
+      <p class="mock">${esc(t("newsMock"))}</p>
+    </div>
+    <div class="news-cover" style="background-image:url(${iss.cover})"></div>
+    <ol class="stories">${iss.stories.map((s,i)=>`<li class="story">
+      <div class="story-no num">${String(i+1).padStart(2,"0")}</div>
+      <div class="story-body">
+        <span class="story-tag">${esc(L(s.tag))}</span>
+        <h2>${esc(L(s.title))}</h2>
+        <p class="story-sum">${esc(L(s.sum))}</p>
+        <ul class="story-pts">${(s.pts[S.lang]||s.pts.en).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+        <p class="story-tip"><b>${esc(t("newsTip"))}</b> ${esc(L(s.tip))}</p>
+        <div class="story-shop"><span class="small muted">${esc(t("newsShop"))}</span>
+          ${s.shop.filter(id=>byId[id]).length ? `<div class="mini-row">${s.shop.filter(id=>byId[id]).map(id=>{const p=byId[id];return `<button class="mini" data-open="${id}" data-src="news">${tile(p,"sm")}<span><b>${esc(p.brand)}</b>${esc(pname(p))}</span><span class="num">${money(breakdown(p).price)}</span></button>`;}).join("")}</div>` : `<p class="small muted">${esc(t("newsNoShelf"))}</p>`}
+        </div>
+        <p class="story-src small">${esc(t("newsSrc"))}: ${s.src.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(l)}</a>`).join(" · ")}</p>
+      </div></li>`).join("")}</ol>
+    <p class="note">${esc(t("newsNext"))}</p>
+  </section>`;
+}
+
 /* ---------- state ---------- */
 const S = {
   lang: LS.get("lang","en"),
@@ -679,7 +831,7 @@ function saveCart(){ LS.set("cart", S.cart); }
 
 /* ---------- views ---------- */
 function header(){
-  const nav = [["home",t("shop")],["quiz",t("quiz")]];
+  const nav = [["home",t("shop")],["quiz",t("quiz")],["news",t("news")]];
   return `<header class="top"><div class="wrap row">
     <button class="brand" data-go="home" aria-label="Gyeol home"><span class="ko">결</span><span class="en">GYEOL</span></button>
     <nav class="main" aria-label="Main">
@@ -948,6 +1100,7 @@ function render(){
     case "done": body = doneView(); break;
     case "survey": body = surveyView(); break;
     case "team": body = teamView(); break;
+    case "news": body = newsView(); break;
     default: body = homeView();
   }
   document.getElementById("app").innerHTML = header() + `<main class="wrap">${body}</main>
