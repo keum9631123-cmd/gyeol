@@ -299,6 +299,13 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;display:fle
  .hero2 .slide-copy{margin:0 12px 40px;padding:20px 20px}
 }
 .hero2 .dots{left:auto;right:24px;transform:none}
+
+/* AI photo slots: hero-<key>.jpg replaces banner+illustration, theme-<key>.jpg replaces pillar art */
+.slide-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%}
+@media (min-width:721px){.hero2:has(.has-photo){aspect-ratio:2.25/1}}
+.slide.has-photo .slide-art{display:none}
+.slide.has-photo .slide-copy{background:color-mix(in srgb,var(--pc) 92%,transparent)}
+@media (max-width:720px){.slide-photo{object-position:76% 12%;height:60%}.slide.has-photo{background:var(--pc)!important}}
 </style>
 
 </head>
@@ -693,7 +700,7 @@ function homeView(){
   const i = S.slide % SLIDES.length, k = SLIDES[i];
   return `
   <section class="hero2" aria-roledescription="carousel" aria-label="${esc(t("bannerAria"))}">
-    ${SLIDES.map((key,j)=>`<div class="slide s-${key} ${j===i?"on":""}" style="background-image:url(banner-${key}.jpg)" aria-hidden="${j!==i}"><img class="slide-art" src="pillar-${key}.svg" alt="" loading="lazy">
+    ${SLIDES.map((key,j)=>`<div class="slide s-${key} ${j===i?"on":""}" style="background-image:url(banner-${key}.jpg)" aria-hidden="${j!==i}"><img class="slide-photo" src="hero-${key}.jpg" alt="" onload="this.parentNode.classList.add('has-photo')" onerror="this.remove()"><img class="slide-art" src="pillar-${key}.svg" alt="" loading="lazy">
       <div class="slide-copy">
         <p class="eyebrow">${esc(t("b_"+key+"_eyebrow"))}</p>
         <h1>${esc(t("b_"+key+"_title"))}</h1>
@@ -704,7 +711,7 @@ function homeView(){
     <button class="arrow next" data-slide="1" aria-label="${esc(t("next"))}">›</button>
     <div class="dots">${SLIDES.map((key,j)=>`<button data-dot="${j}" aria-label="${esc(t("b_"+key+"_eyebrow"))}" aria-pressed="${j===i}"></button>`).join("")}</div>
   </section>
-  <div class="pillars">${SLIDES.map((key,j)=>`<button class="pillar p-${key} ${j===i?"on":""}" data-dot="${j}"><img src="pillar-${key}.svg" alt="" loading="lazy"><b>${esc(t("b_"+key+"_eyebrow"))}</b></button>`).join("")}</div>
+  <div class="pillars">${SLIDES.map((key,j)=>`<button class="pillar p-${key} ${j===i?"on":""}" data-dot="${j}"><img src="theme-${key}.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='pillar-${key}.svg'"><b>${esc(t("b_"+key+"_eyebrow"))}</b></button>`).join("")}</div>
   ${deals.length?`<section class="section" id="deals">
     <div class="section-head"><h2>${esc(t("dealsTitle"))}</h2><span class="muted small">${esc(t("dealsSub"))}</span></div>
     <div class="rail">${deals.map(card).join("")}</div>
