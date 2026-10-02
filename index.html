@@ -368,6 +368,14 @@ html:lang(ja) h1, html:lang(ja) h2{word-break:auto-phrase}
 :root[data-theme="dark"] .story-tip b{color:#8CC4A6}
 .story-no{color:#9A7434}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.chip-deal{color:#FF9A9E;border-color:#FF9A9E}:root:not([data-theme="light"]) .chip.chip-deal[aria-pressed="true"]{color:#fff;background:#d9363e}}
+/* RQ3 A/B: group B sees no Korea-only proof badges */
+.grp-B .rare,.grp-B .award{display:none !important}
+
+/* v16: horizontal slide carousel */
+.hero2{overflow:hidden}
+.hero2 .slide{opacity:1 !important;transition:none;transform:translateX(100%);visibility:hidden}
+.hero2 .slide.on{transform:translateX(0);visibility:visible;z-index:1}
+@media (prefers-reduced-motion:reduce){.hero2 .slide{transition:none !important}}
 </style>
 
 </head>
@@ -482,7 +490,7 @@ const T = {
     submit:"Submit feedback", svMissing:"Please answer every statement.", svThanks:"Thank you. Your feedback was saved.",
     footer:"Gyeol · Team 12 research prototype · Project Management with SaaS",
     teamTitle:"Team panel", teamLead:"Research data collected in this browser, and the price model behind every product.",
-    group:"Test group", groupA:"A · price breakdown shown", groupB:"B · price only",
+    group:"Test group", groupA:"A · Korea-only badges shown", groupB:"B · badges hidden",
     events:"Events", sessions:"Quiz completed", clicks:"Recommendation clicks", views:"Breakdown views", carts:"Add to cart", orders:"Orders", surveys:"Surveys",
     avgSus:"Average SUS", byGroup:"By group",
     priceModel:"Price model", rareL:"Hard to find in the US", rareShort:"Not sold by US stores", verOnlyL:"Only checked prices on the shelf", colStatus:"Price data", verifiedL:"Checked", exampleL:"Example", checkedL:"Prices checked", krSrcL:"Korea:", usSrcL:"US:", exampleOne:"Example price, not yet checked.", fxL:"Won per US dollar", minSaveL:"Minimum saving to sell", hideL:"Hide products below it", yes:"Yes", no:"No", ruleNote2:"Products on the shelf:", fxNote:"Exchange rate: Federal Reserve H.10, rate for", assumptions:"Assumptions", tariff:"Import tax", shipU:"Shipping per unit ($)", marginL:"Target margin", reset:"Restore defaults",
@@ -552,7 +560,7 @@ const T = {
     submit:"피드백 제출", svMissing:"모든 문항에 답해 주세요.", svThanks:"감사합니다. 피드백이 저장됐어요.",
     footer:"결 · Team 12 연구용 프로토타입 · Project Management with SaaS",
     teamTitle:"팀 패널", teamLead:"이 브라우저에 쌓인 연구 데이터와, 모든 제품 가격을 만드는 원가 모델입니다.",
-    group:"테스트 그룹", groupA:"A · 가격 분해표 표시", groupB:"B · 가격만 표시",
+    group:"테스트 그룹", groupA:"A · 한국 전용 배지 표시", groupB:"B · 배지 숨김",
     events:"이벤트", sessions:"퀴즈 완료", clicks:"추천 클릭", views:"분해표 열람", carts:"장바구니 담기", orders:"주문", surveys:"설문",
     avgSus:"평균 SUS", byGroup:"그룹별",
     priceModel:"가격 모델", rareL:"미국에서 구하기 어려움", rareShort:"미국 매장 미판매", verOnlyL:"가격 확인된 제품만 진열", colStatus:"가격 데이터", verifiedL:"확인됨", exampleL:"예시", checkedL:"가격 확인일", krSrcL:"한국:", usSrcL:"미국:", exampleOne:"예시 가격입니다. 아직 확인 전이에요.", fxL:"원/달러 환율", minSaveL:"판매 기준 최소 절감률", hideL:"기준 미달 제품 숨기기", yes:"예", no:"아니요", ruleNote2:"현재 진열 중인 제품:", fxNote:"환율 출처: 미 연준 H.10, 기준일", assumptions:"가정값", tariff:"관세율", shipU:"개당 배송비 ($)", marginL:"목표 마진", reset:"기본값으로",
@@ -1111,6 +1119,7 @@ function teamView(){
 
 function render(){
   document.documentElement.lang = S.lang;
+  document.body.classList.toggle("grp-B", S.group==="B");
   let body;
   switch(S.view){
     case "quiz": body = quizView(); break;
@@ -1194,8 +1203,8 @@ document.addEventListener("click", async e=>{
   if(d.go){ if(d.go==="why"){ go("home"); setTimeout(()=>document.getElementById("why")?.scrollIntoView({behavior:"smooth"}),30); return; }
     if(d.go==="quiz" && S.picks && S.view!=="results" && el.closest("header")){ go("results"); return; }
     if(d.go==="quiz"){ S.quizStep = 0; } go(d.go); if(d.go==="checkout") log("checkout_start"); return; }
-  if(d.slide){ S.slide = (S.slide + Number(d.slide) + SLIDES.length) % SLIDES.length; S.slidePaused = true; render(); return; }
-  if(d.dot!=null){ S.slide = Number(d.dot); S.slidePaused = true; render(); return; }
+  if(d.slide){ showSlide(S.slide + Number(d.slide), Number(d.slide)); S.slideHold = Date.now()+5000; return; }
+  if(d.dot!=null){ const n=Number(d.dot); showSlide(n, n>S.slide?1:-1); S.slideHold = Date.now()+5000; return; }
   if(d.lang){ S.lang = d.lang; LS.set("lang", S.lang); render(); return; }
   if(d.scroll){ document.getElementById(d.scroll)?.scrollIntoView({behavior:"smooth"}); return; }
   if(d.filter){ S.filter = d.filter; document.querySelectorAll("[data-filter]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.filter===S.filter))); const g=document.getElementById("gridArea"); if(g) g.innerHTML = gridHtml(); else render(); return; }
@@ -1268,7 +1277,25 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape" && S.sheet){ S.she
 if(S.picks && !S.picks.every(p=>byId[p.id])) S.picks = null;
 log("visit");
 render();
-setInterval(()=>{ if(S.view==="home" && !S.sheet && !S.slidePaused && !document.hidden && !matchMedia("(prefers-reduced-motion: reduce)").matches){ S.slide=(S.slide+1)%SLIDES.length; const els=document.querySelectorAll(".hero2 .slide, .pillar, .dots button"); if(els.length){ document.querySelectorAll(".hero2 .slide").forEach((el,j)=>{el.classList.toggle("on",j===S.slide);el.setAttribute("aria-hidden",String(j!==S.slide));}); document.querySelectorAll(".pillar").forEach((el,j)=>el.classList.toggle("on",j===S.slide)); document.querySelectorAll(".dots button").forEach((el,j)=>el.setAttribute("aria-pressed",String(j===S.slide))); } } }, 5500);
+const EASE="transform .9s cubic-bezier(.65,0,.35,1)";
+function showSlide(n, dir){
+  const els=[...document.querySelectorAll(".hero2 .slide")]; n=(n+SLIDES.length)%SLIDES.length;
+  const old=S.slide; if(n===old) return; S.slide=n;
+  if(!els.length) return;
+  dir = dir || 1;
+  const a=els[old], b=els[n];
+  els.forEach((el,j)=>{ if(j!==old && j!==n){ el.classList.remove("on"); el.style.cssText=el.style.cssText.replace(/transform[^;]*;|transition[^;]*;|visibility[^;]*;/g,""); } });
+  b.style.transition="none"; b.style.transform=`translateX(${dir*100}%)`; b.style.visibility="visible";
+  void b.offsetWidth;
+  b.style.transition=EASE; b.style.transform="translateX(0)"; b.classList.add("on");
+  a.classList.remove("on"); a.style.transition=EASE; a.style.visibility="visible"; a.style.transform=`translateX(${-dir*100}%)`;
+  clearTimeout(showSlide._t); showSlide._t=setTimeout(()=>{ [a,b].forEach(el=>{ el.style.transition=""; el.style.transform=""; el.style.visibility=""; }); }, 950);
+  els.forEach((el,j)=>el.setAttribute("aria-hidden",String(j!==n)));
+  document.querySelectorAll(".pillar").forEach((el,j)=>el.classList.toggle("on",j===n));
+  document.querySelectorAll(".dots button").forEach((el,j)=>el.setAttribute("aria-pressed",String(j===n)));
+}
+S.slideHold = 0;
+setInterval(()=>{ if(S.view==="home" && !S.sheet && Date.now()>S.slideHold && !document.hidden && !matchMedia("(prefers-reduced-motion: reduce)").matches) showSlide(S.slide+1, 1); }, 3000);
 })();
 </script>
 
