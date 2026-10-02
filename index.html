@@ -271,6 +271,34 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;display:fle
  .pillars{grid-template-columns:repeat(2,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.hero2 .slide{transition:none}}
+
+/* v11: high-contrast banner panels, illustrated pillars, language select */
+.s-rare{--pc:#6b2433;--pt:#f3dcd9}.s-real{--pc:#24483c;--pt:#dfe9e1}.s-idol{--pc:#3d1f4a;--pt:#e6dcef}.s-youtube{--pc:#7a3420;--pt:#f6ead0}
+.p-rare{--pc:#6b2433;--pt:#f3dcd9}.p-real{--pc:#24483c;--pt:#dfe9e1}.p-idol{--pc:#3d1f4a;--pt:#e6dcef}.p-youtube{--pc:#7a3420;--pt:#f6ead0}
+.hero2 .slide::before{display:none}
+.hero2 .slide-copy{background:var(--pc);color:#fbf5ec;border-radius:20px;padding:28px 30px;margin-left:clamp(16px,4vw,48px);max-width:460px;box-shadow:0 18px 40px rgba(30,15,10,.25)}
+.hero2 .slide-copy h1{color:#fff}
+.hero2 .slide-copy .lead{color:rgba(251,245,236,.88)}
+.hero2 .slide-copy .eyebrow{background:#f2c94c;color:#2b2420;font-weight:700}
+.hero2 .slide-copy .btn{background:#fbf5ec;color:var(--pc);border-color:#fbf5ec}
+.hero2 .slide-copy .btn.ghost{background:transparent;color:#fbf5ec;border-color:rgba(251,245,236,.7)}
+.slide-art{position:absolute;left:45%;bottom:0;height:92%;width:auto;pointer-events:none;filter:drop-shadow(0 10px 24px rgba(60,30,20,.18))}
+.pillar{display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden;background:var(--pt);border:2px solid transparent;color:var(--pc)}
+.pillar img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%}
+.pillar b{display:block;padding:10px 8px;background:#fffaf3;font-size:.95rem}
+.pillar.on{background:var(--pt);border-color:var(--pc);color:#fff}
+.pillar.on b{background:var(--pc);color:#fff}
+.pillar:hover img{transform:scale(1.04)}.pillar img{transition:transform .3s}
+.langsel{flex-direction:row;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line,#e4dacd);border-radius:999px;padding:4px 6px 4px 12px;background:#fffaf3}
+.langsel select{border:0;background:transparent;font:inherit;font-size:.92rem;padding:4px 4px;cursor:pointer;color:var(--ink,#2b2420)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:980px){.slide-art{left:auto;right:2%;height:80%}}
+@media (max-width:720px){
+ .slide-art{left:50%;right:auto;transform:translateX(-50%);top:4px;bottom:auto;height:50%}
+ .hero2{min-height:540px}
+ .hero2 .slide-copy{margin:0 12px 40px;padding:20px 20px}
+}
+.hero2 .dots{left:auto;right:24px;transform:none}
 </style>
 
 </head>
@@ -327,10 +355,10 @@ function amazonPrice(p, rate){
 /* ---------- i18n ---------- */
 const T = {
   en:{
-    dealDouble:"2 FOR 1", dealGift:"GIFT SET", bannerAria:"Featured", shopNow:"Shop the picks", prev:"Previous",
+    dealDouble:"DOUBLE PACK", dealGift:"GIFT SET", bannerAria:"Featured", shopNow:"Shop the picks", prev:"Previous",
     b_rare_eyebrow:"Not sold in the US", b_rare_title:"Korean beauty you can't buy here", b_rare_lead:"The Seoul bestsellers US stores don't carry, brought straight from Korea.",
     b_real_eyebrow:"What Korean women really use", b_real_title:"The real everyday shelf", b_real_lead:"Not ads. The drugstore staples Korean and Asian women actually rebuy.",
-    b_idol_eyebrow:"K-idol makeup", b_idol_title:"Get the idol glow", b_idol_lead:"Glass-skin cushions, juicy tints and the base backstage artists swear by.",
+    b_idol_eyebrow:"K-idol makeup", b_idol_title:"Get the idol glow", b_idol_lead:"Glow-skin prep, tone-up sun cushions and tinted lip balms for the idol look.",
     b_youtube_eyebrow:"Seen on YouTube", b_youtube_title:"From your feed to your shelf", b_youtube_lead:"The products Korean beauty YouTubers keep showing, finally in your cart.",
     dealsTitle:"Korean deals", dealsSub:"1+1, double packs and gift sets, as sold in Korea", dealsChip:"🎁 Deals",
     priceNote:"Prices include shipping from Korea. Sales tax is added at checkout.", shipTo:"Ship to (state)",
@@ -400,7 +428,7 @@ const T = {
     dealDouble:"2개 구성", dealGift:"기획 세트", bannerAria:"추천 배너", shopNow:"꿀템 보러가기", prev:"이전",
     b_rare_eyebrow:"미국에서 못 사는", b_rare_title:"미국엔 없는 한국 꿀템", b_rare_lead:"미국 매장에 없는 한국 베스트셀러를 한국에서 바로 가져와요.",
     b_real_eyebrow:"진짜 쓰는 화장품", b_real_title:"광고 말고, 진짜 파우치", b_real_lead:"한국·아시아 여성들이 실제로 재구매하는 올리브영 스테디템.",
-    b_idol_eyebrow:"아이돌 메이크업", b_idol_title:"아이돌 광채 그대로", b_idol_lead:"물광 쿠션, 맑은 틴트, 메이크업 아티스트들이 쓰는 그 베이스.",
+    b_idol_eyebrow:"아이돌 메이크업", b_idol_title:"아이돌 광채 그대로", b_idol_lead:"물광 피부 준비, 톤업 선쿠션, 컬러 립밤으로 완성하는 아이돌 무드.",
     b_youtube_eyebrow:"유튜브에서만 보던", b_youtube_title:"영상 속 그 제품, 이제 장바구니로", b_youtube_lead:"한국 뷰티 유튜버들이 계속 보여주던 제품을 미국에서 받아보세요.",
     dealsTitle:"한국 행사템", dealsSub:"1+1, 더블 기획, 선물 세트 — 한국 행사 구성 그대로", dealsChip:"🎁 행사",
     priceNote:"가격에 한국발 배송비가 포함돼 있어요. 세일즈 택스는 결제 시 추가됩니다.", shipTo:"배송 주(State)",
@@ -468,6 +496,126 @@ const T = {
   }
 };
 
+/* ---------- Chinese (Simplified) and Japanese UI. Missing keys fall back to English. ---------- */
+T.zh = {
+  langL:"语言", dealDouble:"双支装", dealGift:"礼盒套装", bannerAria:"精选", shopNow:"去逛韩国好物", prev:"上一张",
+  b_rare_eyebrow:"美国买不到", b_rare_title:"美国买不到的韩国好物", b_rare_lead:"美国商店没有的首尔畅销品，直接从韩国送到你手上。",
+  b_real_eyebrow:"韩国女生真的在用", b_real_title:"不是广告，是真实的化妆台", b_real_lead:"韩国和亚洲女生反复回购的药妆店常备款。",
+  b_idol_eyebrow:"爱豆妆容", b_idol_title:"打造爱豆光泽感", b_idol_lead:"水光底妆、提亮防晒气垫和带色润唇膏，一起打造爱豆感。",
+  b_youtube_eyebrow:"YouTube 上常看到", b_youtube_title:"从视频里，到你的购物车", b_youtube_lead:"韩国美妆博主反复推荐的产品，现在可以在美国买到。",
+  dealsTitle:"韩国优惠", dealsSub:"1+1、双支装和礼盒，和韩国店里一样的优惠组合", dealsChip:"🎁 优惠",
+  priceNote:"价格已含韩国发货运费，销售税在结账时另计。", shipTo:"收货州", taxNote:"按各州基本销售税估算，最终税额在付款时按地址确认。",
+  shop:"商店", quiz:"肤质测试", cart:"购物车", team:"团队面板",
+  startQuiz:"做肤质测试", browse:"浏览全部商品", allProducts:"全部商品", all:"全部",
+  cats:{cleanser:"洁面",toner:"化妆水",pad:"棉片",essence:"精华",serum:"精华液",ampoule:"精华与安瓶",cream:"面霜",sun:"防晒",mask:"面膜",lip:"唇部护理",tint:"唇釉"},
+  step:"问题", of:"/", back:"上一步", next:"下一步", seeResults:"查看推荐", pickUpTo:"最多选两项。",
+  q:[
+    {k:"skin", t:"你的肤质是？", multi:false, o:[["dry","干性","洗完脸会紧绷"],["oily","油性","中午就出油"],["combination","混合性","T区油、两颊干"],["sensitive","敏感","容易泛红或不适"],["normal","中性","很少有问题"]]},
+    {k:"concern", t:"你最想改善什么？", multi:true, o:[["hydration","补水","干燥或缺水"],["acne","痘痘","闭口和痘痘"],["redness","泛红","明显泛红"],["pores","毛孔与肤质","粗糙不平"],["dullness","暗沉","气色差"],["lips","唇部","唇干或想要唇色"],["sun","防晒","每天的防晒"]]},
+    {k:"budget", t:"每件商品的预算是？", multi:false, o:[["15","15 美元以下",""],["25","15–25 美元",""],["any","不限",""]]},
+    {k:"routine", t:"你喜欢几步的护肤流程？", multi:false, o:[["minimal","1–2 步","快速简单"],["balanced","3–4 步","稳定日常"],["full","5 步以上","享受护肤仪式感"]]},
+    {k:"texture", t:"你喜欢哪种质地？", multi:false, o:[["light","清爽水润",""],["rich","滋润绵密",""],["any","都可以",""]]}
+  ],
+  yourPicks:"为你推荐的三件", yourProfile:"你的回答", retake:"重新测试", thinking:"正在根据你的回答挑选商品…",
+  aiNote:"由 AI 仅从本店在售商品中挑选。", ruleNote:"根据我们的匹配规则挑选。",
+  view:"查看", addToCart:"加入购物车", added:"已加入购物车", keyIng:"主要成分", fits:"适合肤质", howTo:"使用方法",
+  illu:"插图 · 实拍图即将上线", sizeL:"规格", stepL:"护肤步骤", search:"搜索商品或品牌", noMatch:"没有找到相关商品。", photoSoon:"商品实拍图即将上线",
+  skinNames:{dry:"干性",oily:"油性",combination:"混合性",sensitive:"敏感",normal:"中性"},
+  cartTitle:"购物车", empty:"购物车是空的。", emptyHint:"做个肤质测试，或去商店逛逛吧。",
+  subtotal:"商品小计", tax:"销售税", total:"预计合计", checkout:"去结账", remove:"删除", items:"件",
+  coTitle:"结账", coLead:"我们先接收订单，并在 1 个工作日内通过邮件发送安全付款链接。",
+  name:"姓名", email:"邮箱", addr:"街道地址", city:"城市", state:"州", zip:"邮编",
+  placeOrder:"提交订单", stripeTest:"刷卡支付（Stripe 测试模式）", stripeSoon:"将在下一版本中开放。",
+  required:"请填写此项。", badEmail:"请输入类似 name@example.com 的邮箱。", badZip:"请输入 5 位邮编。",
+  protoBanner:"这是原型商店。不会实际扣款，订单只保存在此浏览器中。",
+  thanks:"订单已收到", orderNo:"订单号", doneLead:"我们会通过", doneLead2:"联系你，发送付款链接和配送信息。",
+  giveFeedback:"花 2 分钟给反馈", keepShopping:"继续购物",
+  svTitle:"告诉我们你的体验", svLead:"共 15 个简短陈述，没有标准答案，回答是匿名的。",
+  sa:["非常不同意","不同意","一般","同意","非常同意"],
+  sus:["我想我会经常使用这个网站。","我觉得这个网站过于复杂。","我觉得这个网站很容易使用。","我觉得需要技术人员帮助才能使用这个网站。","我觉得网站的各项功能整合得很好。","我觉得这个网站有太多不一致的地方。","我想大多数人都能很快学会使用这个网站。","我觉得这个网站用起来很别扭。","我使用这个网站时很有信心。","我需要先学很多东西才能开始使用这个网站。"],
+  trust:["这家店如实说明了价格是怎么定的。","我相信这些商品是正品。","我在这家店下单会觉得安心。"],
+  intent:["我会购买这个网站推荐给我的商品。","我会把这家店推荐给朋友。"],
+  svSusHead:"网站使用", svTrustHead:"信任", svIntentHead:"购买意愿", submit:"提交反馈", svMissing:"请回答每一项。", svThanks:"谢谢！你的反馈已保存。",
+  footer:"Gyeol · 第 12 组研究原型 · Project Management with SaaS", rareL:"美国难买到", rareShort:"美国商店未售"
+};
+T.ja = {
+  langL:"言語", dealDouble:"2個セット", dealGift:"ギフトセット", bannerAria:"おすすめ", shopNow:"韓国コスメを見る", prev:"前へ",
+  b_rare_eyebrow:"アメリカでは買えない", b_rare_title:"アメリカにない韓国の名品", b_rare_lead:"アメリカのお店にはないソウルのベストセラーを、韓国から直接お届け。",
+  b_real_eyebrow:"韓国女子のリアル愛用品", b_real_title:"広告じゃない、本当のポーチの中身", b_real_lead:"韓国・アジアの女性が実際にリピートしているドラッグストア定番品。",
+  b_idol_eyebrow:"アイドルメイク", b_idol_title:"アイドルのツヤ肌に", b_idol_lead:"ツヤ肌仕込み、トーンアップ日焼け止めクッション、色つきリップでアイドル風に。",
+  b_youtube_eyebrow:"YouTubeで話題", b_youtube_title:"動画で見たあのコスメを、カートへ", b_youtube_lead:"韓国のビューティーYouTuberが何度も紹介するアイテムが、アメリカで手に入ります。",
+  dealsTitle:"韓国のお得セット", dealsSub:"1+1、ダブルパック、ギフトセットを韓国と同じ構成で", dealsChip:"🎁 お得",
+  priceNote:"価格には韓国からの送料が含まれています。売上税は購入手続きで加算されます。", shipTo:"お届け先の州", taxNote:"州の基本売上税で計算しています。最終的な税額はお支払い時に住所で確定します。",
+  shop:"ショップ", quiz:"肌診断", cart:"カート", team:"チームパネル",
+  startQuiz:"肌診断をはじめる", browse:"すべての商品を見る", allProducts:"すべての商品", all:"すべて",
+  cats:{cleanser:"洗顔",toner:"化粧水",pad:"トナーパッド",essence:"エッセンス",serum:"美容液",ampoule:"エッセンス・アンプル",cream:"クリーム",sun:"日焼け止め",mask:"マスク",lip:"リップケア",tint:"ティント"},
+  step:"質問", of:"/", back:"戻る", next:"次へ", seeResults:"おすすめを見る", pickUpTo:"2つまで選べます。",
+  q:[
+    {k:"skin", t:"あなたの肌タイプは？", multi:false, o:[["dry","乾燥肌","洗顔後につっぱる"],["oily","脂性肌","お昼にはテカる"],["combination","混合肌","Tゾーンは脂っぽく頬は乾燥"],["sensitive","敏感肌","赤みや刺激が出やすい"],["normal","普通肌","あまりトラブルがない"]]},
+    {k:"concern", t:"いちばん改善したいことは？", multi:true, o:[["hydration","うるおい","乾燥・水分不足"],["acne","ニキビ","吹き出物や毛穴づまり"],["redness","赤み","目立つ赤み"],["pores","毛穴・キメ","ざらつき・凹凸"],["dullness","くすみ","疲れて見える肌"],["lips","唇","唇の乾燥や血色"],["sun","紫外線対策","毎日のSPF"]]},
+    {k:"budget", t:"1つあたりの予算は？", multi:false, o:[["15","15ドル未満",""],["25","15〜25ドル",""],["any","こだわらない",""]]},
+    {k:"routine", t:"スキンケアは何ステップが好き？", multi:false, o:[["minimal","1〜2ステップ","手早くシンプル"],["balanced","3〜4ステップ","ほどよく丁寧に"],["full","5ステップ以上","じっくり楽しみたい"]]},
+    {k:"texture", t:"好きなテクスチャーは？", multi:false, o:[["light","みずみずしく軽い",""],["rich","しっとり濃厚",""],["any","こだわらない",""]]}
+  ],
+  yourPicks:"あなたへのおすすめ3品", yourProfile:"あなたの回答", retake:"もう一度診断する", thinking:"回答に合う商品を選んでいます…",
+  aiNote:"当店の取扱商品の中からAIが選びました。", ruleNote:"当店のマッチングルールで選びました。",
+  view:"詳細", addToCart:"カートに入れる", added:"カートに追加しました", keyIng:"主な成分", fits:"おすすめの肌", howTo:"使い方",
+  illu:"イラスト・写真は準備中", sizeL:"容量", stepL:"ステップ", search:"商品名・ブランドで検索", noMatch:"該当する商品がありません。", photoSoon:"商品写真は準備中です",
+  skinNames:{dry:"乾燥",oily:"脂性",combination:"混合",sensitive:"敏感",normal:"普通"},
+  cartTitle:"カート", empty:"カートは空です。", emptyHint:"肌診断をするか、ショップから商品を選んでください。",
+  subtotal:"小計", tax:"売上税", total:"お支払い予定額", checkout:"購入手続きへ", remove:"削除", items:"点",
+  coTitle:"購入手続き", coLead:"ご注文を受け付け、1営業日以内に安全なお支払いリンクをメールでお送りします。",
+  name:"氏名", email:"メールアドレス", addr:"住所（番地）", city:"市区町村", state:"州", zip:"郵便番号（ZIP）",
+  placeOrder:"注文する", stripeTest:"カードで支払う（Stripeテストモード）", stripeSoon:"次のバージョンでご利用いただけます。",
+  required:"この項目を入力してください。", badEmail:"name@example.com の形式で入力してください。", badZip:"5桁の郵便番号を入力してください。",
+  protoBanner:"これは試作版ストアです。実際の決済は行われず、注文はこのブラウザにのみ保存されます。",
+  thanks:"ご注文を受け付けました", orderNo:"注文番号", doneLead:"", doneLead2:"宛てに、お支払いリンクと配送情報をお送りします。",
+  giveFeedback:"2分でフィードバック", keepShopping:"買い物を続ける",
+  svTitle:"ご感想をお聞かせください", svLead:"短い質問が15問あります。正解はなく、回答は匿名です。",
+  sa:["まったくそう思わない","そう思わない","どちらでもない","そう思う","とてもそう思う"],
+  sus:["このサイトを頻繁に使いたいと思う。","このサイトは必要以上に複雑だと思う。","このサイトは使いやすいと思う。","このサイトを使うには技術に詳しい人の助けが必要だと思う。","このサイトの機能はうまくまとまっていると思う。","このサイトには一貫性のない部分が多すぎると思う。","ほとんどの人はこのサイトの使い方をすぐに覚えられると思う。","このサイトは使いにくいと思う。","このサイトを自信を持って使えた。","このサイトを使い始める前に多くのことを学ぶ必要があった。"],
+  trust:["このお店は価格の決め方を正直に示している。","商品は正規品だと信頼できる。","このお店で安心して注文できる。"],
+  intent:["このサイトがすすめた商品を購入したい。","このお店を友人にすすめたい。"],
+  svSusHead:"サイトの使いやすさ", svTrustHead:"信頼", svIntentHead:"購入意向", submit:"送信する", svMissing:"すべての項目に回答してください。", svThanks:"ありがとうございました。フィードバックを保存しました。",
+  footer:"Gyeol · チーム12 研究プロトタイプ · Project Management with SaaS", rareL:"アメリカで入手困難", rareShort:"アメリカ未発売"
+};
+T.en.langL = "Language"; T.ko.langL = "언어 선택";
+
+/* Product text in Chinese / Japanese: [name, description, how to use]. Others fall back to English. */
+const PX = {
+ "brmud-foam":{zh:["舒缓泥膜洗面奶","可当泥膜敷、再揉出温和泡沫的洁面。","在湿润的脸上涂开，停留 1–2 分钟后揉出泡沫冲净。"],ja:["リリーフマッド パックトゥフォーム","泥パックがやさしい泡洗顔に変わる2wayクレンザー。","濡れた肌にのばして1〜2分おき、泡立ててすすぎます。"]},
+ "skinfood-scrubfoam":{zh:["黑糖完美磨砂洁面 (1+1)","让肌肤更平滑的黑糖磨砂洁面，1+1 装。","每周 2–3 次，在湿润肌肤上轻柔按摩。"],ja:["ブラックシュガー パーフェクト スクラブフォーム (1+1)","なめらかな肌へ導く黒糖スクラブ洗顔。1+1セット。","週2〜3回、濡れた肌にやさしくマッサージします。"]},
+ "laneige-creamskin":{zh:["奶油肌爽肤水","一步就像轻薄面霜的乳状化妆水。","洁面后轻拍 2–3 层。"],ja:["クリームスキン トナー＆モイスチャライザー","1本で軽いクリームのように使えるミルキー化粧水。","洗顔後、2〜3回重ねてなじませます。"]},
+ "beplain-cicaterol-toner":{zh:["积雪草胆固醇舒缓化妆水","针对泛红和痘痘的舒缓化妆水。","洁面后轻拍于肌肤。"],ja:["シカテロール トナー","赤みやニキビが気になる肌を整える鎮静化粧水。","洗顔後、肌にやさしくなじませます。"]},
+ "bringgreen-toner":{zh:["茶树积雪草舒缓化妆水","Olive Young 自有品牌的 500ml 大容量舒缓化妆水。","轻拍使用，或用化妆棉湿敷。"],ja:["ティーツリーシカ スージングトナー","オリーブヤング自社ブランドの500ml大容量鎮静化粧水。","なじませるか、コットンでトナーパックに。"]},
+ "fation-pad":{zh:["Nosca9 祛痘棉片","适合油性、易长痘肌肤的柔软化妆棉片。","洁面后擦拭全脸。"],ja:["ノスカナイン トラブルパッド","脂性・ニキビができやすい肌向けのやわらかトナーパッド。","洗顔後、顔全体をふき取ります。"]},
+ "skinfood-potato":{zh:["土豆积雪草苷舒缓棉片","给发热泛红肌肤降温的土豆棉片。","敷在两颊 5 分钟。"],ja:["ポテト マデカソサイド スージングパッド","ほてった肌をクールダウンするじゃがいもパッド。","頬に5分のせておきます。"]},
+ "cellfusion-pad":{zh:["Post Alpha 冰凉棉片 (1+1)","晒后或运动后给肌肤降温的冰凉棉片。","擦拭或在发热部位敷 3 分钟。"],ja:["ポストアルファ クーリングパッド (1+1)","日焼けや運動後の肌の熱をしずめるクーリングパッド。","ふき取るか、ほてった部分に3分のせます。"]},
+ "fation-serum":{zh:["Nosca9 祛痘精华 50ml 套装（+15ml）","Olive Young 祛痘精华第一名系列，轻薄舒缓。","早晚化妆水后取 2–3 滴。"],ja:["ノスカナイン トラブルセラム 50ml 企画セット（+15ml）","オリーブヤングのトラブルケア美容液No.1シリーズ。軽く鎮静。","朝晩、化粧水のあとに2〜3滴なじませます。"]},
+ "bringgreen-serum":{zh:["锌积雪草祛痘精华（大容量）","Olive Young 自有品牌的痘痘护理精华。","化妆水后取 2–3 滴。"],ja:["ジンクテカ トラブルセラム（大容量）","オリーブヤング自社ブランドのトラブルケア美容液。","化粧水のあとに2〜3滴なじませます。"]},
+ "parnell-92":{zh:["积雪草麦卢卡 92 精华（双支装）","Olive Young 舒缓精华第一名，双支装。","化妆水后取 2–3 滴。"],ja:["シカマヌ92 セラム（ダブル）","オリーブヤング鎮静美容液No.1をダブルパックで。","化粧水のあとに2〜3滴なじませます。"]},
+ "vt-reedle100":{zh:["Reedle Shot 100 精华（双支装）","带微刺感的毛孔护理微针精华，双支装。","化妆水后取少量，初期每周使用几次。"],ja:["リードルショット100 エッセンス（ダブル）","チクチク感のある毛孔ケア用マイクロニードルエッセンス。","化粧水のあとに少量。最初は週数回から。"]},
+ "drg-cream":{zh:["红色痘印舒缓面霜","舒缓泛红和痘痘、不闷毛孔的轻薄啫喱霜。","早晚作为面霜使用。"],ja:["レッドブレミッシュ クリアスージングクリーム","赤みやニキビをしずめ、毛穴をふさがない軽いジェルクリーム。","朝晩、保湿クリームとして使います。"]},
+ "fation-cream":{zh:["Nosca9 祛痘面霜 45ml 套装","给痘痘肌的屏障面霜，主要在韩国药妆店销售。","早晚作为最后一步使用。"],ja:["ノスカナイン トラブルクリーム 45ml 企画セット","ニキビ肌のためのバリアクリーム。韓国のドラッグストア中心に販売。","朝晩、最後のステップで使います。"]},
+ "beplain-cicaterol-cream":{zh:["积雪草胆固醇舒缓面霜","beplain 积雪草胆固醇系列的舒缓保湿霜。","作为面霜使用。"],ja:["シカテロール クリーム","beplainシカテロールラインの鎮静保湿クリーム。","保湿クリームとして使います。"]},
+ "centellian-madeca":{zh:["马德卡逆龄面霜 50ml 套装","东国制药的积雪草面霜，韩国药妆店长年畅销款。","晚上作为最后一步使用。"],ja:["マデカクリーム タイムリバース 50ml 企画セット","東国製薬のツボクサクリーム。韓国ドラッグストアの定番ロングセラー。","夜、最後のステップで使います。"]},
+ "bringgreen-cream":{zh:["茶树积雪草舒缓面霜 Plus（2 支装）","轻薄舒缓啫喱霜，100ml 两支。","作为面霜使用。"],ja:["ティーツリーシカ スージングクリームプラス（2本入り）","軽い鎮静ジェルクリーム、100ml×2本。","保湿クリームとして使います。"]},
+ "athe-suncushion":{zh:["纯素舒缓提亮防晒气垫 SPF50+","可提亮肤色、能在妆上补涂的防晒气垫。","早上最后一步轻拍，白天随时补涂。"],ja:["ヴィーガン リリーフ トーンアップ サンクッション SPF50+","トーンアップしながらメイクの上からSPFを塗り直せるクッション。","朝の最後にパッティングし、日中も塗り直します。"]},
+ "bioheal-sun":{zh:["益生菌胶原蛋白防晒霜","保湿、上妆服帖的防晒霜。","早上作为最后一步使用。"],ja:["プロバイオダーム コラーゲン サンクリーム","うるおいがあり、メイクのりの良い日焼け止め。","朝の最後のステップで使います。"]},
+ "shingmulnara-sungel":{zh:["清爽保湿防晒啫喱","被称为韩国“国民防晒”的清爽水感啫喱。","出门前足量涂抹。"],ja:["軽い水分サンジェル","韓国の“国民的サンジェル”。軽くみずみずしい使用感。","外出前にたっぷり塗ります。"]},
+ "shingmulnara-suncushion":{zh:["白米提亮防晒气垫","方便随时补涂的提亮防晒气垫。","轻拍上脸，白天随时补涂。"],ja:["白米トーンアップ サンクッション","手軽に塗り直せるトーンアップサンクッション。","パッティングし、日中も塗り直します。"]},
+ "torriden-mask":{zh:["DIVE-IN 低分子玻尿酸面膜","DIVE-IN 系列补水面膜，Olive Young 2025 年度面膜第一名。","化妆水后敷 15–20 分钟，剩余精华轻拍吸收。"],ja:["ダイブイン 低分子ヒアルロン酸マスク","ダイブインラインの保湿シートマスク。オリーブヤング2025年マスク部門1位。","化粧水のあと15〜20分。残りはなじませます。"]},
+ "dewytree-pickquick":{zh:["Pick & Quick 抽取式舒缓面膜","像抽纸巾一样取用的薄面膜，每天一片不到一分钟。韩国博客和社群热门款。","抽一片，化妆水后敷 5–10 分钟。"],ja:["ピック＆クイック 抜き取りカーミングマスク","ティッシュのように1枚ずつ取り出す薄型マスク。毎日1分以内でケア。韓国のブログで人気。","1枚取り出し、化粧水のあと5〜10分のせます。"]},
+ "fation-patch":{zh:["Nosca9 痘痘贴","超薄贴片，服帖痘痘，可在妆下使用。","贴在干净干燥的痘痘上，保持数小时。"],ja:["ノスカナイン トラブルケア スポットパッチ","メイクの下でも目立たない超薄型パッチ。","清潔で乾いた部分に貼り、数時間そのままに。"]},
+ "abib-eyepatch":{zh:["胶原蛋白复活草果冻眼膜（双盒）","不易滑落的果冻眼膜，改善疲惫眼周。","敷在眼下 15–20 分钟。"],ja:["コラーゲン アイパッチ ジェリコローズ ゼリー（ダブル）","ずれにくいゼリーアイパッチで疲れ目元をケア。","目の下に15〜20分貼ります。"]},
+ "brmud-mask":{zh:["舒缓泥膜","针对毛孔的弹润泥膜。","薄涂一层，停留 10 分钟后洗净。"],ja:["リリーフ マッドマスク","毛穴ケアのためのぷるんとした泥パック。","薄くのばして10分おき、洗い流します。"]},
+ "skinfood-sugarmask":{zh:["黑糖洗去型面膜（双支装）","经典黑糖洗去型面膜，双支装。","在湿润肌肤上按摩，停留 5 分钟后冲净。"],ja:["ブラックシュガー マスク ウォッシュオフ（ダブル）","定番の黒糖洗い流すパックをダブルパックで。","濡れた肌にマッサージし、5分おいて洗い流します。"]},
+ "laneige-lip":{zh:["唇部睡眠面膜 浆果味","睡前涂抹，第二天早上双唇柔软。","睡前厚涂一层。"],ja:["リップスリーピングマスク ベリー","寝ている間に唇をやわらかくするナイトリップバーム。","寝る前にたっぷり塗ります。"]},
+ "drbelmeur-cicalip":{zh:["积雪草修护有色润唇膏","菲诗小铺旗下皮肤科线的有色积雪草润唇膏。","唇部干燥时随时涂抹。"],ja:["アドバンスド シカタッチ リップバーム","ザフェイスショップのダーマラインの色つきシカリップ。","唇が乾いたらいつでも塗ります。"]},
+ "drbelmeur-repairlip":{zh:["日常修护保湿润唇膏","简单好用的日常修护润唇膏。","早晚涂抹。"],ja:["デイリーリペア モイスチャー リップバーム","毎日使えるシンプルな補修リップバーム。","朝晩塗ります。"]}
+};
+function ptxt(p, i){ const x = PX[p.id] && PX[p.id][S.lang]; return x ? x[i] : null; }
+
 /* ---------- state ---------- */
 const S = {
   lang: LS.get("lang","en"),
@@ -502,8 +650,9 @@ function log(type, data){
 
 /* ---------- helpers ---------- */
 function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
-function pname(p){ return S.lang==="ko" ? p.ko : p.en; }
-function pdesc(p){ return S.lang==="ko" ? p.dKo : p.dEn; }
+function pname(p){ return S.lang==="ko" ? p.ko : (ptxt(p,0) || p.en); }
+function pdesc(p){ return S.lang==="ko" ? p.dKo : (ptxt(p,1) || p.dEn); }
+function puse(p){ return S.lang==="ko" ? p.useKo : (ptxt(p,2) || p.useEn); }
 function cartCount(){ return Object.values(S.cart).reduce((a,b)=>a+b,0); }
 const BG = {cleanser:"celadon",toner:"celadon",pad:"celadon",essence:"butter",serum:"butter",ampoule:"butter",cream:"lilac",mask:"lilac",sun:"blush",lip:"blush",tint:"blush"};
 function tileBg(p){ return `var(--tile-${p.tone}) url(cat-${p.cat}.jpg) center/cover`; }
@@ -530,20 +679,21 @@ function header(){
       ${nav.map(([v,l])=>`<button class="navbtn" data-go="${v}" ${S.view===v?'aria-current="page"':''}>${esc(l)}</button>`).join("")}
       <button class="navbtn cartbtn" data-go="cart" ${S.view==="cart"?'aria-current="page"':''}>${esc(t("cart"))} <span class="pill num">${cartCount()}</span></button>
     </nav>
-    <div class="lang" role="group" aria-label="Language">
-      <button data-lang="en" aria-pressed="${S.lang==="en"}">EN</button><button data-lang="ko" aria-pressed="${S.lang==="ko"}">한</button>
-    </div>
+    <label class="langsel"><span class="globe" aria-hidden="true">🌐</span><span class="sr">${esc(t("langL"))}</span>
+      <select data-langsel aria-label="${esc(t("langL"))} / Language">${LANGS.map(([v,l])=>`<option value="${v}" ${S.lang===v?"selected":""}>${l}</option>`).join("")}</select>
+    </label>
   </div></header>`;
 }
 
 const SLIDES = ["rare","real","idol","youtube"];
+const LANGS = [["en","English"],["ko","한국어"],["zh","中文 (简体)"],["ja","日本語"]];
 function homeView(){
   const cats = ["all", "deals", ...CAT_ORDER.filter(c=>shelf().some(p=>p.cat===c))];
   const deals = shelf().filter(dealOf);
   const i = S.slide % SLIDES.length, k = SLIDES[i];
   return `
   <section class="hero2" aria-roledescription="carousel" aria-label="${esc(t("bannerAria"))}">
-    ${SLIDES.map((key,j)=>`<div class="slide ${j===i?"on":""}" style="background-image:url(banner-${key}.jpg)" aria-hidden="${j!==i}">
+    ${SLIDES.map((key,j)=>`<div class="slide s-${key} ${j===i?"on":""}" style="background-image:url(banner-${key}.jpg)" aria-hidden="${j!==i}"><img class="slide-art" src="pillar-${key}.svg" alt="" loading="lazy">
       <div class="slide-copy">
         <p class="eyebrow">${esc(t("b_"+key+"_eyebrow"))}</p>
         <h1>${esc(t("b_"+key+"_title"))}</h1>
@@ -554,7 +704,7 @@ function homeView(){
     <button class="arrow next" data-slide="1" aria-label="${esc(t("next"))}">›</button>
     <div class="dots">${SLIDES.map((key,j)=>`<button data-dot="${j}" aria-label="${esc(t("b_"+key+"_eyebrow"))}" aria-pressed="${j===i}"></button>`).join("")}</div>
   </section>
-  <div class="pillars">${SLIDES.map((key,j)=>`<button class="pillar ${j===i?"on":""}" data-dot="${j}"><b>${esc(t("b_"+key+"_eyebrow"))}</b></button>`).join("")}</div>
+  <div class="pillars">${SLIDES.map((key,j)=>`<button class="pillar p-${key} ${j===i?"on":""}" data-dot="${j}"><img src="pillar-${key}.svg" alt="" loading="lazy"><b>${esc(t("b_"+key+"_eyebrow"))}</b></button>`).join("")}</div>
   ${deals.length?`<section class="section" id="deals">
     <div class="section-head"><h2>${esc(t("dealsTitle"))}</h2><span class="muted small">${esc(t("dealsSub"))}</span></div>
     <div class="rail">${deals.map(card).join("")}</div>
@@ -570,7 +720,7 @@ function homeView(){
 }
 function gridHtml(){
   const q = (S.q||"").trim().toLowerCase();
-  const list = shelf().filter(p=>(S.filter==="all"||(S.filter==="deals"?!!dealOf(p):p.cat===S.filter)) && (!q || (p.brand+" "+p.en+" "+p.ko+" "+t("cats")[p.cat]).toLowerCase().includes(q)))
+  const list = shelf().filter(p=>(S.filter==="all"||(S.filter==="deals"?!!dealOf(p):p.cat===S.filter)) && (!q || (p.brand+" "+p.en+" "+p.ko+" "+(PX[p.id]?PX[p.id].zh[0]+" "+PX[p.id].ja[0]:"")+" "+t("cats")[p.cat]).toLowerCase().includes(q)))
     .sort((a,b)=>CAT_ORDER.indexOf(a.cat)-CAT_ORDER.indexOf(b.cat));
   return list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="muted">${esc(t("noMatch"))}</p>`;
 }
@@ -609,7 +759,7 @@ function resultsView(){
   return `<section class="results">
     <div class="section-head"><h2>${esc(t("yourPicks"))}</h2><button class="btn ghost sm" data-retake>${esc(t("retake"))}</button></div>
     ${profileChips()}
-    ${S.picks.map(pk=>{ const p = byId[pk.id]; const reason = (S.lang==="ko"? pk.ko : pk.en) || pk.en || pk.ko || "";
+    ${S.picks.map(pk=>{ const p = byId[pk.id]; const reason = pk[S.lang] || pk.en || pk.ko || "";
       return `<article class="pick">${tile(p)}
         <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span class="card-brand eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h3 style="font-size:1.25rem">${esc(pname(p))}</h3><p class="why-text">${esc(reason)}</p></div>
         <div class="side">${priceBlock(p)}<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" data-open="${p.id}" data-src="pick">${esc(t("view"))}</button><button class="btn sm" data-add="${p.id}" data-src="pick">${esc(t("addToCart"))}</button></div></div>
@@ -627,7 +777,7 @@ function sheetView(){
     <button class="btn ghost sm close" data-close>✕</button>
     ${tile(p)}
     <div style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h2>${esc(pname(p))}</h2>${bd}<p class="muted">${esc(pdesc(p))}</p>${p.award?`<p class="award">★ ${esc(p.award)}</p>`:""}<p class="small muted">${esc(t("sizeL"))} ${esc(p.size)} · ${esc(t("stepL"))} ${STEP[p.cat]}</p></div>
-    <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("howTo"))}</span><p>${esc(S.lang==="ko"?p.useKo:p.useEn)}</p></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("howTo"))}</span><p>${esc(puse(p))}</p></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("fits"))}</span><div class="ings">${p.skin.map(s=>`<span>${esc(t("skinNames")[s])}</span>`).join("")}</div></div>
     <div style="display:flex;flex-direction:column;gap:6px"><span class="small muted">${esc(t("keyIng"))}</span><div class="ings">${p.ing.map(s=>`<span>${esc(s)}</span>`).join("")}</div></div>
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -822,7 +972,9 @@ function rulePicks(a){
     const cKo = hit.map(c=>T.ko.q[1].o.find(o=>o[0]===c)[1]).join(", ");
     return { id:p.id,
       en: hit.length ? `Chosen for ${cEn}, and it suits ${skinEn} skin. ${p.dEn}` : `A gentle all-rounder that suits ${skinEn} skin. ${p.dEn}`,
-      ko: hit.length ? `${cKo} 고민에 맞춰 골랐고, ${skinKo} 피부에도 잘 맞아요. ${p.dKo}` : `${skinKo} 피부에 무난하게 잘 맞는 제품이에요. ${p.dKo}` };
+      ko: hit.length ? `${cKo} 고민에 맞춰 골랐고, ${skinKo} 피부에도 잘 맞아요. ${p.dKo}` : `${skinKo} 피부에 무난하게 잘 맞는 제품이에요. ${p.dKo}`,
+      zh: (()=>{ const sk=a.skin?T.zh.skinNames[a.skin]:"", c=hit.map(c=>T.zh.q[1].o.find(o=>o[0]===c)[1]).join("、"), d=(PX[p.id]&&PX[p.id].zh[1])||p.dEn; return hit.length ? `根据你的「${c}」需求挑选，也适合${sk}肌肤。${d}` : `温和百搭，适合${sk}肌肤。${d}`; })(),
+      ja: (()=>{ const sk=a.skin?T.ja.skinNames[a.skin]:"", c=hit.map(c=>T.ja.q[1].o.find(o=>o[0]===c)[1]).join("・"), d=(PX[p.id]&&PX[p.id].ja[1])||p.dEn; return hit.length ? `「${c}」のお悩みに合わせて選びました。${sk}肌にもおすすめです。${d}` : `${sk}肌に合う、やさしいオールラウンダーです。${d}`; })() };
   });
 }
 async function recommend(){
@@ -839,11 +991,11 @@ Shopper answers: ${JSON.stringify(a)}
 (budget "15" = under $15 per item, "25" = $15 to $25, "any" = no limit; routine = how many steps they like; concern = what they want to improve.)
 Catalog: ${JSON.stringify(catalog)}
 Rules: our store sells Korean favorites that are hard to find in the US, so when two products fit equally, prefer koreaOnly=1; respect the budget where you can; match skin type and concerns first; no medical or treatment claims; each reason is one or two plain sentences (max 30 words) that mention why it fits THEIR answers.
-Reply with only JSON: {"picks":[{"id":"...","en":"reason in English","ko":"같은 이유를 자연스러운 한국어로"}]}`;
+Reply with only JSON: {"picks":[{"id":"...","en":"reason in English","ko":"같은 이유를 자연스러운 한국어로","zh":"同样的理由，用自然的简体中文","ja":"同じ理由を自然な日本語で"}]}`;
       const out = await sample.json(prompt, { modelTier:"quick" });
       const arr = out && Array.isArray(out.picks) ? out.picks : [];
       const seen = new Set(); const clean = [];
-      arr.forEach(x=>{ const id = String(x && x.id || ""); if(byId[id] && !seen.has(id)){ seen.add(id); clean.push({ id, en:String(x.en||""), ko:String(x.ko||"") }); } });
+      arr.forEach(x=>{ const id = String(x && x.id || ""); if(byId[id] && !seen.has(id)){ seen.add(id); clean.push({ id, en:String(x.en||""), ko:String(x.ko||""), zh:String(x.zh||""), ja:String(x.ja||"") }); } });
       if(clean.length >= 3){ picks = clean.slice(0,3); source = "ai"; }
       else if(clean.length){ const fill = rulePicks(a).filter(r=>!seen.has(r.id)); picks = clean.concat(fill).slice(0,3); source = "ai"; }
     }
@@ -904,6 +1056,7 @@ document.addEventListener("click", async e=>{
 });
 document.addEventListener("change", e=>{
   const el = e.target;
+  if(el.dataset && el.dataset.langsel!=null){ S.lang = el.value; LS.set("lang", S.lang); render(); return; }
   if(el.dataset && el.dataset.taxstate!=null){ S.taxState = el.value; const d=LS.get("coDraft",{}); d.state=el.value; LS.set("coDraft", d); render(); return; } if(!el.dataset || !el.dataset.cfg) return;
   const v = Number(el.value); if(!isFinite(v) || v<0) return;
   CFG[el.dataset.cfg] = v; const saved = LS.get("cfg3", {}); saved[el.dataset.cfg] = v; LS.set("cfg3", saved); render();
