@@ -4,7 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Gyeol — K-beauty picked for your skin, at a price you can check.">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* v20 */
+.setimg{width:84px;height:63px;object-fit:cover;border-radius:10px;flex:0 0 auto}
+.setbox{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 18px;border:1px solid var(--line,#e4dacd);background:var(--paper);border-radius:14px;margin-top:6px}
+.setbox s{color:var(--ink-mute)}
+.subbox{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 18px;border:1px solid var(--line,#e4dacd);background:var(--paper);border-radius:14px;margin-top:18px;text-align:left}
+.subbox .subrow{display:flex;gap:8px;flex-wrap:wrap}
+.subbox input,.wl input,.wl select{font:inherit;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#e4dacd);background:var(--paper);color:var(--ink);min-width:0}
+.wl{margin-top:10px;font-size:.9rem}
+.wl summary{cursor:pointer;color:var(--accent,#a4574a);font-weight:600}
+.wl form{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.co label.check,.check{display:flex !important;gap:10px;align-items:center;flex-direction:row !important;grid-template-columns:none}
+.co label.check input{width:18px;height:18px;flex:0 0 auto;margin:0}
+.pilotbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#24483C;color:#FBF5EC;padding:10px 16px;border-radius:12px;margin:10px 0}
+.pilotbar .btn{background:#FBF5EC;color:#24483C;border-color:#FBF5EC}
+.about{display:flex;flex-direction:column;gap:18px;max-width:960px;margin:12px auto 0}
+.about h2{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15}
+html:lang(ko) .about h2{word-break:keep-all}
+.abstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.abstats div{background:var(--paper);border:1px solid var(--line,#e4dacd);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.abstats b{font-family:var(--display);font-size:1.8rem;color:#A4574A}
+.abstats span{font-size:.9rem;color:var(--ink-soft)}
+.abcols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.abcols ul{margin:8px 0 0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+@media (max-width:720px){.abstats{grid-template-columns:1fr 1fr}.abcols{grid-template-columns:1fr}}
+</style>
 <title>Gyeol Skin-Fit Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -176,6 +201,45 @@ table.bd tr.ref td{color:var(--ink-mute)}
 .summary .r.total{border-top:2px solid var(--ink);padding-top:12px;font-weight:600;font-family:var(--display);font-size:1.2rem}
 form.co{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 form.co .full{grid-column:1/-1}
+.ship{display:inline-block;font-size:.72rem;line-height:1.3;padding:2px 8px;border-radius:99px;margin-top:4px;width:max-content;max-width:100%;white-space:normal}
+.ship-stock{background:#E3EEE7;color:#2F5A44}
+.ship-pre{background:var(--bg-2);color:var(--ink-soft)}
+:root[data-theme="dark"] .ship-stock{background:#24372D;color:#9FD3B6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ship-stock{background:#24372D;color:#9FD3B6}}
+.cpform{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.cpform input{flex:1 1 140px;min-width:0;text-transform:uppercase}
+.cpform.on{justify-content:space-between;background:var(--bg-2);border-radius:10px;padding:8px 10px}
+.cpform .err{flex-basis:100%}
+.btn.sm{padding:8px 14px;font-size:.88rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.eta{margin:6px 0 0}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0;margin:18px auto;max-width:720px;text-align:left}
+.steps li{border-top:4px solid var(--line);padding-top:8px;display:flex;flex-direction:column;gap:2px;font-size:.88rem;color:var(--ink-mute);overflow-wrap:anywhere}
+.steps li.done{border-color:var(--ok);color:var(--ink-soft)}
+.steps li.now{border-color:var(--clay);color:var(--ink)}
+@media (max-width:640px){.steps{grid-template-columns:1fr 1fr}}
+.mail{max-width:620px;margin:18px auto;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.mail-subj{font-size:1.05rem;margin:4px 0 10px}
+.mail-t{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:.92rem}
+.mail-t td{padding:5px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+.mail-t td.r{text-align:right;white-space:nowrap;padding-left:12px}
+.mail-t tr.tot td{font-weight:700;border-bottom:none}
+.refbox{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;max-width:620px;margin:16px auto 0;padding:14px 18px;border:1px solid var(--line);border-radius:14px;background:var(--paper);text-align:left}
+.refcode{font-size:1.3rem;letter-spacing:.08em;font-weight:700;color:var(--clay)}
+.trackform{max-width:620px;margin-top:12px}
+.trackres{max-width:720px;margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.policy{max-width:760px}
+.policy h3{font-size:1.05rem;margin:18px 0 4px}
+.policy p{line-height:1.65}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:99px;padding:7px 14px;cursor:pointer;font:inherit;font-size:.9rem}
+.tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.footlinks{display:flex;gap:14px;flex-wrap:wrap}
+.taxpick{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.taxpick.compact{grid-template-columns:1fr;gap:8px;margin:6px 0 10px}
+.taxpick.compact label{font-size:.82rem}
+.taxpick select:disabled{opacity:.55}
+@media (max-width:640px){.taxpick{grid-template-columns:1fr}}
 label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;color:var(--ink-soft)}
 input,select,textarea{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;color:var(--ink);width:100%}
 input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
@@ -328,6 +392,15 @@ html:lang(zh) .slide-copy h1, html:lang(ja) .slide-copy h1{font-size:clamp(1.6re
 .news-head .mock{font-size:.82rem;color:var(--ink-mute);background:#f3ead9;border-radius:10px;padding:8px 12px;margin:0}
 .news-cover{height:clamp(180px,30vw,300px);border-radius:18px;background-size:cover;background-position:center 25%;margin:20px 0 6px}
 .stories{list-style:none;margin:0;padding:0}
+.archive{margin-top:34px;border-top:2px solid var(--ink,#2b2420);padding-top:16px}
+.archive h3{margin:0 0 12px}
+.archive ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.arch{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;align-items:center;width:100%;padding:10px;border-radius:14px;border:1px solid var(--line,#e6dccb);background:var(--paper);color:var(--ink)}
+.arch:hover,.arch:focus-visible{border-color:var(--ink,#2b2420)}
+.arch.on{outline:2px solid var(--clay)}
+.arch-cover{flex:0 0 72px;height:56px;border-radius:10px;background-size:cover;background-position:center}
+.arch-txt{display:flex;flex-direction:column;gap:3px;min-width:0;overflow-wrap:anywhere;word-break:keep-all}
+.arch-txt b{font-size:.95rem;line-height:1.3}
 .story{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:26px 0;border-bottom:1px solid var(--line,#e4dacd)}
 .story-no{font-family:var(--display);font-size:2.4rem;line-height:1;color:#c9a96e}
 .story-body{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -394,7 +467,7 @@ const LS = {
 
 /* ---------- price model (example assumptions; team can edit in Team panel) ---------- */
 /* fx: Federal Reserve H.10, won per US dollar, Sep 25, 2026 (released Sep 28, 2026). Margin kept thin: high volume, low price. */
-const DEFAULT_CFG = { fx:1356.51, fxDate:"2026-09-25", tariff:0.125, shipPerUnit:2.00, margin:0.10, payPct:0.029, payFixed:0.30, amazonMonthly:39.99, freeShipOver:40, shipFee:4.95, minSaving:0.20, hideFailing:1, verifiedOnly:1 };
+const DEFAULT_CFG = { fx:1356.51, fxDate:"2026-09-25", tariff:0.125, shipPerUnit:2.00, margin:0.10, marginRare:0.40, payPct:0.029, payFixed:0.30, amazonMonthly:39.99, freeShipOver:40, shipFee:4.95, minSaving:0.20, hideFailing:1, verifiedOnly:1 };
 let CFG = Object.assign({}, DEFAULT_CFG, LS.get("cfg3", {}));
 const TARIFFS = [0, 0.10, 0.125, 0.15];
 
@@ -413,7 +486,8 @@ function breakdown(p, rate){
   const kr = p.krw / CFG.fx;
   const duty = kr * rate;
   const landed = kr + CFG.shipPerUnit + duty;
-  const raw = (landed*(1+CFG.margin) + CFG.payFixed) / (1 - CFG.payPct);
+  const mg = p.usNone ? (CFG.marginRare ?? 0.40) : CFG.margin;
+  const raw = (landed*(1+mg) + CFG.payFixed) / (1 - CFG.payPct);
   const price = Math.max(Math.ceil(raw*10)/10 - 0.01, 0.99);
   const fee = price*CFG.payPct + CFG.payFixed;
   const margin = price - fee - landed;
@@ -421,7 +495,7 @@ function breakdown(p, rate){
 }
 function amazonPrice(p, rate){
   const b = breakdown(p, rate);
-  const target = b.landed*(1+CFG.margin);
+  const target = b.landed*(1+(p.usNone ? (CFG.marginRare ?? 0.40) : CFG.margin));
   let price = target/(1-0.08);
   if(price > 10) price = target/(1-0.15);
   price = Math.ceil(price) - 0.01;
@@ -481,12 +555,12 @@ const T = {
     protoBanner:"Prototype store. No payment is taken, and orders are saved in this browser only.",
     thanks:"Order received", orderNo:"Order number", doneLead:"We will contact you at", doneLead2:"with a payment link and shipping details.",
     giveFeedback:"Give 2-minute feedback", keepShopping:"Keep shopping",
-    svTitle:"Tell us how it went", svLead:"15 short statements. There are no right answers. Your answers are anonymous.",
+    svTitle:"Tell us how it went", svLead:"17 short statements. There are no right answers. Your answers are anonymous.",
     sa:["Strongly disagree","Disagree","Neutral","Agree","Strongly agree"],
     sus:["I think I would like to use this website often.","I found the website more complicated than it needed to be.","I thought the website was easy to use.","I think I would need help from a tech person to use this website.","I found the parts of this website worked well together.","I thought there was too much inconsistency on this website.","I think most people would learn to use this website very quickly.","I found the website awkward to use.","I felt confident using the website.","I needed to learn a lot before I could get going with this website."],
     trust:["This store is honest about how its prices are set.","I trust that the products are authentic.","I would feel safe ordering from this store."],
     intent:["I would buy a product this site recommended to me.","I would recommend this store to a friend."],
-    svSusHead:"Using the website", svTrustHead:"Trust", svIntentHead:"Buying",
+    svSusHead:"Using the website", svTrustHead:"Trust", svIntentHead:"Buying", svRecHead:"Your picks", rec:["The recommended products fit my skin and needs.","I was satisfied with the products the skin quiz recommended."],
     submit:"Submit feedback", svMissing:"Please answer every statement.", svThanks:"Thank you. Your feedback was saved.",
     footer:"Gyeol · Team 12 research prototype · Project Management with SaaS",
     teamTitle:"Team panel", teamLead:"Research data collected in this browser, and the price model behind every product.",
@@ -551,12 +625,12 @@ const T = {
     protoBanner:"프로토타입 스토어입니다. 결제는 이루어지지 않으며, 주문은 이 브라우저에만 저장됩니다.",
     thanks:"주문이 접수됐어요", orderNo:"주문 번호", doneLead:"", doneLead2:"(으)로 결제 링크와 배송 안내를 보내드릴게요.",
     giveFeedback:"2분 피드백 남기기", keepShopping:"계속 쇼핑하기",
-    svTitle:"사용해 보니 어땠나요?", svLead:"짧은 문장 15개입니다. 정답은 없고, 응답은 익명으로 저장됩니다.",
+    svTitle:"사용해 보니 어땠나요?", svLead:"짧은 문장 17개입니다. 정답은 없고, 응답은 익명으로 저장됩니다.",
     sa:["전혀 아니다","아니다","보통","그렇다","매우 그렇다"],
     sus:["이 웹사이트를 자주 쓰고 싶다.","이 웹사이트는 필요 이상으로 복잡했다.","이 웹사이트는 쓰기 쉬웠다.","이 웹사이트를 쓰려면 기술적인 도움이 필요할 것 같다.","이 웹사이트의 기능들이 잘 연결되어 있었다.","이 웹사이트는 일관성이 부족했다.","대부분의 사람들이 이 웹사이트를 금방 익힐 것 같다.","이 웹사이트는 쓰기 번거로웠다.","이 웹사이트를 자신 있게 사용했다.","이 웹사이트를 쓰기 전에 배워야 할 것이 많았다."],
     trust:["이 스토어는 가격을 정하는 방식에 대해 정직하다.","제품이 정품이라고 믿는다.","이 스토어에서 주문해도 안심이 된다."],
     intent:["이 사이트가 추천한 제품을 살 것 같다.","이 스토어를 친구에게 추천하겠다."],
-    svSusHead:"웹사이트 사용", svTrustHead:"신뢰", svIntentHead:"구매",
+    svSusHead:"웹사이트 사용", svTrustHead:"신뢰", svIntentHead:"구매", svRecHead:"추천 제품", rec:["추천받은 제품이 내 피부와 필요에 잘 맞았다.","피부 퀴즈가 추천한 제품에 만족한다."],
     submit:"피드백 제출", svMissing:"모든 문항에 답해 주세요.", svThanks:"감사합니다. 피드백이 저장됐어요.",
     footer:"결 · Team 12 연구용 프로토타입 · Project Management with SaaS",
     teamTitle:"팀 패널", teamLead:"이 브라우저에 쌓인 연구 데이터와, 모든 제품 가격을 만드는 원가 모델입니다.",
@@ -607,12 +681,12 @@ T.zh = {
   protoBanner:"这是原型商店。不会实际扣款，订单只保存在此浏览器中。",
   thanks:"订单已收到", orderNo:"订单号", doneLead:"我们会通过", doneLead2:"联系你，发送付款链接和配送信息。",
   giveFeedback:"花 2 分钟给反馈", keepShopping:"继续购物",
-  svTitle:"告诉我们你的体验", svLead:"共 15 个简短陈述，没有标准答案，回答是匿名的。",
+  svTitle:"告诉我们你的体验", svLead:"共 17 个简短陈述，没有标准答案，回答是匿名的。",
   sa:["非常不同意","不同意","一般","同意","非常同意"],
   sus:["我想我会经常使用这个网站。","我觉得这个网站过于复杂。","我觉得这个网站很容易使用。","我觉得需要技术人员帮助才能使用这个网站。","我觉得网站的各项功能整合得很好。","我觉得这个网站有太多不一致的地方。","我想大多数人都能很快学会使用这个网站。","我觉得这个网站用起来很别扭。","我使用这个网站时很有信心。","我需要先学很多东西才能开始使用这个网站。"],
   trust:["这家店如实说明了价格是怎么定的。","我相信这些商品是正品。","我在这家店下单会觉得安心。"],
   intent:["我会购买这个网站推荐给我的商品。","我会把这家店推荐给朋友。"],
-  svSusHead:"网站使用", svTrustHead:"信任", svIntentHead:"购买意愿", submit:"提交反馈", svMissing:"请回答每一项。", svThanks:"谢谢！你的反馈已保存。",
+  svSusHead:"网站使用", svTrustHead:"信任", svIntentHead:"购买意愿", svRecHead:"推荐商品", rec:["推荐的商品适合我的肤质和需求。","我对肤质测试推荐的商品感到满意。"], submit:"提交反馈", svMissing:"请回答每一项。", svThanks:"谢谢！你的反馈已保存。",
   footer:"Gyeol · 第 12 组研究原型 · Project Management with SaaS", rareL:"美国难买到", rareShort:"美国商店未售"
 };
 T.ja = {
@@ -648,12 +722,12 @@ T.ja = {
   protoBanner:"これは試作版ストアです。実際の決済は行われず、注文はこのブラウザにのみ保存されます。",
   thanks:"ご注文を受け付けました", orderNo:"注文番号", doneLead:"", doneLead2:"宛てに、お支払いリンクと配送情報をお送りします。",
   giveFeedback:"2分でフィードバック", keepShopping:"買い物を続ける",
-  svTitle:"ご感想をお聞かせください", svLead:"短い質問が15問あります。正解はなく、回答は匿名です。",
+  svTitle:"ご感想をお聞かせください", svLead:"短い質問が17問あります。正解はなく、回答は匿名です。",
   sa:["まったくそう思わない","そう思わない","どちらでもない","そう思う","とてもそう思う"],
   sus:["このサイトを頻繁に使いたいと思う。","このサイトは必要以上に複雑だと思う。","このサイトは使いやすいと思う。","このサイトを使うには技術に詳しい人の助けが必要だと思う。","このサイトの機能はうまくまとまっていると思う。","このサイトには一貫性のない部分が多すぎると思う。","ほとんどの人はこのサイトの使い方をすぐに覚えられると思う。","このサイトは使いにくいと思う。","このサイトを自信を持って使えた。","このサイトを使い始める前に多くのことを学ぶ必要があった。"],
   trust:["このお店は価格の決め方を正直に示している。","商品は正規品だと信頼できる。","このお店で安心して注文できる。"],
   intent:["このサイトがすすめた商品を購入したい。","このお店を友人にすすめたい。"],
-  svSusHead:"サイトの使いやすさ", svTrustHead:"信頼", svIntentHead:"購入意向", submit:"送信する", svMissing:"すべての項目に回答してください。", svThanks:"ありがとうございました。フィードバックを保存しました。",
+  svSusHead:"サイトの使いやすさ", svTrustHead:"信頼", svIntentHead:"購入意向", svRecHead:"おすすめ商品", rec:["おすすめされた商品は私の肌やニーズに合っていた。","肌診断がすすめた商品に満足している。"], submit:"送信する", svMissing:"すべての項目に回答してください。", svThanks:"ありがとうございました。フィードバックを保存しました。",
   footer:"Gyeol · チーム12 研究プロトタイプ · Project Management with SaaS", rareL:"アメリカで入手困難", rareShort:"アメリカ未発売"
 };
 T.en.langL = "Language"; T.ko.langL = "언어 선택";
@@ -699,7 +773,258 @@ Object.assign(T.ko,{news:"뉴스", newsTitle:"결 뷰티 위클리", newsLead:"�
 Object.assign(T.zh,{news:"资讯", newsTitle:"Gyeol 美妆周刊", newsLead:"两分钟看懂本周韩国人在买什么。", newsVol:"第", newsTip:"Gyeol 小贴士", newsShop:"本店有售", newsSrc:"来源", newsNoShelf:"本店暂未上架，想要的话请在反馈中告诉我们。", newsNext:"每周一更新。", newsMock:"课程项目的模拟刊。所有内容均来自每篇下方列出的韩国来源。", newsRead:"阅读本期", newsArchive:"往期"});
 Object.assign(T.ja,{news:"ニュース", newsTitle:"Gyeol ビューティー ウィークリー", newsLead:"今週の韓国で売れているコスメを2分で解説。", newsVol:"Vol.", newsTip:"Gyeolのひとこと", newsShop:"当店で買えます", newsSrc:"出典", newsNoShelf:"まだ取り扱いがありません。ご希望はフィードバックでお知らせください。", newsNext:"毎週月曜日に更新。", newsMock:"授業プロジェクト用の模擬号です。内容はすべて各記事の下に記載した韓国の出典に基づいています。", newsRead:"今号を読む", newsArchive:"バックナンバー"});
 
-const NEWS = [{
+const NEWS = [
+{
+  vol: 6, date: "2026-11-08",
+  week: {en:"Week of Nov 2 – 8, 2026", ko:"2026년 11월 2일 – 8일", zh:"2026年11月2日 – 8日", ja:"2026年11月2日〜8日"},
+  cover: "theme-rare.jpg",
+  title: {en:"Winter care moves to lips and hands, holiday sets drop, and a retinal line hits Ulta",
+          ko:"겨울 보습은 입술·손까지, 연말 한정 세트 출격, 레티날 브랜드 얼타 입점",
+          zh:"冬季保湿延伸到唇部和双手、节日限定套装上新、视黄醛品牌进驻 Ulta",
+          ja:"冬の保湿は唇と手へ、年末限定セットが登場、レチナールブランドがUltaへ"},
+  stories: [
+    { tag:{en:"Skincare",ko:"스킨케어",zh:"护肤",ja:"スキンケア"},
+      title:{en:"Winter moisturizing goes beyond the face",ko:"얼굴 넘어 입술·손·발까지, 겨울 보습 경쟁",zh:"冬季保湿不再只顾脸",ja:"冬の保湿は顔だけじゃない"},
+      sum:{en:"Korean brands opened the winter season with barrier care for lips, hands and body, not just face creams.",
+           ko:"한국 뷰티 브랜드들이 얼굴 크림을 넘어 입술·손·몸까지 장벽 케어 제품으로 겨울 시즌을 시작했어요.",
+           zh:"韩国品牌在冬季开局就把屏障护理从面霜扩展到唇部、双手和身体。",
+           ja:"韓国ブランドは冬の始まりに、フェイスクリームだけでなく唇・手・体のバリアケアを打ち出しました。"},
+      pts:{en:["Nov 4: Estra (Amorepacific) launched Atobarrier365 Lip Barrier Balm at Olive Young, with ceramide capsules and 5% panthenol.","Nov 5: LG's Beyond released a limited 7-item Tamagotchi set of hand creams, body lotions and a foot cream.","Happy Bath added a goat-milk body wash and lotion with shea butter and coconut oil."],
+           ko:["11월 4일: 아모레퍼시픽 에스트라가 세라마이드 캡슐·판테놀 5%를 담은 '아토베리어365 립 베리어 밤'을 올리브영에서 먼저 출시.","11월 5일: LG생활건강 비욘드가 핸드크림·바디로션·풋크림 7종 다마고치 한정 세트 출시.","해피바스는 시어버터·코코넛 오일을 넣은 산양유 바디워시·로션을 선보였어요."],
+           zh:["11 月 4 日：爱茉莉太平洋旗下 Estra 在 Olive Young 首发 Atobarrier365 唇部屏障膏，含神经酰胺胶囊和 5% 泛醇。","11 月 5 日：LG 旗下 Beyond 推出 7 件套拓麻歌子限定组合（护手霜、身体乳、足霜）。","Happy Bath 推出含乳木果油和椰子油的山羊奶沐浴露和身体乳。"],
+           ja:["11月4日：アモーレパシフィックのエストラが、セラミドカプセルとパンテノール5%配合の「アトバリア365 リップバリアバーム」をオリーブヤングで先行発売。","11月5日：LGのビヨンドがハンドクリーム・ボディローション・フットクリームの7点たまごっち限定セットを発売。","ハッピーバスはシアバターとココナッツオイル入りのヤギミルクボディウォッシュ＆ローションを発売。"]},
+      tip:{en:"Put lip balm on last at night, thicker than you think. Dry lips heal while you sleep.",ko:"밤에는 립밤을 마지막 단계에 생각보다 두껍게 바르세요. 자는 동안 입술이 회복돼요.",zh:"晚上最后一步厚涂一层润唇膏，干裂的嘴唇会在睡眠中修复。",ja:"夜は最後にリップバームを思ったより厚めに。寝ている間に唇が回復します。"},
+      shop:["drbelmeur-repairlip","drbelmeur-cicalip","laneige-lip"],
+      src:[["Daily Hankook · 2026.11.08","https://daily.hankooki.com/news/articleView.html?idxno=1422698"]] },
+    { tag:{en:"Olive Young sale",ko:"올영세일",zh:"Olive Young 大促",ja:"オリヤンセール"},
+      title:{en:"Holiday limited sets are out in Korea",ko:"올리브영 연말 한정판 경쟁 시작",zh:"韩国节日限定套装陆续上市",ja:"韓国で年末限定セットが続々登場"},
+      sum:{en:"During Olive Young's Black Friday week, brands raced to launch holiday sets and character collaborations.",
+           ko:"올리브영 블랙프라이데이 기간에 맞춰 브랜드들이 연말 세트와 캐릭터 협업 제품을 앞다퉈 내놨어요.",
+           zh:"趁 Olive Young 黑五周，各品牌争相推出节日套装和角色联名。",
+           ja:"オリーブヤングのブラックフライデーに合わせ、各ブランドが年末セットやキャラクターコラボを次々発売。"},
+      pts:{en:["Physiogel released 4 holiday sets. The DMT cream set adds a 75ml bonus and a 50ml toner to the 100ml cream.","Huxley's Montchhichi hand cream line launched Nov 1, with a limited power bank for orders of ₩50,000 or more.","Hera's 'Snow Waltz' holiday collection, with a 10-shade palette, moved into department stores on Nov 2."],
+           ko:["피지오겔 연말 세트 4종 출시. DMT 크림 세트는 100ml 본품에 75ml 증정·토너 50ml 구성.","헉슬리 몽치치 핸드크림 컬렉션 11월 1일 출시, 5만 원 이상 구매 시 한정 보조배터리 증정.","헤라 '스노우 왈츠' 홀리데이 컬렉션(10구 팔레트)은 11월 2일 백화점으로 확대."],
+           zh:["Physiogel 推出 4 款节日套装，DMT 面霜套装在 100ml 正装外加赠 75ml 和 50ml 爽肤水。","Huxley 蒙奇奇护手霜系列 11 月 1 日上市，满 5 万韩元送限定充电宝。","Hera“Snow Waltz”节日系列（含 10 色眼影盘）11 月 2 日扩展至百货店。"],
+           ja:["フィジオジェルが年末セット4種を発売。DMTクリームセットは100ml本品に75mlと化粧水50mlが付く構成。","ハクスリーのモンチッチ ハンドクリームが11月1日発売。5万ウォン以上で限定モバイルバッテリー付き。","ヘラの「スノーワルツ」ホリデーコレクション（10色パレット）は11月2日から百貨店にも展開。"]},
+      tip:{en:"Korean holiday sets often sell out before they reach U.S. resellers. If you see one, compare the price per ml.",ko:"한국 연말 세트는 해외 판매처에 닿기 전에 품절되는 경우가 많아요. 보이면 ml당 가격을 비교해 보세요.",zh:"韩国节日套装常在流入海外前就售罄。看到时记得比一比每毫升价格。",ja:"韓国の年末セットは海外に届く前に売り切れがち。見つけたら1mlあたりの価格を比べてみて。"},
+      shop:[],
+      src:[["Segye Ilbo · 2026.11.06","https://www.segye.com/newsView/20261106505039"]] },
+    { tag:{en:"Brand story",ko:"브랜드 스토리",zh:"品牌故事",ja:"ブランドストーリー"},
+      title:{en:"KSECRET's retinal line launches at Ulta",ko:"케이시크릿, 레티날 라인으로 미국 얼타 입점",zh:"KSECRET 视黄醛系列登陆 Ulta",ja:"KSECRETのレチナールラインがUltaに上陸"},
+      sum:{en:"The Korean brand behind SEOUL 1988 is now in more than 500 Ulta stores, after a Costco debut earlier this year.",
+           ko:"'서울 1988' 라인으로 알려진 케이시크릿이 올해 코스트코에 이어 미국 얼타 500여 곳에 입점했어요.",
+           zh:"以 SEOUL 1988 系列闻名的韩国品牌，继今年进入 Costco 后，又进驻 500 多家 Ulta 门店。",
+           ja:"SEOUL 1988シリーズで知られる韓国ブランドが、今年のコストコに続きUlta500店舗以上に登場。"},
+      pts:{en:["8 products, in more than 500 Ulta stores and online.","Lead items: a Retinal 2% + Black Ginseng serum and a Retinal 4% eye cream, $22 each.","The line comes in 1%, 2%, 4% and 12% retinal strengths. (Company press release.)"],
+           ko:["8개 제품, 얼타 500여 개 매장과 온라인에 입점.","대표 제품: 레티날 2% 흑삼 세럼, 레티날 4% 아이크림 (각 22달러).","레티날 농도는 1%·2%·4%·12%로 나뉘어요. (회사 보도자료 기준)"],
+           zh:["8 款产品，进驻 500 多家 Ulta 门店及官网。","主打：视黄醛 2% 黑参精华、视黄醛 4% 眼霜，各 22 美元。","视黄醛浓度分 1%、2%、4%、12%。（以公司新闻稿为准）"],
+           ja:["8製品がUlta500店舗以上とオンラインで発売。","主力：レチナール2％＋黒参セラム、レチナール4％アイクリーム（各22ドル）。","レチナール濃度は1%・2%・4%・12%の4段階。（企業プレスリリースより）"]},
+      tip:{en:"New to retinal? Start at the lowest strength two nights a week, and wear sunscreen every morning.",ko:"레티날이 처음이라면 가장 낮은 농도로 주 2회 밤에만 시작하고, 아침엔 꼭 선크림을 바르세요.",zh:"第一次用视黄醛？从最低浓度、每周两晚开始，早上一定要防晒。",ja:"レチナールが初めてなら、最も低い濃度で週2回の夜から。朝は必ず日焼け止めを。"},
+      shop:["athe-suncushion","bioheal-sun"],
+      src:[["PR Newswire (company release) · 2026.11.02","https://www.prnewswire.com/news-releases/ksecret-expands-us-retail-presence-with-nationwide-launch-at-ulta-beauty-302925853.html"]] }
+  ]
+},
+{
+  vol: 5, date: "2026-11-01",
+  week: {en:"Week of Oct 26 – Nov 1, 2026", ko:"2026년 10월 26일 – 11월 1일", zh:"2026年10月26日 – 11月1日", ja:"2026年10月26日〜11月1日"},
+  cover: "hero-idol.jpg",
+  title: {en:"Olive Young's Black Friday, Medicube's U.S. surge, and record exports",
+          ko:"올영 블프 시작, 메디큐브 미국 질주, 화장품 수출 역대 최대",
+          zh:"Olive Young 黑五开启、Medicube 美国大涨、化妆品出口创新高",
+          ja:"オリヤンのブラックフライデー、メディキューブの米国躍進、輸出が過去最高"},
+  stories: [
+    { tag:{en:"Olive Young sale",ko:"올영세일",zh:"Olive Young 大促",ja:"オリヤンセール"},
+      title:{en:"Olive Young Black Friday: Nov 1 – 7, once a year",ko:"1년에 한 번, 올영 블프 11월 1~7일",zh:"一年一次：Olive Young 黑五 11 月 1–7 日",ja:"年に一度のオリヤン ブラックフライデー（11/1〜7）"},
+      sum:{en:"Olive Young's only Black Friday event runs for seven days. Its regular sales are in March, June, September and December.",
+           ko:"올리브영 블랙프라이데이는 1년에 단 한 번, 7일간 열려요. 정기 올영세일은 3·6·9·12월이에요.",
+           zh:"Olive Young 黑五一年只有一次，为期 7 天。常规大促在 3、6、9、12 月。",
+           ja:"オリーブヤングのブラックフライデーは年1回・7日間。定期セールは3・6・9・12月です。"},
+      pts:{en:["Two random 'Blackprize' boxes, each with 6–7 full-size products, in limited quantities.","A one-day 'Special Drop' of limited items on Nov 4.","Stores run extra 'Last Pick' discounts, and the items differ by store."],
+           ko:["정품 6~7개가 든 랜덤 '블프라이즈 박스' 2종 한정 판매.","11월 4일 하루, 한정 상품 '스페셜 드롭'.","매장별로 다른 상품을 더 싸게 파는 '라스트 픽' 진행."],
+           zh:["两款随机“Blackprize 盲盒”，各含 6–7 件正装，限量发售。","11 月 4 日当天限定的“Special Drop”。","门店另有“Last Pick”加码折扣，各店商品不同。"],
+           ja:["正規品6〜7点入りのランダム「ブラプライズボックス」2種を数量限定で販売。","11月4日だけの限定アイテム「スペシャルドロップ」。","店舗ごとに商品が異なる「ラストピック」の追加割引も。"]},
+      tip:{en:"Sale weeks in Korea can mean short stock for a while. Our set items ship as Korean promo packs.",ko:"한국 세일 주간 뒤엔 일부 상품 재고가 잠시 부족할 수 있어요. 저희 세트 상품은 한국 행사 구성 그대로 보내 드려요.",zh:"韩国大促后部分商品可能短暂缺货。本店套装按韩国促销组合发货。",ja:"韓国のセール後は一時的に在庫が減ることも。当店のセット商品は韓国の企画セットのままお届けします。"},
+      shop:["cellfusion-pad","fation-serum","bringgreen-cream"],
+      src:[["CJ Olive Young Editorial · 2026.10.29","https://corp.oliveyoung.com/ko/newsroom/editorial/338"]] },
+    { tag:{en:"Brand story",ko:"브랜드 스토리",zh:"品牌故事",ja:"ブランドストーリー"},
+      title:{en:"Medicube maker APR doubles sales on North America",ko:"북미가 이끈 에이피알, 3분기 매출 2배",zh:"北美带动，Medicube 母公司 APR 营收翻倍",ja:"北米がけん引、メディキューブのAPRが売上倍増"},
+      sum:{en:"APR, the company behind Medicube, posted its best quarter ever, and almost half of it came from North America.",
+           ko:"메디큐브를 만드는 에이피알이 역대 최대 분기 실적을 냈고, 매출의 절반 가까이가 북미에서 나왔어요.",
+           zh:"Medicube 母公司 APR 交出史上最佳季度业绩，近一半营收来自北美。",
+           ja:"メディキューブを展開するAPRが過去最高の四半期業績。売上の半分近くが北米でした。"},
+      pts:{en:["Q3 revenue ₩773.1 billion, up 100.3% from a year earlier. Operating profit ₩160.6 billion, up 68.9%.","North America was 46% of revenue, and 94% of sales came from outside Korea.","APR is in Target, Walmart and Costco, and plans about 3,000 CVS stores."],
+           ko:["3분기 매출 7,731억 원(전년 대비 100.3%↑), 영업이익 1,606억 원(68.9%↑).","매출의 46%가 북미, 해외 비중은 94%.","타깃·월마트·코스트코에 이어 CVS 약 3,000개 매장 입점 계획."],
+           zh:["第三季度营收 7731 亿韩元，同比增长 100.3%；营业利润 1606 亿韩元，增长 68.9%。","北美占营收 46%，海外销售占 94%。","已进入 Target、Walmart、Costco，并计划进驻约 3000 家 CVS。"],
+           ja:["第3四半期の売上7,731億ウォン（前年比100.3%増）、営業利益1,606億ウォン（68.9%増）。","売上の46%が北米、海外比率は94%。","ターゲット・ウォルマート・コストコに続き、CVS約3,000店舗への展開を計画。"]},
+      tip:{en:"When a brand is easy to buy in U.S. stores, you don't need to import it. We focus on what you still can't find here.",ko:"미국 매장에서 쉽게 살 수 있는 브랜드는 굳이 수입할 필요가 없어요. 저희는 미국에서 아직 못 구하는 제품에 집중해요.",zh:"在美国门店就能轻松买到的品牌没必要进口。我们专注于美国还买不到的产品。",ja:"アメリカの店で簡単に買えるブランドは輸入する必要なし。当店はまだアメリカで手に入らない商品に集中します。"},
+      shop:[],
+      src:[["Money Today · 2026.10.30","https://www.mt.co.kr/living/2026/10/30/2026103009414075536"]] },
+    { tag:{en:"Trade",ko:"수출",zh:"出口",ja:"輸出"},
+      title:{en:"Korean cosmetics exports pass last year's total in 10 months",ko:"화장품 수출, 10개월 만에 지난해 연간 실적 넘었다",zh:"韩国化妆品出口 10 个月超过去年全年",ja:"韓国コスメ輸出、10か月で昨年の年間実績を突破"},
+      sum:{en:"October exports jumped 57.5%, and the U.S. was the largest market.",
+           ko:"10월 수출이 57.5% 늘었고, 최대 시장은 미국이었어요.",
+           zh:"10 月出口增长 57.5%，最大市场是美国。",
+           ja:"10月の輸出は57.5%増、最大の市場はアメリカでした。"},
+      pts:{en:["October exports: $1.444 billion, up 57.5% (Ministry of Trade figures).","January–October: $12.569 billion, already above all of 2025 ($11.418 billion).","Exports to the U.S. in October: $230 million, up 62.7%."],
+           ko:["10월 수출 14억 4,400만 달러, 57.5%↑ (산업통상부 기준).","1~10월 누적 125억 6,900만 달러로 2025년 연간(114억 1,800만 달러)을 이미 넘었어요.","10월 대미 수출 2억 3,000만 달러, 62.7%↑."],
+           zh:["10 月出口 14.44 亿美元，增长 57.5%（产业通商部数据）。","1–10 月累计 125.69 亿美元，已超过 2025 年全年（114.18 亿美元）。","10 月对美出口 2.3 亿美元，增长 62.7%。"],
+           ja:["10月の輸出は14億4,400万ドル、57.5%増（産業通商部の集計）。","1〜10月の累計は125億6,900万ドルで、2025年通年（114億1,800万ドル）をすでに上回りました。","10月の対米輸出は2億3,000万ドル、62.7%増。"]},
+      tip:{en:"Different agencies count exports differently, so you may see slightly different numbers in other news.",ko:"기관마다 집계 방식이 달라서 다른 기사에서는 숫자가 조금 다를 수 있어요.",zh:"各机构统计口径不同，其他报道中的数字可能略有差异。",ja:"機関によって集計方法が違うため、他の記事では数字が少し異なる場合があります。"},
+      shop:[],
+      src:[["Cosmorning · 2026.11.01","https://www.cosmorning.com/news/article.html?no=53837"]] }
+  ]
+},
+{
+  vol: 4, date: "2026-10-25",
+  week: {en:"Week of Oct 19 – 25, 2026", ko:"2026년 10월 19일 – 25일", zh:"2026年10月19日 – 25日", ja:"2026年10月19日〜25日"},
+  cover: "hero-youtube.jpg",
+  title: {en:"Medicube pads land at Costco, niacinamide gets stronger, and why some brands skip Olive Young",
+          ko:"메디큐브 패드 코스트코 입점, 더 진해진 나이아신아마이드, 올리브영에 없는 브랜드들",
+          zh:"Medicube 棉片进 Costco、烟酰胺浓度升级、为何有些品牌不在 Olive Young",
+          ja:"メディキューブのパッドがコストコへ、ナイアシンアミド増量、オリヤンにないブランドの事情"},
+  stories: [
+    { tag:{en:"Brand story",ko:"브랜드 스토리",zh:"品牌故事",ja:"ブランドストーリー"},
+      title:{en:"Medicube's Zero Pore Pad arrives at U.S. Costco",ko:"메디큐브 '제로모공패드', 미국 코스트코 입점",zh:"Medicube 零毛孔棉片登陆美国 Costco",ja:"メディキューブ「ゼロ毛穴パッド」が米コストコに"},
+      sum:{en:"Medicube is now in about 400 U.S. Costco stores, and PDRN products are planned next.",
+           ko:"메디큐브가 10월 미국 코스트코 약 400개 매장에 들어갔고, 다음은 PDRN 라인이에요.",
+           zh:"Medicube 10 月进入约 400 家美国 Costco，下一步是 PDRN 系列。",
+           ja:"メディキューブが10月に米コストコ約400店舗に入り、次はPDRNラインを予定。"},
+      pts:{en:["About 400 U.S. Costco stores, starting in October.","The Costco item is the Zero Pore Pad. PDRN lines come next.","Medicube is already in Ulta (1,400 stores), Target (1,500) and Walmart (about 3,000)."],
+           ko:["10월부터 미국 코스트코 약 400개 매장.","코스트코 전용 상품은 '제로모공패드', 다음은 PDRN 라인.","이미 얼타 1,400곳·타깃 1,500곳·월마트 약 3,000곳에 입점."],
+           zh:["10 月起进入约 400 家美国 Costco。","Costco 专供为零毛孔棉片，接下来是 PDRN 系列。","已进驻 Ulta（1400 家）、Target（1500 家）和 Walmart（约 3000 家）。"],
+           ja:["10月から米コストコ約400店舗で販売。","コストコ向けはゼロ毛穴パッド。次はPDRNライン。","すでにUlta（1,400店）・ターゲット（1,500店）・ウォルマート（約3,000店）に展開。"]},
+      tip:{en:"Medicube pads are easy to get in the U.S. now. For a pad you can't buy here, try a Korea-only one below.",ko:"메디큐브 패드는 이제 미국에서도 쉽게 사요. 미국에 없는 패드를 원하면 아래 한국 전용 제품을 써 보세요.",zh:"Medicube 棉片在美国已很好买。想要美国买不到的棉片，可以试试下面的韩国限定款。",ja:"メディキューブのパッドはもうアメリカで簡単に買えます。ここで買えないパッドなら下の韓国限定品を。"},
+      shop:["fation-pad","skinfood-potato","cellfusion-pad"],
+      src:[["MTN · 2026.10.19","https://news.mtn.co.kr/article/2026101909312595363"]] },
+    { tag:{en:"Ingredients",ko:"성분",zh:"成分",ja:"成分"},
+      title:{en:"d'Alba's Vita line now has 5% niacinamide",ko:"\"나이아신아마이드 5%↑\" 달라진 달바 비타 라인",zh:"d'Alba 维他系列烟酰胺升至 5%",ja:"ダルバのビタラインがナイアシンアミド5%に"},
+      sum:{en:"d'Alba reformulated its Vita line with more than twice the niacinamide of the old formulas.",
+           ko:"달바가 비타 라인을 바꾸면서 나이아신아마이드 함량을 기존의 2배 이상으로 늘렸어요.",
+           zh:"d'Alba 改良维他系列，烟酰胺含量提高到原配方的两倍以上。",
+           ja:"ダルバがビタラインを刷新し、ナイアシンアミドを従来の2倍以上に。"},
+      pts:{en:["Every product in the Vita line now has 5% niacinamide.","That is more than double the old formulas, the brand says.","A new 'peptide exosome' ingredient is blended in at different levels per product."],
+           ko:["비타 라인 전 제품에 나이아신아마이드 5% 함유.","브랜드 측은 기존 대비 2배 이상이라고 설명.","자체 개발 성분 '펩타이드 엑소좀'을 제품별로 다르게 배합."],
+           zh:["维他系列全线含 5% 烟酰胺。","品牌称含量是原配方的两倍以上。","自研成分“肽外泌体”按产品不同比例添加。"],
+           ja:["ビタライン全製品にナイアシンアミド5%配合。","ブランドによると従来の2倍以上。","独自成分「ペプチドエクソソーム」を製品ごとに配合量を変えて配合。"]},
+      tip:{en:"5% niacinamide is a common, well-tolerated level. If your skin stings, use it every other day at first.",ko:"나이아신아마이드 5%는 흔하고 무난한 농도예요. 따끔하면 처음엔 이틀에 한 번만 쓰세요.",zh:"5% 烟酰胺是常见且温和的浓度。如有刺痛，先隔天使用。",ja:"ナイアシンアミド5%は一般的で使いやすい濃度。しみる場合は最初は1日おきに。"},
+      shop:[],
+      src:[["Cosmorning · 2026.10.21","https://www.cosmorning.com/news/article.html?no=53740"]] },
+    { tag:{en:"Trade",ko:"유통",zh:"渠道",ja:"流通"},
+      title:{en:"Chinese makeup brands want in, but Olive Young has none",ko:"중국 화장품 브랜드의 한국 공략, 올리브영엔 아직 '0'",zh:"中国彩妆品牌进军韩国，Olive Young 仍为“零”",ja:"中国コスメが韓国攻略へ、でもオリヤンにはまだゼロ"},
+      sum:{en:"Chinese brands are growing in Korea, but none are sold in Olive Young's roughly 1,300 stores.",
+           ko:"중국 브랜드가 한국에서 커지고 있지만, 올리브영 약 1,300개 매장에는 한 곳도 없어요.",
+           zh:"中国品牌在韩国增长，但 Olive Young 约 1300 家门店里一个都没有。",
+           ja:"中国ブランドは韓国で伸びていますが、オリーブヤング約1,300店舗には1つもありません。"},
+      pts:{en:["No Chinese cosmetics brand is sold in Olive Young stores.","Korea's imports of Chinese cosmetics hit a record $71.8 million last year (Korea Customs Service).","Flower Knows sells through Musinsa Beauty, Chicor and Kakao instead."],
+           ko:["올리브영 매장에서 판매되는 중국 화장품 브랜드는 없음.","지난해 중국 화장품 수입액 7,180만 달러로 역대 최대 (관세청).","플라워노즈는 무신사 뷰티·시코르·카카오 등에서 판매."],
+           zh:["Olive Young 门店没有销售任何中国化妆品品牌。","去年韩国进口中国化妆品达 7180 万美元，创纪录（韩国关税厅）。","花知晓改在 Musinsa Beauty、Chicor、Kakao 等渠道销售。"],
+           ja:["オリーブヤングの店舗で販売される中国コスメブランドはゼロ。","昨年の中国コスメ輸入額は7,180万ドルで過去最高（関税庁）。","フラワーノーズはムシンサビューティー・シコル・カカオなどで販売。"]},
+      tip:{en:"Everything on our shelf is a Korean brand bought from Korean retail, so 'K-beauty' means what it says.",ko:"저희 매장 제품은 모두 한국 유통에서 산 한국 브랜드예요.",zh:"本店商品全部是从韩国渠道采购的韩国品牌。",ja:"当店の商品はすべて韓国の小売で仕入れた韓国ブランドです。"},
+      shop:[],
+      src:[["KED Global · 2026.10.19","https://www.kedglobal.com/beauty-cosmetics/newsView/ked202610190013"]] }
+  ]
+},
+{
+  vol: 3, date: "2026-10-18",
+  week: {en:"Week of Oct 12 – 18, 2026", ko:"2026년 10월 12일 – 18일", zh:"2026年10月12日 – 18日", ja:"2026年10月12日〜18日"},
+  cover: "hero-rare.jpg",
+  title: {en:"PDRN meets caviar, Olive Young at Sephora, and the derma boom",
+          ko:"PDRN에 캐비어까지, 세포라 속 올리브영, 더마 전성시대",
+          zh:"PDRN 遇上鱼子酱、Sephora 里的 Olive Young、皮肤科护肤热潮",
+          ja:"PDRN×キャビア、セフォラの中のオリヤン、ダーマブーム"},
+  stories: [
+    { tag:{en:"Ingredients",ko:"성분",zh:"成分",ja:"成分"},
+      title:{en:"Biodance launches a caviar + PDRN capsule cream",ko:"바이오던스, 캐비어·PDRN 캡슐 크림 출시",zh:"Biodance 推出鱼子酱 + PDRN 胶囊面霜",ja:"バイオダンスがキャビア×PDRNカプセルクリームを発売"},
+      sum:{en:"The brand known in the U.S. for its collagen masks joined the PDRN trend with a new cream at Olive Young.",
+           ko:"미국에서 콜라겐 마스크로 유명한 바이오던스가 올리브영에서 PDRN 크림을 새로 선보였어요.",
+           zh:"在美国以胶原蛋白面膜闻名的 Biodance，在 Olive Young 推出 PDRN 新面霜。",
+           ja:"アメリカではコラーゲンマスクで有名なバイオダンスが、オリーブヤングでPDRNクリームを発売。"},
+      pts:{en:["Launched at Olive Young on Oct 12.","Dual formula: purple caviar-oil capsules in a clear gel with PDRN and caviar water.","Featured in Olive Young's 'Super Brand Day', Oct 19 – 22."],
+           ko:["10월 12일 올리브영 출시.","보라색 캐비어 오일 캡슐 + PDRN·캐비어 워터 투명 젤의 '듀얼 포뮬라'.","10월 19~22일 올리브영 '슈퍼 브랜드 데이' 참여."],
+           zh:["10 月 12 日在 Olive Young 上市。","双重配方：紫色鱼子酱油胶囊 + 含 PDRN 和鱼子酱水的透明凝胶。","参加 10 月 19–22 日 Olive Young“超级品牌日”。"],
+           ja:["10月12日にオリーブヤングで発売。","紫のキャビアオイルカプセル＋PDRN・キャビアウォーターの透明ジェルの「デュアルフォーミュラ」。","10月19〜22日のオリーブヤング「スーパーブランドデー」に参加。"]},
+      tip:{en:"PDRN is a hydrating, calming ingredient, not a peel. It layers well over any toner.",ko:"PDRN은 각질 제거가 아니라 보습·진정 성분이에요. 어떤 토너 위에도 잘 어울려요.",zh:"PDRN 是保湿舒缓成分，不是去角质成分，叠加在任何化妆水后都合适。",ja:"PDRNは角質ケアではなく保湿・鎮静成分。どんな化粧水の後にも合わせやすいです。"},
+      shop:[],
+      src:[["JoongAng Economy News · 2026.10.13","https://www.joongangenews.com/news/articleView.html?idxno=554333"]] },
+    { tag:{en:"Brand story",ko:"브랜드 스토리",zh:"品牌故事",ja:"ブランドストーリー"},
+      title:{en:"Olive Young takes a record 21.5% of Korean beauty retail",ko:"올리브영, 국내 뷰티 유통 점유율 21.5% 역대 최고",zh:"Olive Young 占韩国美妆零售 21.5%，创新高",ja:"オリーブヤング、韓国ビューティー小売シェア21.5%で過去最高"},
+      sum:{en:"Olive Young grew sales while closing stores, and it now has a K-beauty shop inside Sephora in the U.S.",
+           ko:"올리브영은 매장 수를 줄이면서도 매출을 키웠고, 미국 세포라 안에 K뷰티 코너도 운영해요.",
+           zh:"Olive Young 减少门店却提升销售，并在美国 Sephora 内开设 K-beauty 专区。",
+           ja:"オリーブヤングは店舗数を減らしつつ売上を伸ばし、アメリカのセフォラ内にもKビューティーコーナーを展開。"},
+      pts:{en:["First-half share of Korean beauty retail: 21.5% (₩2.94 trillion of ₩13.72 trillion).","First-half sales ₩3.33 trillion, up 23.7%, while stores fell from 1,393 to 1,367.","Foreign visitors made up 33% of in-store sales. The 'Olive Young K-Beauty Edit' runs in about 580 U.S. Sephora stores."],
+           ko:["상반기 국내 뷰티 유통 점유율 21.5% (13조 7,162억 원 중 2조 9,433억 원).","상반기 매출 3조 3,349억 원(23.7%↑), 매장 수는 1,393→1,367개로 감소.","오프라인 매출의 33%가 외국인. '올리브영 K뷰티 에딧'은 미국 세포라 약 580곳에서 운영."],
+           zh:["上半年韩国美妆零售份额 21.5%（13.72 万亿韩元中占 2.94 万亿）。","上半年销售额 3.33 万亿韩元，增长 23.7%，门店从 1393 家减至 1367 家。","线下销售 33% 来自外国游客；“Olive Young K-Beauty Edit”在约 580 家美国 Sephora 运营。"],
+           ja:["上半期の韓国ビューティー小売シェア21.5%（13兆7,162億ウォン中2兆9,433億ウォン）。","上半期売上3兆3,349億ウォン（23.7%増）、店舗数は1,393→1,367店に減少。","店舗売上の33%が外国人。「オリーブヤング Kビューティーエディット」は米セフォラ約580店舗で展開。"]},
+      tip:{en:"Sephora's Olive Young edit carries the big names. Our shelf picks the drugstore items that edit doesn't.",ko:"세포라의 올리브영 코너는 대형 브랜드 위주예요. 저희는 거기에 없는 드럭스토어 제품을 골라요.",zh:"Sephora 的 Olive Young 专区以大牌为主，本店挑选那里没有的药妆店单品。",ja:"セフォラのオリヤンコーナーは大手ブランド中心。当店はそこにないドラッグストア商品を選んでいます。"},
+      shop:[],
+      src:[["Newspim · 2026.10.16","https://www.newspim.com/news/view/20261015000454"]] },
+    { tag:{en:"Skincare",ko:"스킨케어",zh:"护肤",ja:"スキンケア"},
+      title:{en:"Derma care is Korea's fastest-growing skincare",ko:"더마로 진화한 K뷰티, '피부과학' 경쟁",zh:"皮肤科护肤成韩国增长最快的品类",ja:"ダーマケアが韓国で最も伸びるスキンケアに"},
+      sum:{en:"Pharma companies and clinics are joining the race for barrier-repair skincare, and foreign shoppers lead demand.",
+           ko:"제약사·의료기기 회사까지 장벽 케어 시장에 뛰어들었고, 외국인 수요가 성장을 이끌고 있어요.",
+           zh:"药企和医疗器械公司也加入屏障修护赛道，外国消费者是主要需求来源。",
+           ja:"製薬会社や医療機器メーカーもバリアケア市場に参入し、外国人の需要が成長をけん引。"},
+      pts:{en:["Olive Young's 'Advanced Derma' category grew more than 260% since its April launch, about 70% bought by foreigners.","Korea's derma-beauty market grew from ₩789.3 billion (2020) to ₩1.56 trillion (2025), per Euromonitor.","Centellian24's Madeca Cream passed 100 million units sold as of July."],
+           ko:["올리브영 '어드밴스드 더마'는 4월 출시 후 260% 이상 성장, 매출의 약 70%가 외국인.","국내 더마 시장 7,893억 원(2020) → 1조 5,557억 원(2025) (유로모니터).","센텔리안24 마데카 크림 7월 기준 누적 1억 개 돌파."],
+           zh:["Olive Young“Advanced Derma”品类自 4 月推出后增长逾 260%，约 70% 由外国人购买。","韩国皮肤科护肤市场从 7893 亿韩元（2020）增至 1.56 万亿韩元（2025），据 Euromonitor。","Centellian24 积雪草霜截至 7 月累计销量突破 1 亿件。"],
+           ja:["オリーブヤング「アドバンスドダーマ」は4月の開始以来260%以上成長、約70%が外国人の購入。","韓国のダーマ市場は7,893億ウォン（2020）→1兆5,557億ウォン（2025）（ユーロモニター）。","センテリアン24のマデカクリームは7月時点で累計1億個を突破。"]},
+      tip:{en:"Winter is barrier season. One plain barrier cream, used every night, beats three new actives.",ko:"겨울은 장벽 관리의 계절이에요. 새 기능성 3개보다 장벽 크림 하나를 매일 밤 쓰는 게 나아요.",zh:"冬天是屏障护理季。每晚坚持一款修护面霜，胜过三款新功效产品。",ja:"冬はバリアケアの季節。新しい美容成分3つより、バリアクリーム1つを毎晩。"},
+      shop:["centellian-madeca","drg-cream","beplain-cicaterol-cream"],
+      src:[["Newspim · 2026.10.18","https://www.newspim.com/news/view/20261016000445"]] }
+  ]
+},
+{
+  vol: 2, date: "2026-10-11",
+  week: {en:"Week of Oct 5 – 11, 2026", ko:"2026년 10월 5일 – 11일", zh:"2026年10月5日 – 11日", ja:"2026年10月5日〜11日"},
+  cover: "theme-real.jpg",
+  title: {en:"Bring Green tops Olive Young views, exports hit a record, and Dr.G's October deals",
+          ko:"올리브영 조회 1·2위 브링그린, 수출 역대 최대, 닥터지 10월 프로모션",
+          zh:"Bring Green 登顶 Olive Young 浏览榜、出口创新高、Dr.G 十月优惠",
+          ja:"ブリンググリーンがオリヤン閲覧数1・2位、輸出が過去最高、ドクタージーの10月企画"},
+  stories: [
+    { tag:{en:"Ranking",ko:"랭킹",zh:"排行",ja:"ランキング"},
+      title:{en:"Bring Green takes #1 and #2 in Olive Young skincare views",ko:"브링그린, 올리브영 스킨케어 조회 수 1·2위",zh:"Bring Green 包揽 Olive Young 护肤浏览量前两名",ja:"ブリンググリーンがオリヤンのスキンケア閲覧数1・2位"},
+      sum:{en:"Cosmorning's Oct 1 snapshot of Olive Young's online mall shows what Korean shoppers clicked on most.",
+           ko:"코스모닝이 10월 1일 기준 올리브영 온라인몰 데이터를 정리해, 한국 소비자가 가장 많이 본 제품을 보여 줬어요.",
+           zh:"Cosmorning 整理了 10 月 1 日 Olive Young 线上商城数据，看看韩国人点得最多的是什么。",
+           ja:"コスモーニングが10月1日時点のオリーブヤング公式通販データをまとめ、韓国で最も見られた商品を紹介。"},
+      pts:{en:["Two Bring Green products were #1 and #2 in skincare views, pushing September's #1 to #3.","In masks, Mediheal held #1, #2 and #5.","Olive Young online listed 879 unique brands, up from 871 in September."],
+           ko:["스킨케어 조회 수 1·2위가 브링그린 제품, 9월 1위는 3위로 밀려남.","마스크 부문은 메디힐이 1·2·5위.","올리브영 온라인몰 입점 브랜드(중복 제외) 9월 871개 → 10월 879개."],
+           zh:["护肤浏览量第 1、2 名都是 Bring Green，9 月冠军跌至第 3。","面膜类 Mediheal 占第 1、2、5 名。","Olive Young 线上品牌数（去重）由 9 月 871 个增至 10 月 879 个。"],
+           ja:["スキンケア閲覧数1・2位がブリンググリーン、9月の1位は3位に後退。","マスク部門はメディヒールが1・2・5位。","オリヤン通販の出店ブランド数（重複除く）は9月871→10月879。"]},
+      tip:{en:"Bring Green's tea tree cica line suits oily, easily irritated skin. Try the toner first.",ko:"브링그린 티트리 시카 라인은 지성·예민 피부에 잘 맞아요. 토너부터 써 보세요.",zh:"Bring Green 茶树积雪草系列适合油性、易敏肌，先从化妆水试起。",ja:"ブリンググリーンのティーツリーシカは脂性・敏感肌向け。まずは化粧水から。"},
+      shop:["bringgreen-toner","bringgreen-serum","bringgreen-cream"],
+      src:[["Cosmorning · 2026.10.06","https://www.cosmorning.com/news/article.html?no=53640"]] },
+    { tag:{en:"Trade",ko:"수출",zh:"出口",ja:"輸出"},
+      title:{en:"Q3 exports hit a record, and the U.S. is No. 1",ko:"3분기 누적 화장품 수출 111억 달러, 1위는 미국",zh:"前三季度化妆品出口创纪录，美国居首",ja:"1〜9月のコスメ輸出が過去最高、1位はアメリカ"},
+      sum:{en:"Korea's cosmetics exports for the first nine months nearly matched all of 2025, led by skincare and the U.S.",
+           ko:"1~9월 화장품 수출이 지난해 연간 실적에 거의 닿았고, 스킨케어와 미국이 성장을 이끌었어요.",
+           zh:"前 9 个月韩国化妆品出口已接近 2025 年全年，护肤品和美国市场领跑。",
+           ja:"1〜9月のコスメ輸出は2025年通年にほぼ並び、スキンケアとアメリカがけん引。"},
+      pts:{en:["January–September: $11.1 billion, up 31.1% (Ministry of Food and Drug Safety).","U.S.: $2.35 billion, up 40.6%, a 21.1% share. China was second at $1.58 billion.","Skincare rose 45.1% to $8.72 billion, while makeup fell 3.6%."],
+           ko:["1~9월 111억 달러, 31.1%↑ (식약처).","미국 23억 5,000만 달러(40.6%↑, 비중 21.1%)로 1위, 중국 15억 8,000만 달러로 2위.","기초 화장품 87억 2,000만 달러(45.1%↑), 색조는 3.6%↓."],
+           zh:["1–9 月出口 111 亿美元，增长 31.1%（食品医药品安全处）。","美国 23.5 亿美元，增长 40.6%，占 21.1%；中国以 15.8 亿美元居第二。","基础护肤增长 45.1% 至 87.2 亿美元，彩妆下降 3.6%。"],
+           ja:["1〜9月は111億ドル、31.1%増（食品医薬品安全処）。","アメリカが23億5,000万ドル（40.6%増、シェア21.1%）で1位、中国は15億8,000万ドルで2位。","基礎化粧品は45.1%増の87億2,000万ドル、メイクは3.6%減。"]},
+      tip:{en:"More K-skincare reaches U.S. stores every month. We only keep items that are still Korea-only or at least 20% cheaper.",ko:"미국 매장에 들어오는 K스킨케어가 매달 늘고 있어요. 저희는 여전히 한국에만 있거나 20% 이상 싼 제품만 남겨요.",zh:"每个月都有更多韩国护肤品进入美国门店。我们只保留仍是韩国独有或便宜至少 20% 的商品。",ja:"アメリカの店に並ぶ韓国スキンケアは毎月増加中。当店は今も韓国限定、または20%以上安い商品だけを扱います。"},
+      shop:[],
+      src:[["Cosmorning · 2026.10.11","https://www.cosmorning.com/news/article.html?no=53670"]] },
+    { tag:{en:"Olive Young sale",ko:"올영세일",zh:"Olive Young 大促",ja:"オリヤンセール"},
+      title:{en:"Dr.G joins Olive Young's October 'Mini Olive Young Pick'",ko:"닥터지, 10월 '미니 올영픽' 참여",zh:"Dr.G 参加 Olive Young 十月“迷你 Olive Young Pick”",ja:"ドクタージーがオリヤン10月の「ミニオリヤンピック」に参加"},
+      sum:{en:"Dr.G discounted best sellers and Anpanman limited sets at Olive Young for all of October.",
+           ko:"닥터지가 10월 한 달 동안 올리브영에서 인기 제품과 호빵맨 한정 세트를 할인했어요.",
+           zh:"Dr.G 整个 10 月在 Olive Young 对人气产品和面包超人限定套装打折。",
+           ja:"ドクタージーが10月の1か月間、オリーブヤングで人気商品とアンパンマン限定セットを割引。"},
+      pts:{en:["Runs Oct 1 – 31, online and in stores.","Red Blemish Cool Soothing Jelly Mist: 20% off.","Anpanman limited sets: peeling gel 15% off, cleansing balm 37% off."],
+           ko:["10월 1~31일, 온라인·오프라인.","레드 블레미쉬 쿨 수딩 젤리 미스트 20% 할인.","호빵맨 한정 세트: 필링젤 15%, 클렌징밤 37% 할인."],
+           zh:["10 月 1–31 日，线上线下同步。","红色舒缓冰凉果冻喷雾 8 折。","面包超人限定套装：去角质凝胶 85 折，卸妆膏 63 折。"],
+           ja:["10月1〜31日、オンライン・店舗とも。","レッドブレミッシュ クールスージング ジェリーミスト20%オフ。","アンパンマン限定セット：ピーリングジェル15%オフ、クレンジングバーム37%オフ。"]},
+      tip:{en:"Dr.G's Red Blemish line is made for redness. The cream is the one to try first.",ko:"닥터지 레드 블레미쉬 라인은 붉은기 진정용이에요. 크림부터 써 보세요.",zh:"Dr.G 红色系列专为泛红肌设计，先从面霜试起。",ja:"ドクタージーのレッドブレミッシュは赤み向け。まずはクリームから。"},
+      shop:["drg-cream"],
+      src:[["CMN · 2026.10.05","https://www.cmn.co.kr/mobile/sub_view.asp?news_idx=51164"]] }
+  ]
+},
+{
   vol: 1, date: "2026-10-01",
   week: {en:"Week of Sep 28 – Oct 4, 2026", ko:"2026년 9월 28일 – 10월 4일", zh:"2026年9月28日 – 10月4日", ja:"2026年9月28日〜10月4日"},
   cover: "hero-real.jpg",
@@ -777,7 +1102,8 @@ const NEWS = [{
 }];
 const L = o => (o && (o[S.lang] || o.en)) || "";
 function newsView(){
-  const iss = NEWS[0];
+  const idx = Math.min(Math.max(S.newsIdx||0,0), NEWS.length-1);
+  const iss = NEWS[idx];
   return `<section class="news">
     <div class="news-head">
       <p class="eyebrow">${esc(t("newsTitle"))} · ${esc(t("newsVol"))}${iss.vol} · ${esc(L(iss.week))}</p>
@@ -795,13 +1121,199 @@ function newsView(){
         <ul class="story-pts">${(s.pts[S.lang]||s.pts.en).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
         <p class="story-tip"><b>${esc(t("newsTip"))}</b> ${esc(L(s.tip))}</p>
         <div class="story-shop"><span class="small muted">${esc(t("newsShop"))}</span>
-          ${s.shop.filter(id=>byId[id]).length ? `<div class="mini-row">${s.shop.filter(id=>byId[id]).map(id=>{const p=byId[id];return `<button class="mini" data-open="${id}" data-src="news">${tile(p,"sm")}<span><b>${esc(p.brand)}</b>${esc(pname(p))}</span><span class="num">${money(breakdown(p).price)}</span></button>`;}).join("")}</div>` : `<p class="small muted">${esc(t("newsNoShelf"))}</p>`}
+          ${s.shop.filter(id=>byId[id]&&passes(byId[id])).length ? `<div class="mini-row">${s.shop.filter(id=>byId[id]&&passes(byId[id])).map(id=>{const p=byId[id];return `<button class="mini" data-open="${id}" data-src="news">${tile(p,"sm")}<span><b>${esc(p.brand)}</b>${esc(pname(p))}</span><span class="num">${money(breakdown(p).price)}</span></button>`;}).join("")}</div>` : `<p class="small muted">${esc(t("newsNoShelf"))}</p>`}
         </div>
         <p class="story-src small">${esc(t("newsSrc"))}: ${s.src.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(l)}</a>`).join(" · ")}</p>
       </div></li>`).join("")}</ol>
     <p class="note">${esc(t("newsNext"))}</p>
+    <div class="archive"><h3>${esc(t("newsArchive"))}</h3>
+      <ul>${NEWS.map((n,i)=>`<li><button class="arch${i===idx?" on":""}" data-issue="${i}" ${i===idx?'aria-current="true"':""}>
+        <span class="arch-cover" style="background-image:url(${n.cover})"></span>
+        <span class="arch-txt"><span class="small muted">${esc(t("newsVol"))}${n.vol} · ${esc(L(n.week))}</span><b>${esc(L(n.title))}</b></span></button></li>`).join("")}</ul>
+    </div>
   </section>`;
 }
+
+
+/* ---------- v20: final-report alignment (CA-only, routine set, reminders, pilot, about) ---------- */
+Object.assign(T.en,{
+  about:"About", caOnly:"Ships to California only for now",
+  taxNote:"California base sales tax (7.25%). Final tax is set by your address at payment.",
+  wlHead:"Outside California?", wlLead:"We open to every U.S. state in 2028. Leave your email and state and we will tell you first.", wlBtn:"Notify me", wlDone:"You're on the list. We'll email you when we ship to your state.",
+  badCaZip:"We ship to California only for now (ZIP 90001–96162).",
+  setBtn:"Add all 3 as a routine set", setSave:"Save 5% when you buy all three together", setLine:"Routine set (−5%)", setAdded:"Routine set added to cart",
+  remindL:"Email me a reorder reminder in about 6 weeks",
+  subHead:"Reorder reminder & weekly news", subLead:"One email when it's time to restock, plus our weekly Korean trend issue. Unsubscribe anytime.", subBtn:"Sign me up", subDone:"Thanks, you're signed up.",
+  pilotBar:"Pilot participant", pilotLead:"Shop freely, then take the 2-minute survey.", pilotBtn:"Take the survey", pidL:"Participant code (optional)",
+  waitlistL:"Waitlist", subsL:"Reminder sign-ups", exportCsv:"Export survey CSV", recL:"Recommendation (1–5)", intentL:"Intention (1–5)",
+  abEyebrow:"About Gyeol", abTitle:"Korean skincare you can't find here, fitted to your skin",
+  abLead:"Gyeol is a Team 12 project for the course Project Management with SaaS. We bring Korea-popular products that U.S. stores don't carry, and help each shopper choose with a short skin quiz.",
+  abStats:[["21 of 36","checked Korea-popular products had no U.S. retailer listing"],["9 of 15","U.S.-sold products were still at least 20% cheaper at the 12.5% tariff"],["30","products on our shelf, 70% of them Korea-only"],["4","languages: English, Korean, Chinese and Japanese"]],
+  abRuleHead:"How we choose products", abRule:["We list a product only if U.S. stores don't sell it, or if it is still at least 20% cheaper after shipping, tariff and fees.","Prices start from the Korean shelf price, plus shipping and duty. Our margin is 10% on items U.S. stores also sell, and 40% on Korea-only items, which have no U.S. price to beat.","We re-check U.S. stores and prices regularly and remove products that no longer qualify."],
+  abTeamHead:"Team", abTeam:"Dongyeop Keum (Project Manager) · Halim Jang",
+  abRoadHead:"Roadmap", abRoad:["2027: launch in California, 500 customers","2028: ship to the whole U.S.","2029: 3,000 customers and more products"],
+  abNote:"Prices and availability were checked between September 29 and October 1, 2026. Research figures come from our team's price check and market analysis."
+});
+Object.assign(T.ko,{
+  about:"소개", caOnly:"현재 캘리포니아만 배송해요",
+  taxNote:"캘리포니아 기본 판매세(7.25%) 기준이며, 최종 세금은 결제 시 주소로 확정됩니다.",
+  wlHead:"캘리포니아 밖에 계신가요?", wlLead:"2028년에 미국 전 지역으로 배송을 시작해요. 이메일과 주를 남기면 가장 먼저 알려드릴게요.", wlBtn:"알림 받기", wlDone:"대기 명단에 등록됐어요. 배송이 열리면 이메일로 알려드릴게요.",
+  badCaZip:"현재 캘리포니아만 배송해요 (우편번호 90001–96162).",
+  setBtn:"3개 한 번에 루틴 세트로 담기", setSave:"세 가지를 함께 사면 5% 할인", setLine:"루틴 세트 (−5%)", setAdded:"루틴 세트를 장바구니에 담았어요",
+  remindL:"약 6주 뒤 재구매 알림 이메일 받기",
+  subHead:"재구매 알림 & 주간 뉴스", subLead:"다 써갈 즈음 알림 한 번, 그리고 매주 한국 뷰티 트렌드 소식을 보내드려요. 언제든 해지할 수 있어요.", subBtn:"신청하기", subDone:"신청됐어요. 감사합니다.",
+  pilotBar:"파일럿 참가자", pilotLead:"자유롭게 둘러본 뒤 2분 설문에 답해 주세요.", pilotBtn:"설문하기", pidL:"참가자 코드 (선택)",
+  waitlistL:"대기 명단", subsL:"알림 신청", exportCsv:"설문 CSV 내보내기", recL:"추천 만족 (1–5)", intentL:"구매 의향 (1–5)",
+  abEyebrow:"결 소개", abTitle:"미국에서 찾기 힘든 한국 스킨케어, 내 피부에 맞게",
+  abLead:"결은 'Project Management with SaaS' 수업의 Team 12 프로젝트예요. 미국 매장에 없는 한국 인기 제품을 가져오고, 짧은 피부 퀴즈로 고르는 걸 도와드려요.",
+  abStats:[["21 / 36","확인한 한국 인기 제품 중 미국 소매 판매처가 없는 제품"],["9 / 15","미국에서 파는 제품 중 관세 12.5%에서도 20% 이상 싼 제품"],["30","진열 제품 수 (70%가 한국 전용)"],["4","지원 언어: 영어·한국어·중국어·일본어"]],
+  abRuleHead:"제품을 고르는 기준", abRule:["미국 매장에서 팔지 않거나, 배송·관세·수수료를 더해도 20% 이상 저렴한 제품만 진열해요.","가격은 한국 판매가에 배송비·관세를 더하고, 미국에서도 파는 제품은 10%, 미국에 없는 한국 전용 제품은 40% 마진을 붙여요.","미국 판매 여부와 가격을 주기적으로 다시 확인하고, 기준을 벗어난 제품은 내려요."],
+  abTeamHead:"팀", abTeam:"금동엽 (프로젝트 매니저) · 장하림",
+  abRoadHead:"로드맵", abRoad:["2027: 캘리포니아 출시, 고객 500명","2028: 미국 전 지역 배송","2029: 고객 3,000명, 제품 확대"],
+  abNote:"가격과 판매 여부는 2026년 9월 29일~10월 1일 기준이에요. 연구 수치는 팀의 가격 조사와 시장 분석에서 나왔어요."
+});
+Object.assign(T.zh,{
+  about:"关于", caOnly:"目前仅配送至加利福尼亚州",
+  taxNote:"按加州基本销售税（7.25%）计算，最终税额在付款时按地址确认。",
+  wlHead:"不在加州？", wlLead:"我们将于 2028 年开放全美配送。留下邮箱和所在州，我们会第一时间通知你。", wlBtn:"通知我", wlDone:"已加入候补名单，开放配送时我们会发邮件通知你。",
+  badCaZip:"目前仅配送至加州（邮编 90001–96162）。",
+  setBtn:"三件一起加入护肤套组", setSave:"三件一起购买立减 5%", setLine:"护肤套组（−5%）", setAdded:"已将护肤套组加入购物车",
+  remindL:"约 6 周后发邮件提醒我回购",
+  subHead:"回购提醒与每周资讯", subLead:"快用完时提醒一次，并每周发送韩国美妆趋势。可随时退订。", subBtn:"订阅", subDone:"订阅成功，谢谢！",
+  pilotBar:"试用参与者", pilotLead:"请随意浏览，然后完成 2 分钟问卷。", pilotBtn:"填写问卷", pidL:"参与者编号（可选）",
+  abEyebrow:"关于 Gyeol", abTitle:"在美国难买到的韩国护肤品，按你的肤质挑选",
+  abLead:"Gyeol 是 “Project Management with SaaS” 课程的第 12 组项目。我们引进美国商店没有的韩国人气产品，并通过简短的肤质测试帮你挑选。",
+  abStats:[["21 / 36","所查韩国人气产品中，没有美国零售渠道的产品"],["9 / 15","美国有售的产品中，12.5% 关税下仍便宜 20% 以上的产品"],["30","在售产品数（70% 为韩国独有）"],["4","支持语言：英语、韩语、中文、日语"]],
+  abRuleHead:"我们如何选品", abRule:["只上架美国商店不卖，或加上运费、关税和手续费后仍便宜 20% 以上的产品。","价格以韩国售价为基础，加上运费和关税；美国也有卖的产品加 10% 利润，美国买不到的韩国独有产品加 40%。","我们定期复查美国售卖情况和价格，下架不再符合条件的产品。"],
+  abTeamHead:"团队", abTeam:"Dongyeop Keum（项目经理）· Halim Jang",
+  abRoadHead:"路线图", abRoad:["2027：在加州上线，500 位顾客","2028：配送至全美","2029：3,000 位顾客，扩充产品"],
+  abNote:"价格和售卖情况的核查时间为 2026 年 9 月 29 日至 10 月 1 日。研究数据来自团队的价格调查和市场分析。"
+});
+Object.assign(T.ja,{
+  about:"概要", caOnly:"現在はカリフォルニア州のみ配送しています",
+  taxNote:"カリフォルニア州の基本売上税（7.25%）で計算しています。最終的な税額はお支払い時に住所で確定します。",
+  wlHead:"カリフォルニア州以外にお住まいですか？", wlLead:"2028年に全米への配送を始めます。メールアドレスと州を残していただければ、最初にお知らせします。", wlBtn:"知らせてほしい", wlDone:"ウェイトリストに登録しました。配送開始時にメールでお知らせします。",
+  badCaZip:"現在はカリフォルニア州のみ配送しています（ZIP 90001–96162）。",
+  setBtn:"3品まとめてルーティンセットに", setSave:"3品まとめて買うと5%オフ", setLine:"ルーティンセット（−5%）", setAdded:"ルーティンセットをカートに追加しました",
+  remindL:"約6週間後にリピート購入のお知らせメールを受け取る",
+  subHead:"リピートのお知らせ＆週刊ニュース", subLead:"使い切るころに一度お知らせし、毎週韓国のトレンドもお届けします。いつでも解除できます。", subBtn:"登録する", subDone:"登録しました。ありがとうございます。",
+  pilotBar:"パイロット参加者", pilotLead:"自由に見たあと、2分のアンケートにお答えください。", pilotBtn:"アンケートに答える", pidL:"参加者コード（任意）",
+  abEyebrow:"Gyeolについて", abTitle:"アメリカでは手に入りにくい韓国スキンケアを、あなたの肌に合わせて",
+  abLead:"Gyeolは授業「Project Management with SaaS」のチーム12のプロジェクトです。アメリカのお店にない韓国の人気商品を届け、短い肌診断で選ぶお手伝いをします。",
+  abStats:[["21 / 36","調べた韓国の人気商品のうち、アメリカの小売店で販売のない商品"],["9 / 15","アメリカで売られている商品のうち、関税12.5%でも20%以上安い商品"],["30","取扱商品数（70%は韓国限定）"],["4","対応言語：英語・韓国語・中国語・日本語"]],
+  abRuleHead:"商品の選び方", abRule:["アメリカのお店で売られていないか、送料・関税・手数料を加えても20%以上安い商品だけを並べます。","価格は韓国の販売価格に送料・関税を加え、アメリカでも買える商品は10%、韓国限定の商品は40%のマージンで決めます。","アメリカでの販売状況と価格を定期的に確認し、条件を外れた商品は取り下げます。"],
+  abTeamHead:"チーム", abTeam:"Dongyeop Keum（プロジェクトマネージャー）· Halim Jang",
+  abRoadHead:"ロードマップ", abRoad:["2027年：カリフォルニアで開始、顧客500人","2028年：全米へ配送","2029年：顧客3,000人、商品を拡充"],
+  abNote:"価格と販売状況は2026年9月29日〜10月1日に確認したものです。研究の数値はチームの価格調査と市場分析によるものです。"
+});
+const CA_ZIP = z => { const n = parseInt(String(z).slice(0,5),10); return /^\d{5}(-\d{4})?$/.test(String(z).trim()) && n >= 90001 && n <= 96162; };
+const EMAIL_OK = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(e||"").trim());
+const SET_OFF = 0.05;
+function routineSet(){ const ids = LS.get("routineSet", []); return (ids.length===3 && ids.every(id=>byId[id] && (S.cart[id]||0)>0)) ? ids : null; }
+function subscribeBox(src){
+  if(LS.get("subscribed", false)) return `<div class="subbox"><p class="small"><b>${esc(t("subHead"))}</b> · ${esc(t("subDone"))}</p></div>`;
+  return `<form class="subbox" data-subform="${src}"><div><b>${esc(t("subHead"))}</b><p class="small muted">${esc(t("subLead"))}</p></div><div class="subrow"><input type="email" name="email" placeholder="name@example.com" aria-label="Email" required><button class="btn sm" type="submit">${esc(t("subBtn"))}</button></div></form>`;
+}
+function waitlistBox(){
+  if(LS.get("waitlisted", false)) return `<p class="note">${esc(t("wlDone"))}</p>`;
+  return `<details class="wl"><summary>${esc(t("wlHead"))}</summary><form data-wlform><p class="small muted">${esc(t("wlLead"))}</p><input type="email" name="email" placeholder="name@example.com" aria-label="Email" required><select name="state" aria-label="${esc(t("state"))}">${STATES.filter(x=>x!=="CA").map(x=>`<option>${x}</option>`).join("")}</select><button class="btn ghost sm" type="submit">${esc(t("wlBtn"))}</button></form></details>`;
+}
+function pilotBar(){
+  if(!S.pid) return "";
+  return `<div class="pilotbar"><span><b>${esc(t("pilotBar"))} ${esc(S.pid)}</b> · ${esc(t("pilotLead"))}</span><button class="btn sm" data-go="survey">${esc(t("pilotBtn"))}</button></div>`;
+}
+function aboutView(){
+  return `<section class="about">
+    <p class="eyebrow">${esc(t("abEyebrow"))}</p>
+    <h2>${esc(t("abTitle"))}</h2>
+    <p class="lead muted">${esc(t("abLead"))}</p>
+    <div class="abstats">${t("abStats").map(([b,l])=>`<div><b class="num">${esc(b)}</b><span>${esc(l)}</span></div>`).join("")}</div>
+    <div class="abcols">
+      <div><h3>${esc(t("abRuleHead"))}</h3><ul>${t("abRule").map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+      <div><h3>${esc(t("abRoadHead"))}</h3><ul>${t("abRoad").map(x=>`<li>${esc(x)}</li>`).join("")}</ul><h3 style="margin-top:18px">${esc(t("abTeamHead"))}</h3><p>${esc(t("abTeam"))}</p></div>
+    </div>
+    <p class="note">${esc(t("abNote"))}</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-go="quiz">${esc(t("startQuiz"))}</button><button class="btn ghost" data-go="home">${esc(t("browse"))}</button></div>
+  </section>`;
+}
+function csvEsc(v){ v = v==null ? "" : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; }
+
+Object.assign(T.en,{marginRareL:"Margin on Korea-only items", uninShort:"Unincorporated", countyL:"County", chooseCounty:"Choose county", chooseCity:"Choose city", uninc:"Unincorporated area (not in a city)", mailCityL:"Community / mailing city", taxBase:"CA base rate", taxLocL:"Where should we ship?", taxPick:"Pick your county and city to see your exact local rate.", taxNote:"Sales tax uses the CDTFA city and county rates in effect Oct 1, 2026, including local district taxes."});
+Object.assign(T.ko,{marginRareL:"한국 전용 상품 마진", uninShort:"시 외 지역", countyL:"카운티", chooseCounty:"카운티 선택", chooseCity:"도시 선택", uninc:"시 외 지역 (Unincorporated)", mailCityL:"동네 / 우편 도시명", taxBase:"캘리포니아 기본세율", taxLocL:"어디로 보내 드릴까요?", taxPick:"카운티와 도시를 고르면 지역 세율이 정확히 적용돼요.", taxNote:"판매세는 CDTFA가 고시한 2026년 10월 1일 시행 도시·카운티 세율(지역 district tax 포함)을 적용해요."});
+Object.assign(T.zh,{marginRareL:"韩国独有商品利润", uninShort:"非建制地区", countyL:"县（County）", chooseCounty:"选择县", chooseCity:"选择城市", uninc:"非建制地区（不属于任何城市）", mailCityL:"社区 / 邮寄城市", taxBase:"加州基本税率", taxLocL:"寄送到哪里？", taxPick:"选择县和城市即可显示准确的当地税率。", taxNote:"销售税按 CDTFA 公布、2026 年 10 月 1 日起生效的城市与县税率（含地方附加税）计算。"});
+Object.assign(T.ja,{marginRareL:"韓国限定商品のマージン", uninShort:"非法人地域", countyL:"郡（County）", chooseCounty:"郡を選択", chooseCity:"市を選択", uninc:"市に属さない地域（非法人地域）", mailCityL:"地域名 / 郵便上の市名", taxBase:"カリフォルニア州基本税率", taxLocL:"お届け先はどちらですか？", taxPick:"郡と市を選ぶと、地域の正確な税率が反映されます。", taxNote:"売上税はCDTFAが公表した2026年10月1日施行の市・郡税率（地方税を含む）で計算しています。"});
+Object.assign(T.en,{
+  doneLead:"We sent a confirmation to", doneLead2:"(preview below).", shipStock:"Ships from LA · 2–3 days", shipPre:"Pre-order · 2–3 weeks from Korea",
+  etaL:"Estimated delivery", etaStock:"2–3 business days (all items are in our LA stock)", etaPre:"About 2–3 weeks (some items are bought in Korea after you order)",
+  cpL:"Coupon or referral code", cpPh:"WELCOME10 or GY-XXXX", cpApply:"Apply", cpLine:"Coupon",
+  cpWelcomeOk:"10% off your first order", cpRefOk:"$5 off from a friend", cpBad:"We don't recognize this code.", cpFirstOnly:"WELCOME10 is for a first order only.", cpOwn:"You can't use your own referral code.", cpMin:"Referral codes work on orders of $30 or more.",
+  st_paid:"Order received", st_preparing_stock:"Packing in LA", st_preparing_pre:"Buying in Korea → flying to LA", st_shipped:"Shipped", st_delivered:"Delivered", trackNo:"Tracking",
+  trackTitle:"Track your order", trackLead:"Enter your order number and the email you used at checkout.", trackBtn:"Find my order", trackNone:"No order matches that number and email.", trackNote:"Prototype: orders are saved in this browser only, and the team updates the status by hand.", trackLink:"Track order",
+  mailL:"Order confirmation email", mailDemo:"preview, not actually sent", mailSubj:"Your Gyeol order {no} is confirmed", mailHi:"Hi {name}, thanks for your order. Here is your receipt.", mailTrack:"Check your order anytime: Gyeol → Track order, with your order number and email.", mailRef:"Share your code {code}: friends get $5 off orders of $30+, and you get a $5 credit after their first order.",
+  refHead:"Your referral code", refLead:"Friends get $5 off $30+, and you get a $5 credit.", copy:"Copy", copied:"Copied",
+  nextStatus:"Next status", polUpdated:"Last updated: November 8, 2026",
+  polDraft:"Draft policy for our class project, not legal advice. A lawyer should review it before a real launch.",
+  pol:{
+    shipping:{h:"Shipping", s:[["Where we ship","California addresses only for now. We plan to open other U.S. states in 2028."],["How long it takes","Items marked 'Ships from LA' leave in 1 business day and arrive in 2–3 business days. 'Pre-order' items are bought in Korea after you order and arrive in about 2–3 weeks. A mixed order ships together when everything is ready."],["What it costs","Shipping from Korea is already inside each price, so there is no extra shipping fee in California."],["Tracking","You get a tracking number when your order ships. Check it anytime on the Track order page."],["Damaged items","Send us a photo within 7 days of delivery and we will replace or refund the item."]]},
+    returns:{h:"Returns & refunds", s:[["Unopened items","Return within 30 days of delivery for a full refund. We email a prepaid label."],["Opened items","For hygiene, we can't take back opened skincare unless it arrived damaged, is the wrong item, or is past its expiry date."],["Skin reactions","Stop using the product and contact us within 14 days. We review each case and refund when the reaction is reported promptly."],["Pre-order cancellations","Cancel free within 24 hours, before we buy the item in Korea. After that, a pre-order follows the unopened-item rule."],["Refund timing","Refunds go back to your original payment method in 5–10 business days."]]},
+    privacy:{h:"Privacy (CCPA)", s:[["What we collect","Name, email, shipping address, order history, your skin-quiz answers, and anonymous page events (for example, which product you opened)."],["Why","To fill orders, send receipts and reorder reminders you asked for, recommend products, and improve the store."],["What we don't do","We don't sell your personal information or share it for cross-context behavioral advertising."],["Your rights","California residents can ask to know, delete, or correct their information, and can opt out of any sale or sharing. Email privacy@gyeol.example."],["In this prototype","Everything stays in your own browser storage. Clearing your browser data deletes it."]]},
+    terms:{h:"Terms of sale", s:[["Prices","Prices are in U.S. dollars and already include shipping from Korea and import duty. Each product shows how its price is built."],["Sales tax","We add California sales tax based on the city or unincorporated county you ship to, using CDTFA rates in effect on your order date."],["Product information","Ingredients and directions come from the Korean label. Patch test new products, especially if your skin is sensitive."],["Discounts","One coupon or referral code per order. The routine-set discount can be combined with one code. Discounts are applied before tax."],["Availability","Korean stock can sell out. If we can't get a pre-order item, we refund it in full."],["Governing law","These terms follow California law."]]}
+  }
+});
+Object.assign(T.ko,{
+  doneLead:"", doneLead2:"(으)로 주문 확인 메일을 보냈어요 (아래 미리보기).", shipStock:"LA 재고 · 2~3일 배송", shipPre:"선주문 · 한국에서 2~3주",
+  etaL:"예상 배송", etaStock:"영업일 2~3일 (모든 상품이 LA 재고)", etaPre:"약 2~3주 (일부 상품은 주문 후 한국에서 구매)",
+  cpL:"쿠폰 또는 추천 코드", cpPh:"WELCOME10 또는 GY-XXXX", cpApply:"적용", cpLine:"쿠폰",
+  cpWelcomeOk:"첫 주문 10% 할인", cpRefOk:"친구 추천 $5 할인", cpBad:"확인되지 않는 코드예요.", cpFirstOnly:"WELCOME10은 첫 주문에만 쓸 수 있어요.", cpOwn:"본인 추천 코드는 쓸 수 없어요.", cpMin:"추천 코드는 $30 이상 주문에 적용돼요.",
+  st_paid:"주문 접수", st_preparing_stock:"LA에서 포장 중", st_preparing_pre:"한국 구매 → LA 항공 이동", st_shipped:"배송 출발", st_delivered:"배송 완료", trackNo:"운송장",
+  trackTitle:"주문 조회", trackLead:"주문 번호와 결제 때 쓴 이메일을 입력하세요.", trackBtn:"주문 찾기", trackNone:"일치하는 주문이 없어요.", trackNote:"프로토타입: 주문은 이 브라우저에만 저장되고, 배송 상태는 팀이 직접 바꿔요.", trackLink:"주문 조회",
+  mailL:"주문 확인 이메일", mailDemo:"미리보기 · 실제 발송 안 됨", mailSubj:"결(Gyeol) 주문 {no}이(가) 확정됐어요", mailHi:"{name}님, 주문해 주셔서 감사해요. 영수증을 보내 드려요.", mailTrack:"주문 상태는 결 → 주문 조회에서 주문 번호와 이메일로 언제든 확인할 수 있어요.", mailRef:"추천 코드 {code}를 공유하세요. 친구는 $30 이상 주문 시 $5 할인, 친구의 첫 주문 후 회원님은 $5 적립금을 받아요.",
+  refHead:"내 추천 코드", refLead:"친구는 $30 이상 주문 시 $5 할인, 나는 $5 적립.", copy:"복사", copied:"복사했어요",
+  nextStatus:"다음 단계", polUpdated:"최종 수정: 2026년 11월 8일",
+  polDraft:"수업 프로젝트용 정책 초안이며 법률 자문이 아닙니다. 실제 출시 전 변호사 검토가 필요해요.",
+  pol:{
+    shipping:{h:"배송 정책", s:[["배송 지역","현재는 캘리포니아 주소만 배송해요. 2028년에 다른 주로 넓힐 계획이에요."],["배송 기간","'LA 재고' 상품은 영업일 1일 안에 출고돼 2~3일 안에 도착해요. '선주문' 상품은 주문 후 한국에서 구매해 약 2~3주가 걸려요. 섞인 주문은 모두 준비되면 한 번에 보내요."],["배송비","한국 배송비가 상품 가격에 이미 들어 있어서, 캘리포니아 안에서는 추가 배송비가 없어요."],["배송 조회","출고되면 운송장 번호를 드려요. 주문 조회 페이지에서 언제든 확인할 수 있어요."],["파손 상품","받은 날부터 7일 안에 사진을 보내 주시면 교환이나 환불해 드려요."]]},
+    returns:{h:"반품·환불", s:[["미개봉 상품","받은 날부터 30일 안에 반품하면 전액 환불해 드려요. 선불 반송 라벨을 이메일로 보내 드려요."],["개봉 상품","위생상 개봉한 화장품은 파손, 오배송, 유통기한 경과가 아니면 반품이 어려워요."],["피부 트러블","사용을 멈추고 14일 안에 연락 주세요. 건별로 확인하고, 바로 알려 주신 경우 환불해 드려요."],["선주문 취소","한국에서 구매하기 전인 24시간 안에는 무료로 취소돼요. 그 뒤에는 미개봉 상품 규정을 따라요."],["환불 기간","결제한 수단으로 영업일 5~10일 안에 환불돼요."]]},
+    privacy:{h:"개인정보 (CCPA)", s:[["수집 항목","이름, 이메일, 배송 주소, 주문 내역, 피부 진단 응답, 익명 이용 기록(예: 어떤 상품을 열어 봤는지)."],["이용 목적","주문 처리, 영수증과 요청하신 재구매 알림 발송, 상품 추천, 매장 개선."],["하지 않는 것","개인정보를 판매하거나 맞춤형(교차 맥락) 광고를 위해 공유하지 않아요."],["이용자 권리","캘리포니아 주민은 정보 열람·삭제·정정을 요청하고, 판매·공유를 거부할 수 있어요. privacy@gyeol.example로 연락하세요."],["이 프로토타입에서는","모든 정보가 내 브라우저 저장소에만 남아요. 브라우저 데이터를 지우면 함께 삭제돼요."]]},
+    terms:{h:"판매 약관", s:[["가격","가격은 미국 달러이며 한국 배송비와 수입 관세가 이미 포함돼 있어요. 상품마다 가격 구성을 보여 드려요."],["판매세","배송 받는 도시(또는 시 외 카운티 지역)에 따라, 주문일에 시행 중인 CDTFA 세율로 캘리포니아 판매세를 더해요."],["상품 정보","성분과 사용법은 한국 라벨 기준이에요. 새 제품은 특히 민감 피부라면 패치 테스트를 해 주세요."],["할인","주문 1건에 쿠폰 또는 추천 코드 1개만 쓸 수 있어요. 루틴 세트 할인은 코드 1개와 함께 쓸 수 있고, 할인은 세금 전에 적용돼요."],["재고","한국 재고가 품절될 수 있어요. 선주문 상품을 구하지 못하면 전액 환불해 드려요."],["준거법","이 약관은 캘리포니아 법을 따라요."]]}
+  }
+});
+Object.assign(T.zh,{
+  doneLead:"确认邮件已发送至", doneLead2:"（见下方预览）。", shipStock:"洛杉矶现货 · 2–3 天送达", shipPre:"预订 · 从韩国约 2–3 周",
+  etaL:"预计送达", etaStock:"2–3 个工作日（全部为洛杉矶现货）", etaPre:"约 2–3 周（部分商品下单后在韩国采购）",
+  cpL:"优惠码或推荐码", cpPh:"WELCOME10 或 GY-XXXX", cpApply:"使用", cpLine:"优惠码",
+  cpWelcomeOk:"首单 9 折", cpRefOk:"好友推荐立减 $5", cpBad:"无法识别此代码。", cpFirstOnly:"WELCOME10 仅限首单使用。", cpOwn:"不能使用自己的推荐码。", cpMin:"推荐码适用于满 $30 的订单。",
+  st_paid:"已下单", st_preparing_stock:"洛杉矶打包中", st_preparing_pre:"韩国采购 → 空运至洛杉矶", st_shipped:"已发货", st_delivered:"已送达", trackNo:"运单号",
+  trackTitle:"查询订单", trackLead:"请输入订单号和结账时使用的邮箱。", trackBtn:"查找订单", trackNone:"没有找到匹配的订单。", trackNote:"原型说明：订单仅保存在本浏览器，状态由团队手动更新。", trackLink:"查询订单",
+  mailL:"订单确认邮件", mailDemo:"预览，未实际发送", mailSubj:"你的 Gyeol 订单 {no} 已确认", mailHi:"{name}，感谢你的订购，以下是你的收据。", mailTrack:"随时可在 Gyeol → 查询订单，用订单号和邮箱查看。", mailRef:"分享你的推荐码 {code}：好友满 $30 立减 $5，好友首单后你可获得 $5 积分。",
+  refHead:"我的推荐码", refLead:"好友满 $30 立减 $5，你获得 $5 积分。", copy:"复制", copied:"已复制",
+  nextStatus:"下一步", polUpdated:"最后更新：2026 年 11 月 8 日",
+  polDraft:"本政策为课程项目草案，不构成法律意见。正式上线前需由律师审阅。",
+  pol:{
+    shipping:{h:"配送政策", s:[["配送范围","目前仅配送至加州地址，计划 2028 年开放其他州。"],["配送时间","标有“洛杉矶现货”的商品 1 个工作日内发出，2–3 个工作日送达。“预订”商品在下单后于韩国采购，约 2–3 周送达。混合订单会在全部备齐后一起发出。"],["运费","韩国运费已包含在价格中，加州境内不另收运费。"],["物流查询","发货后会提供运单号，可随时在“查询订单”页面查看。"],["破损商品","请在收货 7 天内发送照片，我们将补发或退款。"]]},
+    returns:{h:"退货与退款", s:[["未开封商品","收货后 30 天内可退货并全额退款，我们会邮件发送预付退货标签。"],["已开封商品","出于卫生原因，已开封的护肤品除破损、发错或过期外不予退货。"],["皮肤不适","请停止使用并在 14 天内联系我们。我们逐案审核，及时反馈的情况予以退款。"],["预订取消","在韩国采购前的 24 小时内可免费取消，之后按未开封商品规则处理。"],["退款时间","退款将在 5–10 个工作日内退回原支付方式。"]]},
+    privacy:{h:"隐私（CCPA）", s:[["收集内容","姓名、邮箱、收货地址、订单记录、肤质测试答案，以及匿名浏览记录（例如打开了哪个商品）。"],["用途","处理订单、发送收据和你要求的回购提醒、推荐商品、改进商店。"],["我们不做的事","不出售你的个人信息，也不为跨情境行为广告而共享。"],["你的权利","加州居民可要求查阅、删除或更正其信息，并可拒绝出售或共享。请联系 privacy@gyeol.example。"],["本原型中","所有数据只保存在你的浏览器中，清除浏览器数据即会删除。"]]},
+    terms:{h:"销售条款", s:[["价格","价格以美元计，已含韩国运费和进口关税，每件商品都会展示价格构成。"],["销售税","按收货城市（或非建制县区）以及下单当日有效的 CDTFA 税率加收加州销售税。"],["商品信息","成分和用法以韩国标签为准。新产品请先做皮肤测试，敏感肌尤其要注意。"],["优惠","每笔订单限用一个优惠码或推荐码。护肤套组折扣可与一个代码叠加，优惠在计税前扣除。"],["库存","韩国库存可能售罄。若无法采购预订商品，将全额退款。"],["适用法律","本条款适用加州法律。"]]}
+  }
+});
+Object.assign(T.ja,{
+  doneLead:"", doneLead2:"宛てに確認メールを送りました（下にプレビュー）。", shipStock:"LA在庫 · 2〜3日でお届け", shipPre:"予約 · 韓国から約2〜3週間",
+  etaL:"お届け予定", etaStock:"2〜3営業日（すべてLA在庫）", etaPre:"約2〜3週間（一部はご注文後に韓国で仕入れ）",
+  cpL:"クーポン・紹介コード", cpPh:"WELCOME10 または GY-XXXX", cpApply:"適用", cpLine:"クーポン",
+  cpWelcomeOk:"初回10%オフ", cpRefOk:"紹介で$5オフ", cpBad:"このコードは確認できません。", cpFirstOnly:"WELCOME10は初回注文のみご利用いただけます。", cpOwn:"ご自身の紹介コードは使えません。", cpMin:"紹介コードは$30以上のご注文で使えます。",
+  st_paid:"注文受付", st_preparing_stock:"LAで梱包中", st_preparing_pre:"韓国で仕入れ → LAへ空輸", st_shipped:"発送済み", st_delivered:"お届け完了", trackNo:"追跡番号",
+  trackTitle:"注文状況の確認", trackLead:"注文番号と、購入時のメールアドレスを入力してください。", trackBtn:"注文を探す", trackNone:"一致する注文が見つかりません。", trackNote:"プロトタイプ：注文はこのブラウザにのみ保存され、状況はチームが手動で更新します。", trackLink:"注文状況",
+  mailL:"注文確認メール", mailDemo:"プレビュー・実際には送信されません", mailSubj:"Gyeolのご注文 {no} が確定しました", mailHi:"{name}様、ご注文ありがとうございます。領収書をお送りします。", mailTrack:"Gyeol → 注文状況から、注文番号とメールアドレスでいつでも確認できます。", mailRef:"紹介コード {code} をシェアしてください。お友だちは$30以上で$5オフ、お友だちの初回注文後にあなたへ$5のクレジット。",
+  refHead:"あなたの紹介コード", refLead:"お友だちは$30以上で$5オフ、あなたは$5クレジット。", copy:"コピー", copied:"コピーしました",
+  nextStatus:"次の段階へ", polUpdated:"最終更新：2026年11月8日",
+  polDraft:"授業プロジェクト用のポリシー草案で、法的助言ではありません。実際の開始前に弁護士の確認が必要です。",
+  pol:{
+    shipping:{h:"配送ポリシー", s:[["配送地域","現在はカリフォルニア州の住所のみ。2028年に他州へ広げる予定です。"],["お届け日数","「LA在庫」の商品は1営業日以内に出荷し、2〜3営業日でお届け。「予約」商品はご注文後に韓国で仕入れ、約2〜3週間かかります。混在した注文はすべて揃ってからまとめて発送します。"],["送料","韓国からの送料は価格に含まれているため、カリフォルニア州内は追加送料なしです。"],["追跡","発送時に追跡番号をお知らせします。注文状況ページでいつでも確認できます。"],["破損した商品","お届けから7日以内に写真をお送りいただければ、交換または返金します。"]]},
+    returns:{h:"返品・返金", s:[["未開封の商品","お届けから30日以内なら全額返金。前払いの返送ラベルをメールでお送りします。"],["開封済みの商品","衛生上、開封済みのスキンケアは破損・誤配送・使用期限切れを除き返品できません。"],["肌トラブル","使用を中止し、14日以内にご連絡ください。個別に確認し、早めにご報告いただいた場合は返金します。"],["予約のキャンセル","韓国で仕入れる前の24時間以内なら無料でキャンセルできます。それ以降は未開封品の規定に従います。"],["返金時期","お支払い方法へ5〜10営業日で返金されます。"]]},
+    privacy:{h:"プライバシー（CCPA）", s:[["収集する情報","氏名、メールアドレス、配送先、注文履歴、肌診断の回答、匿名の閲覧記録（例：どの商品を開いたか）。"],["利用目的","注文処理、領収書とご希望の再購入リマインドの送信、商品のおすすめ、ストアの改善。"],["しないこと","個人情報を販売したり、クロスコンテキスト行動広告のために共有したりしません。"],["あなたの権利","カリフォルニア州の居住者は、情報の開示・削除・訂正を求め、販売・共有を拒否できます。privacy@gyeol.example までご連絡ください。"],["このプロトタイプでは","すべての情報はご自身のブラウザ内にのみ保存され、ブラウザのデータを消去すると削除されます。"]]},
+    terms:{h:"販売条件", s:[["価格","価格は米ドルで、韓国からの送料と輸入関税を含みます。商品ごとに価格の内訳を表示しています。"],["売上税","お届け先の市（または市に属さない郡の地域）に応じ、注文日に有効なCDTFA税率でカリフォルニア州売上税を加算します。"],["商品情報","成分と使い方は韓国のラベルに基づきます。新しい商品は、特に敏感肌の方はパッチテストをしてください。"],["割引","1回の注文につきクーポンまたは紹介コードは1つまで。ルーティンセット割引はコード1つと併用でき、割引は税計算の前に適用されます。"],["在庫","韓国の在庫が売り切れることがあります。予約商品を仕入れられない場合は全額返金します。"],["準拠法","本条件はカリフォルニア州法に従います。"]]}
+  }
+});
 
 /* ---------- state ---------- */
 const S = {
@@ -822,7 +1334,8 @@ const S = {
   survey: {},
   coErrors: {},
   confirmClear: false,
-  toast: ""
+  toast: "",
+  pid: (()=>{ try{ const q=new URLSearchParams(location.search).get("p"); if(q){ const v=q.replace(/[^A-Za-z0-9_-]/g,"").slice(0,20); LS.set("pid", v); return v; } }catch(e){} return LS.get("pid", ""); })()
 };
 if(S.group !== "A" && S.group !== "B"){ S.group = Math.random() < 0.5 ? "A" : "B"; LS.set("group", S.group); }
 const t = k => (T[S.lang][k] ?? T.en[k]);
@@ -851,7 +1364,7 @@ function dealOf(p){ const n=p.en; if(/\(1\+1\)/.test(n)) return "1+1"; if(/doubl
 function dealLabel(d){ return d==="1+1" ? "1+1" : d==="2X" ? t("dealDouble") : t("dealGift"); }
 function priceBlock(p){
   const b = breakdown(p);
-  return `<div class="priceRow"><span class="price num">${money(b.price)}</span>${p.usNone?`<span class="rare">${esc(t("rareL"))}</span>`:""}</div>`;
+  return `<div class="priceRow"><span class="price num">${money(b.price)}</span>${p.usNone?`<span class="rare">${esc(t("rareL"))}</span>`:""}</div>${shipBadge(p.id)}`;
 }
 function toast(msg){ S.toast = msg; render(); clearTimeout(toast._t); toast._t = setTimeout(()=>{ S.toast=""; render(); }, 2200); }
 function go(view){ S.view = view; S.sheet = null; S.confirmClear = false; render(); window.scrollTo({top:0}); }
@@ -859,7 +1372,7 @@ function saveCart(){ LS.set("cart", S.cart); }
 
 /* ---------- views ---------- */
 function header(){
-  const nav = [["home",t("shop")],["quiz",t("quiz")],["news",t("news")]];
+  const nav = [["home",t("shop")],["quiz",t("quiz")],["news",t("news")],["about",t("about")]];
   return `<header class="top"><div class="wrap row">
     <button class="brand" data-go="home" aria-label="Gyeol home"><span class="ko">결</span><span class="en">GYEOL</span></button>
     <nav class="main" aria-label="Main">
@@ -951,6 +1464,7 @@ function resultsView(){
         <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span class="card-brand eyebrow" style="color:var(--ink-mute)">${esc(p.brand)}</span><h3 style="font-size:1.25rem">${esc(pname(p))}</h3><p class="why-text">${esc(reason)}</p></div>
         <div class="side">${priceBlock(p)}<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost sm" data-open="${p.id}" data-src="pick">${esc(t("view"))}</button><button class="btn sm" data-add="${p.id}" data-src="pick">${esc(t("addToCart"))}</button></div></div>
       </article>`; }).join("")}
+    ${(()=>{ const sum = S.picks.reduce((a,pk)=>a+(byId[pk.id]?breakdown(byId[pk.id]).price:0),0); return `<div class="setbox"><img class="setimg" src="set-gift.jpg" alt="" loading="lazy" onerror="this.remove()"><div style="flex:1;min-width:180px"><b>${esc(t("setBtn"))}</b><p class="small muted">${esc(t("setSave"))}: <s class="num">${money(sum)}</s> <b class="num">${money(sum*(1-SET_OFF))}</b></p></div><button class="btn" data-addset>${esc(t("setBtn"))}</button></div>`; })()}
     <p class="note">${esc(S.pickSource==="ai"? t("aiNote") : t("ruleNote"))}</p>
   </section>`;
 }
@@ -958,7 +1472,7 @@ function resultsView(){
 function sheetView(){
   const p = byId[S.sheet]; if(!p) return "";
   const b = breakdown(p);
-  const bd = `<div class="priceRow"><span class="price num" style="font-size:1.9rem">${money(b.price)}</span>${dealOf(p)?`<span class="deal-inline">${esc(dealLabel(dealOf(p)))}</span>`:""}${p.usNone?`<span class="rare">${esc(t("rareL"))}</span>`:""}</div>`;
+  const bd = `<div class="priceRow"><span class="price num" style="font-size:1.9rem">${money(b.price)}</span>${dealOf(p)?`<span class="deal-inline">${esc(dealLabel(dealOf(p)))}</span>`:""}${p.usNone?`<span class="rare">${esc(t("rareL"))}</span>`:""}</div>${shipBadge(p.id)}`;
   return `<div class="scrim" data-close></div>
   <aside class="sheet" role="dialog" aria-modal="true" aria-label="${esc(pname(p))}">
     <button class="btn ghost sm close" data-close>✕</button>
@@ -974,14 +1488,113 @@ function sheetView(){
   </aside>`;
 }
 
-/* State base sales tax rates (no local add-ons). Final tax is set at payment by address. */
-const STATE_TAX = {AL:.04,AK:0,AZ:.056,AR:.065,CA:.0725,CO:.029,CT:.0635,DE:0,DC:.06,FL:.06,GA:.04,HI:.04,ID:.06,IL:.0625,IN:.07,IA:.06,KS:.065,KY:.06,LA:.05,ME:.055,MD:.06,MA:.0625,MI:.06,MN:.06875,MS:.07,MO:.04225,MT:0,NE:.055,NV:.0685,NH:0,NJ:.06625,NM:.04875,NY:.04,NC:.0475,ND:.05,OH:.0575,OK:.045,OR:0,PA:.06,RI:.07,SC:.06,SD:.042,TN:.07,TX:.0625,UT:.0485,VT:.06,VA:.053,WA:.065,WV:.06,WI:.05,WY:.04};
-function taxState(){ return S.taxState || LS.get("coDraft",{}).state || "CA"; }
+/* California sales & use tax by city / unincorporated county. Source: CDTFA "California City & County Sales & Use Tax Rates", effective Oct 1, 2026. Update this table each quarter (Jan 1, Apr 1, Jul 1, Oct 1). */
+const CA_TAX_ASOF="2026-10-01";
+const CA_COUNTIES=[["Alameda",10.25],["Alpine",7.25],["Amador",7.75],["Butte",8.25],["Calaveras",8.25],["Colusa",7.75],["Contra Costa",8.75],["Del Norte",8.25],["El Dorado",7.25],["Fresno",7.975],["Glenn",7.25],["Humboldt",8.75],["Imperial",7.75],["Inyo",7.75],["Kern",8.25],["Kings",7.25],["Lake",7.25],["Lassen",7.25],["Los Angeles",10.25],["Madera",7.75],["Marin",8.25],["Mariposa",8.25],["Mendocino",7.875],["Merced",7.75],["Modoc",7.25],["Mono",7.25],["Monterey",8.75],["Napa",7.75],["Nevada",7.5],["Orange",7.75],["Placer",7.25],["Plumas",7.25],["Riverside",7.75],["Sacramento",7.75],["San Benito",8.25],["San Bernardino",7.75],["San Diego",7.75],["San Francisco",8.625],["San Joaquin",7.75],["San Luis Obispo",7.25],["San Mateo",9.375],["Santa Barbara",7.75],["Santa Clara",9.75],["Santa Cruz",9.5],["Shasta",7.25],["Sierra",7.25],["Siskiyou",7.25],["Solano",7.375],["Sonoma",9.25],["Stanislaus",7.875],["Sutter",7.25],["Tehama",7.25],["Trinity",7.25],["Tulare",7.75],["Tuolumne",7.25],["Ventura",7.25],["Yolo",7.25],["Yuba",8.25]];
+const CA_CITIES=[["Adelanto","San Bernardino",7.75],["Agoura Hills","Los Angeles",10.25],["Alameda","Alameda",10.75],["Albany","Alameda",10.75],["Alhambra","Los Angeles",11.0],["Aliso Viejo","Orange",7.75],["Alturas","Modoc",7.25],["Amador City","Amador",8.0],["American Canyon","Napa",7.75],["Anaheim","Orange",7.75],["Anderson","Shasta",7.75],["Angels Camp","Calaveras",8.75],["Antioch","Contra Costa",9.75],["Apple Valley","San Bernardino",8.75],["Arcadia","Los Angeles",11.0],["Arcata","Humboldt",10.25],["Arroyo Grande","San Luis Obispo",8.75],["Artesia","Los Angeles",11.0],["Arvin","Kern",8.25],["Atascadero","San Luis Obispo",8.75],["Atherton","San Mateo",9.375],["Atwater","Merced",8.75],["Auburn","Placer",7.25],["Avalon","Los Angeles",10.75],["Avenal","Kings",8.25],["Azusa","Los Angeles",11.25],["Bakersfield","Kern",8.25],["Baldwin Park","Los Angeles",11.0],["Banning","Riverside",7.75],["Barstow","San Bernardino",8.75],["Beaumont","Riverside",7.75],["Bell","Los Angeles",10.25],["Bell Gardens","Los Angeles",11.25],["Bellflower","Los Angeles",11.0],["Belmont","San Mateo",9.875],["Belvedere","Marin",8.25],["Benicia","Solano",9.625],["Berkeley","Alameda",10.25],["Beverly Hills","Los Angeles",10.25],["Big Bear Lake","San Bernardino",7.75],["Biggs","Butte",8.25],["Bishop","Inyo",8.75],["Blue Lake","Humboldt",9.75],["Blythe","Riverside",8.75],["Bradbury","Los Angeles",10.25],["Brawley","Imperial",8.75],["Brea","Orange",7.75],["Brentwood","Contra Costa",8.75],["Brisbane","San Mateo",9.875],["Buellton","Santa Barbara",7.75],["Buena Park","Orange",8.75],["Burbank","Los Angeles",11.0],["Burlingame","San Mateo",9.625],["Calabasas","Los Angeles",11.25],["Calexico","Imperial",8.25],["California City","Kern",8.25],["Calimesa","Riverside",7.75],["Calipatria","Imperial",7.75],["Calistoga","Napa",7.75],["Camarillo","Ventura",7.25],["Campbell","Santa Clara",10.5],["Canyon Lake","Riverside",7.75],["Capitola","Santa Cruz",9.25],["Carlsbad","San Diego",7.75],["Carmel-by-the-Sea","Monterey",9.25],["Carpinteria","Santa Barbara",9.0],["Carson","Los Angeles",11.0],["Cathedral City","Riverside",9.25],["Ceres","Stanislaus",8.375],["Cerritos","Los Angeles",10.25],["Chico","Butte",9.25],["Chino","San Bernardino",8.75],["Chino Hills","San Bernardino",7.75],["Chowchilla","Madera",8.75],["Chula Vista","San Diego",8.75],["Citrus Heights","Sacramento",7.75],["City of Commerce","Los Angeles",11.25],["City of Industry","Los Angeles",10.25],["Claremont","Los Angeles",10.25],["Clayton","Contra Costa",8.75],["Clearlake","Lake",8.75],["Cloverdale","Sonoma",10.0],["Clovis","Fresno",8.975],["Coachella","Riverside",8.75],["Coalinga","Fresno",8.975],["Colfax","Placer",7.25],["Colma","San Mateo",9.875],["Colton","San Bernardino",8.75],["Colusa","Colusa",8.75],["Compton","Los Angeles",11.25],["Concord","Contra Costa",9.75],["Corcoran","Kings",8.25],["Corning","Tehama",7.75],["Corona","Riverside",8.75],["Coronado","San Diego",7.75],["Corte Madera","Marin",9.0],["Costa Mesa","Orange",7.75],["Cotati","Sonoma",10.25],["Covina","Los Angeles",11.25],["Crescent City","Del Norte",8.25],["Cudahy","Los Angeles",11.0],["Culver City","Los Angeles",11.25],["Cupertino","Santa Clara",9.75],["Cypress","Orange",7.75],["Daly City","San Mateo",9.875],["Dana Point","Orange",7.75],["Danville","Contra Costa",8.75],["Davis","Yolo",9.25],["Del Mar","San Diego",8.75],["Del Rey Oaks","Monterey",9.25],["Delano","Kern",8.25],["Desert Hot Springs","Riverside",8.75],["Diamond Bar","Los Angeles",10.25],["Dinuba","Tulare",8.5],["Dixon","Solano",8.375],["Dorris","Siskiyou",7.25],["Dos Palos","Merced",8.25],["Downey","Los Angeles",11.0],["Duarte","Los Angeles",11.0],["Dublin","Alameda",10.25],["Dunsmuir","Siskiyou",8.25],["East Palo Alto","San Mateo",9.875],["Eastvale","Riverside",7.75],["El Cajon","San Diego",8.25],["El Centro","Imperial",8.25],["El Cerrito","Contra Costa",10.25],["El Monte","Los Angeles",11.0],["El Segundo","Los Angeles",10.75],["Elk Grove","Sacramento",8.75],["Emeryville","Alameda",10.5],["Encinitas","San Diego",7.75],["Escalon","San Joaquin",8.75],["Escondido","San Diego",8.75],["Etna","Siskiyou",7.25],["Eureka","Humboldt",10.25],["Exeter","Tulare",8.75],["Fairfax","Marin",9.0],["Fairfield","Solano",8.375],["Farmersville","Tulare",8.75],["Ferndale","Humboldt",9.5],["Fillmore","Ventura",7.25],["Firebaugh","Fresno",7.975],["Folsom","Sacramento",7.75],["Fontana","San Bernardino",8.75],["Fort Bragg","Mendocino",9.25],["Fort Jones","Siskiyou",7.25],["Fortuna","Humboldt",9.5],["Foster City","San Mateo",9.375],["Fountain Valley","Orange",8.75],["Fowler","Fresno",8.975],["Fremont","Alameda",10.25],["Fresno","Fresno",8.35],["Fullerton","Orange",7.75],["Galt","Sacramento",9.25],["Garden Grove","Orange",8.75],["Gardena","Los Angeles",11.25],["Gilroy","Santa Clara",9.75],["Glendale","Los Angeles",11.0],["Glendora","Los Angeles",11.25],["Goleta","Santa Barbara",8.75],["Gonzales","Monterey",8.75],["Grand Terrace","San Bernardino",7.75],["Grass Valley","Nevada",8.875],["Greenfield","Monterey",9.5],["Gridley","Butte",8.25],["Grover Beach","San Luis Obispo",8.75],["Guadalupe","Santa Barbara",8.75],["Gustine","Merced",8.25],["Half Moon Bay","San Mateo",9.875],["Hanford","Kings",8.25],["Hawaiian Gardens","Los Angeles",11.0],["Hawthorne","Los Angeles",11.0],["Hayward","Alameda",10.75],["Healdsburg","Sonoma",9.75],["Hemet","Riverside",8.75],["Hercules","Contra Costa",9.25],["Hermosa Beach","Los Angeles",10.25],["Hesperia","San Bernardino",7.75],["Hidden Hills","Los Angeles",10.25],["Highland","San Bernardino",7.75],["Hillsborough","San Mateo",9.375],["Hollister","San Benito",9.25],["Holtville","Imperial",7.75],["Hughson","Stanislaus",7.875],["Huntington Beach","Orange",7.75],["Huntington Park","Los Angeles",11.0],["Huron","Fresno",8.975],["Imperial","Imperial",7.75],["Imperial Beach","San Diego",8.75],["Indian Wells","Riverside",7.75],["Indio","Riverside",8.75],["Inglewood","Los Angeles",10.75],["Ione","Amador",7.75],["Irvine","Orange",7.75],["Irwindale","Los Angeles",11.25],["Isleton","Sacramento",8.75],["Jackson","Amador",7.75],["Jurupa Valley","Riverside",7.75],["Kerman","Fresno",8.975],["King City","Monterey",8.75],["Kingsburg","Fresno",8.975],["La Cañada Flintridge","Los Angeles",11.0],["La Habra","Orange",8.75],["La Habra Heights","Los Angeles",10.25],["La Mesa","San Diego",8.5],["La Mirada","Los Angeles",10.25],["La Palma","Orange",8.75],["La Puente","Los Angeles",10.75],["La Quinta","Riverside",8.75],["La Verne","Los Angeles",11.0],["Lafayette","Contra Costa",9.25],["Laguna Beach","Orange",7.75],["Laguna Hills","Orange",7.75],["Laguna Niguel","Orange",7.75],["Laguna Woods","Orange",7.75],["Lake Elsinore","Riverside",8.75],["Lake Forest","Orange",7.75],["Lakeport","Lake",8.75],["Lakewood","Los Angeles",11.0],["Lancaster","Los Angeles",11.75],["Larkspur","Marin",9.25],["Lathrop","San Joaquin",8.75],["Lawndale","Los Angeles",11.0],["Lemon Grove","San Diego",8.75],["Lemoore","Kings",8.25],["Lincoln","Placer",7.25],["Lindsay","Tulare",8.75],["Live Oak","Sutter",7.25],["Livermore","Alameda",10.25],["Livingston","Merced",8.75],["Lodi","San Joaquin",8.25],["Loma Linda","San Bernardino",7.75],["Lomita","Los Angeles",11.0],["Lompoc","Santa Barbara",8.75],["Long Beach","Los Angeles",11.0],["Loomis","Placer",7.5],["Los Alamitos","Orange",9.25],["Los Altos","Santa Clara",9.75],["Los Altos Hills","Santa Clara",9.75],["Los Angeles","Los Angeles",10.25],["Los Banos","Merced",8.75],["Los Gatos","Santa Clara",9.875],["Loyalton","Sierra",7.25],["Lynwood","Los Angeles",11.25],["Madera","Madera",8.25],["Malibu","Los Angeles",10.75],["Mammoth Lakes","Mono",7.75],["Manhattan Beach","Los Angeles",10.75],["Manteca","San Joaquin",9.0],["Maricopa","Kern",8.25],["Marina","Monterey",9.25],["Martinez","Contra Costa",9.75],["Marysville","Yuba",8.25],["Maywood","Los Angeles",10.25],["McFarland","Kern",9.25],["Mendota","Fresno",9.225],["Menifee","Riverside",8.75],["Menlo Park","San Mateo",9.375],["Merced","Merced",8.25],["Mill Valley","Marin",9.25],["Millbrae","San Mateo",9.375],["Milpitas","Santa Clara",10.0],["Mission Viejo","Orange",7.75],["Modesto","Stanislaus",8.875],["Monrovia","Los Angeles",11.0],["Montague","Siskiyou",7.25],["Montclair","San Bernardino",9.0],["Monte Sereno","Santa Clara",9.75],["Montebello","Los Angeles",11.0],["Monterey","Monterey",9.25],["Monterey Park","Los Angeles",11.0],["Moorpark","Ventura",7.25],["Moraga","Contra Costa",9.75],["Moreno Valley","Riverside",8.75],["Morgan Hill","Santa Clara",9.75],["Morro Bay","San Luis Obispo",8.75],["Mount Shasta","Siskiyou",7.5],["Mountain House","San Joaquin",7.75],["Mountain View","Santa Clara",9.75],["Murrieta","Riverside",8.75],["Napa","Napa",8.75],["National City","San Diego",8.75],["Needles","San Bernardino",7.75],["Nevada City","Nevada",8.875],["Newark","Alameda",10.75],["Newman","Stanislaus",7.875],["Newport Beach","Orange",7.75],["Norco","Riverside",8.75],["Norwalk","Los Angeles",11.0],["Novato","Marin",9.25],["Oakdale","Stanislaus",8.375],["Oakland","Alameda",10.75],["Oakley","Contra Costa",8.75],["Oceanside","San Diego",8.25],["Ojai","Ventura",7.25],["Ontario","San Bernardino",8.75],["Orange","Orange",7.75],["Orange Cove","Fresno",7.975],["Orinda","Contra Costa",9.75],["Orland","Glenn",8.25],["Oroville","Butte",9.25],["Oxnard","Ventura",9.25],["Pacific Grove","Monterey",9.25],["Pacifica","San Mateo",9.875],["Palm Desert","Riverside",8.75],["Palm Springs","Riverside",9.25],["Palmdale","Los Angeles",11.75],["Palo Alto","Santa Clara",9.75],["Palos Verdes Estates","Los Angeles",10.25],["Paradise","Butte",8.75],["Paramount","Los Angeles",11.0],["Parlier","Fresno",8.975],["Pasadena","Los Angeles",11.0],["Paso Robles","San Luis Obispo",8.75],["Patterson","Stanislaus",7.875],["Perris","Riverside",8.75],["Petaluma","Sonoma",10.25],["Pico Rivera","Los Angeles",11.25],["Piedmont","Alameda",10.25],["Pinole","Contra Costa",10.25],["Pismo Beach","San Luis Obispo",8.25],["Pittsburg","Contra Costa",9.25],["Placentia","Orange",8.75],["Placerville","El Dorado",8.25],["Pleasant Hill","Contra Costa",9.25],["Pleasanton","Alameda",10.25],["Plymouth","Amador",7.75],["Point Arena","Mendocino",9.25],["Pomona","Los Angeles",11.0],["Port Hueneme","Ventura",8.75],["Porterville","Tulare",9.25],["Portola","Plumas",7.25],["Portola Valley","San Mateo",9.375],["Poway","San Diego",7.75],["Rancho Cordova","Sacramento",8.75],["Rancho Cucamonga","San Bernardino",7.75],["Rancho Mirage","Riverside",7.75],["Rancho Palos Verdes","Los Angeles",10.25],["Rancho Santa Margarita","Orange",7.75],["Red Bluff","Tehama",8.5],["Redding","Shasta",7.25],["Redlands","San Bernardino",8.75],["Redondo Beach","Los Angeles",10.25],["Redwood City","San Mateo",9.875],["Reedley","Fresno",9.225],["Rialto","San Bernardino",7.75],["Richmond","Contra Costa",9.75],["Ridgecrest","Kern",9.25],["Rio Dell","Humboldt",9.5],["Rio Vista","Solano",9.125],["Ripon","San Joaquin",7.75],["Riverbank","Stanislaus",7.875],["Riverside","Riverside",8.75],["Rocklin","Placer",7.25],["Rohnert Park","Sonoma",9.75],["Rolling Hills","Los Angeles",10.25],["Rolling Hills Estates","Los Angeles",10.25],["Rosemead","Los Angeles",10.25],["Roseville","Placer",7.75],["Ross","Marin",8.25],["Sacramento","Sacramento",8.75],["Salinas","Monterey",9.25],["San Anselmo","Marin",9.25],["San Bernardino","San Bernardino",8.75],["San Bruno","San Mateo",9.875],["San Carlos","San Mateo",9.375],["San Clemente","Orange",7.75],["San Diego","San Diego",7.75],["San Dimas","Los Angeles",10.25],["San Fernando","Los Angeles",11.0],["San Francisco","San Francisco",8.625],["San Gabriel","Los Angeles",11.0],["San Jacinto","Riverside",8.75],["San Joaquin","Fresno",7.975],["San Jose","Santa Clara",10.0],["San Juan Bautista","San Benito",9.0],["San Juan Capistrano","Orange",7.75],["San Leandro","Alameda",10.75],["San Luis Obispo","San Luis Obispo",8.75],["San Marcos","San Diego",8.75],["San Marino","Los Angeles",11.25],["San Mateo","San Mateo",9.625],["San Pablo","Contra Costa",9.5],["San Rafael","Marin",9.25],["San Ramon","Contra Costa",9.75],["Sand City","Monterey",9.25],["Sanger","Fresno",8.725],["Santa Ana","Orange",9.25],["Santa Barbara","Santa Barbara",9.25],["Santa Clara","Santa Clara",9.75],["Santa Clarita","Los Angeles",10.25],["Santa Cruz","Santa Cruz",9.75],["Santa Fe Springs","Los Angeles",11.5],["Santa Maria","Santa Barbara",8.75],["Santa Monica","Los Angeles",11.25],["Santa Paula","Ventura",9.25],["Santa Rosa","Sonoma",10.0],["Santee","San Diego",7.75],["Saratoga","Santa Clara",9.75],["Sausalito","Marin",9.25],["Scotts Valley","Santa Cruz",9.75],["Seal Beach","Orange",9.25],["Seaside","Monterey",9.25],["Sebastopol","Sonoma",10.5],["Selma","Fresno",8.475],["Shafter","Kern",7.25],["Shasta Lake","Shasta",7.25],["Sierra Madre","Los Angeles",11.0],["Signal Hill","Los Angeles",11.0],["Simi Valley","Ventura",7.25],["Solana Beach","San Diego",8.75],["Soledad","Monterey",9.25],["Solvang","Santa Barbara",8.75],["Sonoma","Sonoma",10.25],["Sonora","Tuolumne",8.75],["South El Monte","Los Angeles",11.25],["South Gate","Los Angeles",11.25],["South Lake Tahoe","El Dorado",8.75],["South Pasadena","Los Angeles",11.0],["South San Francisco","San Mateo",9.875],["St. Helena","Napa",8.25],["Stanton","Orange",8.75],["Stockton","San Joaquin",9.0],["Suisun City","Solano",9.125],["Sunnyvale","Santa Clara",9.75],["Susanville","Lassen",8.25],["Sutter Creek","Amador",8.75],["Taft","Kern",8.25],["Tehachapi","Kern",8.25],["Tehama","Tehama",7.25],["Temecula","Riverside",8.75],["Temple City","Los Angeles",11.0],["Thousand Oaks","Ventura",7.25],["Tiburon","Marin",8.25],["Torrance","Los Angeles",10.75],["Tracy","San Joaquin",8.25],["Trinidad","Humboldt",9.5],["Truckee","Nevada",9.0],["Tulare","Tulare",8.25],["Tulelake","Siskiyou",7.25],["Turlock","Stanislaus",8.625],["Tustin","Orange",7.75],["Twentynine Palms","San Bernardino",7.75],["Ukiah","Mendocino",8.875],["Union City","Alameda",10.75],["Upland","San Bernardino",7.75],["Vacaville","Solano",8.125],["Vallejo","Solano",9.25],["Ventura","Ventura",7.75],["Vernon","Los Angeles",11.0],["Victorville","San Bernardino",8.75],["Villa Park","Orange",7.75],["Visalia","Tulare",8.5],["Vista","San Diego",8.25],["Walnut","Los Angeles",10.25],["Walnut Creek","Contra Costa",9.25],["Wasco","Kern",8.25],["Waterford","Stanislaus",7.875],["Watsonville","Santa Cruz",9.75],["Weed","Siskiyou",7.5],["West Covina","Los Angeles",10.25],["West Hollywood","Los Angeles",11.0],["West Sacramento","Yolo",9.25],["Westlake Village","Los Angeles",10.25],["Westminster","Orange",9.25],["Westmorland","Imperial",7.75],["Wheatland","Yuba",7.75],["Whittier","Los Angeles",11.0],["Wildomar","Riverside",8.75],["Williams","Colusa",8.25],["Willits","Mendocino",9.125],["Willows","Glenn",8.75],["Windsor","Sonoma",9.25],["Winters","Yolo",8.25],["Woodlake","Tulare",8.75],["Woodland","Yolo",8.0],["Woodside","San Mateo",9.375],["Yorba Linda","Orange",7.75],["Yountville","Napa",7.75],["Yreka","Siskiyou",8.75],["Yuba City","Sutter",7.25],["Yucaipa","San Bernardino",8.75],["Yucca Valley","San Bernardino",8.75]];
+const CA_BASE = 7.25;
+const CITY_BY = Object.fromEntries(CA_CITIES.map(([n,c,r])=>[n+"|"+c, r]));
+const COUNTY_RATE = Object.fromEntries(CA_COUNTIES);
+function taxLoc(){
+  const d = LS.get("coDraft", {}); const c = d.county, pl = d.place;
+  if(c && COUNTY_RATE[c]!=null){
+    if(pl==="__uninc") return { county:c, city:"", uninc:true, rate:COUNTY_RATE[c]/100, label:c+" County · "+t("uninShort") };
+    if(pl && CITY_BY[pl+"|"+c]!=null) return { county:c, city:pl, uninc:false, rate:CITY_BY[pl+"|"+c]/100, label:pl+", "+c+" County" };
+  }
+  return { county:"", city:"", rate:CA_BASE/100, label:t("taxBase"), unset:true };
+}
 function totals(){
   let sub = 0; for(const [id,q] of Object.entries(S.cart)){ if(byId[id]) sub += breakdown(byId[id]).price*q; }
-  const st = taxState(), rate = STATE_TAX[st] ?? 0, tax = Math.round(sub*rate*100)/100;
-  return { sub, tax, rate, st, total: sub+tax };
+  const set = routineSet(); const disc = set ? Math.round(set.reduce((a,id)=>a+breakdown(byId[id]).price,0)*SET_OFF*100)/100 : 0;
+  const cp = couponInfo(LS.get("coupon",""), sub-disc); const cpAmt = cp && !cp.err ? Math.min(cp.amt, sub-disc) : 0;
+  const loc = taxLoc(), rate = loc.rate, tax = Math.round((sub-disc-cpAmt)*rate*100)/100;
+  const eta = etaOf(Object.keys(S.cart).filter(id=>S.cart[id]>0));
+  return { sub, disc, cp, cpAmt, tax, rate, loc, eta, total: sub-disc-cpAmt+tax };
 }
+const taxPct = r => (Math.round(r*100000)/1000).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")+"%";
+function taxPicker(compact){
+  const d = LS.get("coDraft", {}), e = S.coErrors||{};
+  const cities = d.county ? CA_CITIES.filter(x=>x[1]===d.county) : [];
+  return `<div class="taxpick${compact?" compact":""}">
+    <label for="tx-county${compact?"-c":""}">${esc(t("countyL"))}<select id="tx-county${compact?"-c":""}" name="county" data-taxcounty>
+      <option value="">${esc(t("chooseCounty"))}</option>${CA_COUNTIES.map(([c])=>`<option value="${esc(c)}" ${d.county===c?"selected":""}>${esc(c)} County</option>`).join("")}</select>${!compact&&e.county?`<span class="err">${esc(e.county)}</span>`:""}</label>
+    <label for="tx-place${compact?"-c":""}">${esc(t("city"))}<select id="tx-place${compact?"-c":""}" name="place" data-taxplace ${d.county?"":"disabled"}>
+      <option value="">${esc(t("chooseCity"))}</option>${cities.map(([n,,r])=>`<option value="${esc(n)}" ${d.place===n?"selected":""}>${esc(n)} — ${taxPct(r/100)}</option>`).join("")}
+      ${d.county?`<option value="__uninc" ${d.place==="__uninc"?"selected":""}>${esc(t("uninc"))} — ${taxPct(COUNTY_RATE[d.county]/100)}</option>`:""}</select>${!compact&&e.place?`<span class="err">${esc(e.place)}</span>`:""}</label>
+  </div>`;
+}
+/* ---------- v22: launch demo — hybrid fulfillment, coupons & referrals, order lookup, email preview, policies ---------- */
+/* Hybrid model (assumption for the plan): the 10 items we expect to sell most are held in LA; everything else is bought in Korea after you order. */
+const LA_STOCK = new Set(["cellfusion-pad","fation-pad","skinfood-potato","drg-cream","centellian-madeca","beplain-cicaterol-cream","bringgreen-toner","torriden-mask","laneige-lip","athe-suncushion"]);
+const shipOf = id => LA_STOCK.has(id) ? "stock" : "pre";
+const etaOf = ids => ids.some(id=>!LA_STOCK.has(id)) ? "pre" : "stock";
+function shipBadge(id){ const k=shipOf(id); return `<span class="ship ship-${k}">${esc(t(k==="stock"?"shipStock":"shipPre"))}</span>`; }
+/* Referral codes carry a check letter so they work on any device: GY-ABCx */
+const REF_ABC = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function refCheck(s){ let h=7; for(const ch of s) h=(h*31+REF_ABC.indexOf(ch))%REF_ABC.length; return REF_ABC[h]; }
+function makeRef(){ let s=""; for(let i=0;i<3;i++) s+=REF_ABC[Math.floor(Math.random()*REF_ABC.length)]; return "GY-"+s+refCheck(s); }
+function refValid(code){ const m=/^GY-([A-Z2-9]{3})([A-Z2-9])$/.exec(code); return !!m && refCheck(m[1])===m[2]; }
+const REF_OFF = 5, REF_MIN = 30, WELCOME = 0.10;
+function couponInfo(raw, base){
+  const code = String(raw||"").trim().toUpperCase(); if(!code) return null;
+  if(code==="WELCOME10"){ if(LS.get("orders",[]).length || LS.get("usedWelcome",false)) return {code, err:t("cpFirstOnly")}; return {code, kind:"welcome", amt:Math.round(base*WELCOME*100)/100}; }
+  if(refValid(code)){ if(LS.get("myRef","")===code) return {code, err:t("cpOwn")}; if(base < REF_MIN) return {code, err:t("cpMin")}; return {code, kind:"ref", amt:REF_OFF}; }
+  return {code, err:t("cpBad")};
+}
+function couponBox(tt){
+  const cp = tt.cp;
+  if(cp && !cp.err) return `<div class="cpform on"><span class="small"><b>${esc(cp.code)}</b> ${esc(t(cp.kind==="welcome"?"cpWelcomeOk":"cpRefOk"))}</span><button type="button" class="linkbtn small" data-cprm>${esc(t("remove"))}</button></div>`;
+  return `<form class="cpform" data-cpform><label class="sr" for="cp-in">${esc(t("cpL"))}</label><input id="cp-in" name="code" placeholder="${esc(t("cpPh"))}" value="${esc(cp?cp.code:"")}" autocomplete="off" maxlength="12"><button class="btn ghost sm" type="submit">${esc(t("cpApply"))}</button>${cp&&cp.err?`<span class="err full">${esc(cp.err)}</span>`:""}</form>`;
+}
+const STATUS = ["paid","preparing","shipped","delivered"];
+function statusSteps(o){
+  const i = Math.max(0, STATUS.indexOf(o.status||"paid"));
+  return `<ol class="steps">${STATUS.map((s,j)=>`<li class="${j<i?"done":j===i?"now":""}"><b>${esc(t("st_"+s+(s==="preparing"?"_"+(o.eta||"pre"):"")))}</b>${j===2&&o.tracking&&j<=i?`<span class="small muted">${esc(t("trackNo"))}: <span class="num">${esc(o.tracking)}</span></span>`:""}</li>`).join("")}</ol>`;
+}
+function emailPreview(o){
+  const it = o.items.map(i=>{ const p=byId[i.id]; return `<tr><td>${esc(p?p.brand+" "+pname(p):i.id)} × ${i.q}</td><td class="r num">${money(i.price*i.q)}</td></tr>`; }).join("");
+  return `<article class="mail" aria-label="${esc(t("mailL"))}">
+    <p class="small muted">${esc(t("mailL"))} · ${esc(t("mailDemo"))}</p>
+    <p class="mail-subj"><b>${esc(t("mailSubj").replace("{no}", o.no))}</b></p>
+    <p>${esc(t("mailHi").replace("{name}", (o.name||"").split(" ")[0] || ""))}</p>
+    <table class="mail-t">${it}
+      <tr><td>${esc(t("subtotal"))}</td><td class="r num">${money(o.subtotal)}</td></tr>
+      ${o.discount?`<tr><td>${esc(t("setLine"))}</td><td class="r num">−${money(o.discount)}</td></tr>`:""}
+      ${o.couponAmt?`<tr><td>${esc(t("cpLine"))} ${esc(o.coupon)}</td><td class="r num">−${money(o.couponAmt)}</td></tr>`:""}
+      <tr><td>${esc(t("tax"))} (${esc(o.city||o.county||"CA")} ${taxPct(o.taxRate)})</td><td class="r num">${money(o.tax)}</td></tr>
+      <tr class="tot"><td>${esc(t("total"))}</td><td class="r num">${money(o.total)}</td></tr></table>
+    <p><b>${esc(t("etaL"))}:</b> ${esc(t(o.eta==="stock"?"etaStock":"etaPre"))}</p>
+    <p class="small">${esc(t("mailTrack"))}</p>
+    <p class="small">${esc(t("mailRef").replace("{code}", o.refCode))}</p>
+  </article>`;
+}
+function trackView(){
+  const r = S.trackRes;
+  return `<section class="section track" style="margin-top:0">
+    <div class="section-head"><h2>${esc(t("trackTitle"))}</h2></div>
+    <p class="muted">${esc(t("trackLead"))}</p>
+    <form class="co trackform" data-trackform novalidate>
+      <label for="tr-no">${esc(t("orderNo"))}<input id="tr-no" name="no" placeholder="GY-261108-AB12" value="${esc(S.trackNo||"")}" autocomplete="off"></label>
+      <label for="tr-em">${esc(t("email"))}<input id="tr-em" name="email" type="email" value="${esc(S.trackEm||"")}"></label>
+      <div class="full"><button class="btn" type="submit">${esc(t("trackBtn"))}</button></div>
+    </form>
+    ${r===false?`<p class="err">${esc(t("trackNone"))}</p>`:""}
+    ${r?`<div class="trackres"><p><b class="num">${esc(r.no)}</b> · ${esc(r.at.slice(0,10))} · ${money(r.total)}</p>${statusSteps(r)}<p class="small muted">${esc(t("etaL"))}: ${esc(t(r.eta==="stock"?"etaStock":"etaPre"))}</p></div>`:""}
+    <p class="note">${esc(t("trackNote"))}</p>
+  </section>`;
+}
+const POLICY_TABS = ["shipping","returns","privacy","terms"];
+function policyView(){
+  const tab = POLICY_TABS.includes(S.policy) ? S.policy : "shipping";
+  const P = t("pol")[tab];
+  return `<section class="section policy" style="margin-top:0">
+    <div class="tabs" role="tablist">${POLICY_TABS.map(k=>`<button role="tab" aria-selected="${k===tab}" class="tab${k===tab?" on":""}" data-pol="${k}">${esc(t("pol")[k].h)}</button>`).join("")}</div>
+    <h2>${esc(P.h)}</h2><p class="small muted">${esc(t("polUpdated"))}</p>
+    ${P.s.map(([h,b])=>`<h3>${esc(h)}</h3><p>${esc(b)}</p>`).join("")}
+    <p class="banner">${esc(t("polDraft"))}</p>
+  </section>`;
+}
+
 function cartView(){
   const lines = Object.entries(S.cart).filter(([id,q])=>byId[id]&&q>0);
   if(!lines.length) return `<section class="done"><h2>${esc(t("empty"))}</h2><p class="muted">${esc(t("emptyHint"))}</p><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center"><button class="btn" data-go="quiz">${esc(t("startQuiz"))}</button><button class="btn ghost" data-go="home">${esc(t("browse"))}</button></div></section>`;
@@ -990,7 +1603,7 @@ function cartView(){
     <div class="section-head"><h2>${esc(t("cartTitle"))}</h2><span class="muted num">${cartCount()} ${esc(t("items"))}</span></div>
     <div class="two">
       <div>${lines.map(([id,q])=>{ const p=byId[id]; const pr=breakdown(p).price; return `<div class="line">${tile(p)}
-        <div style="min-width:0"><div class="small muted">${esc(p.brand)}</div><div>${esc(pname(p))}</div><button class="linkbtn small" data-rm="${id}">${esc(t("remove"))}</button></div>
+        <div style="min-width:0"><div class="small muted">${esc(p.brand)}</div><div>${esc(pname(p))}</div>${shipBadge(id)}<button class="linkbtn small" data-rm="${id}">${esc(t("remove"))}</button></div>
         <div class="qty"><button data-cq="${id}" data-d="-1" aria-label="Less">−</button><span class="num">${q}</span><button data-cq="${id}" data-d="1" aria-label="More">+</button></div>
         <div class="lt num">${money(pr*q)}</div></div>`; }).join("")}</div>
       ${summaryBox(tt, `<button class="btn" data-go="checkout">${esc(t("checkout"))}</button>`, true)}
@@ -1000,11 +1613,18 @@ function cartView(){
 function summaryBox(tt, action, withPicker){
   return `<aside class="summary">
     <div class="r"><span>${esc(t("subtotal"))}</span><span class="num">${money(tt.sub)}</span></div>
-    <div class="r"><span>${esc(t("tax"))} <span class="small muted">(${esc(tt.st)} ${(tt.rate*100).toFixed(tt.rate*1000%1?3:2).replace(/0+$/,"").replace(/\.$/,"")}%)</span></span><span class="num">${money(tt.tax)}</span></div>
-    ${withPicker?`<label class="small" for="tax-state">${esc(t("shipTo"))}<select id="tax-state" data-taxstate>${STATES.map(x=>`<option ${tt.st===x?"selected":""}>${x}</option>`).join("")}</select></label>`:""}
+    ${tt.disc?`<div class="r"><span>${esc(t("setLine"))}</span><span class="num pos">−${money(tt.disc)}</span></div>`:""}
+    ${tt.cpAmt?`<div class="r"><span>${esc(t("cpLine"))} <span class="small muted">${esc(tt.cp.code)}</span></span><span class="num pos">−${money(tt.cpAmt)}</span></div>`:""}
+    ${couponBox(tt)}
+    ${withPicker? `<p class="small" style="margin:4px 0 0"><b>${esc(t("taxLocL"))}</b></p>${taxPicker(true)}` : ""}
+    <div class="r"><span>${esc(t("tax"))} <span class="small muted">(${esc(tt.loc.label)} ${taxPct(tt.rate)})</span></span><span class="num">${money(tt.tax)}</span></div>
+    ${tt.loc.unset?`<p class="small muted">${esc(t("taxPick"))}</p>`:""}
+    <p class="small"><b>${esc(t("caOnly"))}</b></p>
     <div class="r total"><span>${esc(t("total"))}</span><span class="num">${money(tt.total)}</span></div>
+    <p class="small eta"><b>${esc(t("etaL"))}:</b> ${esc(t(tt.eta==="stock"?"etaStock":"etaPre"))}</p>
     <p class="note">${esc(t("taxNote"))}</p>
     ${action||""}
+    ${withPicker? waitlistBox() : ""}
   </aside>`;
 }
 const STATES = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
@@ -1021,9 +1641,10 @@ function checkoutView(){
         ${f("name",t("name"),"text","full")}
         ${f("email",t("email"),"email","full")}
         ${f("addr",t("addr"),"text","full")}
-        ${f("city",t("city"))}
-        <label for="co-state">${esc(t("state"))}<select id="co-state" name="state" data-taxstate>${STATES.map(s=>`<option ${ taxState()===s?"selected":""}>${s}</option>`).join("")}</select></label>
+        <div class="full">${taxPicker(false)}</div>
+        ${d.place==="__uninc" ? f("city",t("mailCityL")) : ""}
         ${f("zip",t("zip"))}
+        <label class="full check"><input type="checkbox" name="remind" ${d.remind?"checked":""}> ${esc(t("remindL"))}</label>
         <div class="full" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
           <button class="btn" type="submit">${esc(t("placeOrder"))}</button>
           <button class="btn ghost" type="button" disabled title="${esc(t("stripeSoon"))}">${esc(t("stripeTest"))}</button>
@@ -1042,7 +1663,11 @@ function doneView(){
     <p class="muted">${esc(t("orderNo"))} <b class="num">${esc(o.no)}</b></p>
     <p>${esc(t("doneLead"))} <b>${esc(o.email)}</b> ${esc(t("doneLead2"))}</p>
     <p class="banner">${esc(t("protoBanner"))}</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center"><button class="btn" data-go="survey">${esc(t("giveFeedback"))}</button><button class="btn ghost" data-go="home">${esc(t("keepShopping"))}</button></div>
+    <div class="refbox"><div><b>${esc(t("refHead"))}</b><p class="small muted">${esc(t("refLead"))}</p></div><span class="refcode num">${esc(o.refCode||"")}</span><button class="btn ghost sm" data-copy="${esc(o.refCode||"")}">${esc(t("copy"))}</button></div>
+    ${statusSteps(o)}
+    ${emailPreview(o)}
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center"><button class="btn ghost" data-trackfill="${esc(o.no)}">${esc(t("trackLink"))}</button><button class="btn" data-go="survey">${esc(t("giveFeedback"))}</button><button class="btn ghost" data-go="home">${esc(t("keepShopping"))}</button></div>
+    ${o.remind? "" : subscribeBox("done")}
   </section>`;
 }
 
@@ -1051,8 +1676,10 @@ function surveyView(){
     return `<div class="likert"><span>${i+1}. ${esc(s)}</span><div class="scale" role="group" aria-label="${esc(s)}">${t("sa").map((l,j)=>`<button data-sv="${id}" data-v="${j+1}" aria-pressed="${v===j+1}">${esc(l)}</button>`).join("")}</div></div>`; }).join("")}</div>`;
   return `<section class="survey">
     <div><p class="eyebrow">${esc(t("giveFeedback"))}</p><h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem)">${esc(t("svTitle"))}</h2><p class="muted" style="margin-top:8px">${esc(t("svLead"))}</p></div>
+    <label class="small" for="sv-pid" style="max-width:280px">${esc(t("pidL"))}<input id="sv-pid" data-pid value="${esc(S.pid||"")}" maxlength="20"></label>
     ${block(t("svSusHead"),"sus",t("sus"))}
     ${block(t("svTrustHead"),"trust",t("trust"))}
+    ${block(t("svRecHead"),"rec",t("rec"))}
     ${block(t("svIntentHead"),"intent",t("intent"))}
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn" data-svsubmit>${esc(t("submit"))}</button>${S.svErr?`<span class="err">${esc(t("svMissing"))}</span>`:""}</div>
   </section>`;
@@ -1067,7 +1694,7 @@ function teamView(){
   const susBy = g => mean(sv.filter(r=>r.group===g).map(r=>r.sus));
   const trustBy = g => mean(sv.filter(r=>r.group===g).map(r=>r.trust));
   const f1 = n => n==null ? "–" : n.toFixed(1);
-  const statRows = [["quiz_done",t("sessions")],["pick_click",t("clicks")],["breakdown_view",t("views")],["add_to_cart",t("carts")],["order",t("orders")]];
+  const statRows = [["quiz_done",t("sessions")],["pick_click",t("clicks")],["add_routine_set","Routine sets"],["add_to_cart",t("carts")],["order",t("orders")]];
   return `<section class="section" style="margin-top:0">
     <div class="section-head"><div><p class="eyebrow">Team 12</p><h2>${esc(t("teamTitle"))}</h2></div>
       <div class="filters" role="group" aria-label="${esc(t("group"))}"><span class="small muted" style="align-self:center">${esc(t("group"))}</span>
@@ -1081,6 +1708,10 @@ function teamView(){
       <div><span class="small muted">${esc(t("surveys"))}</span><b>${sv.length}</b><span class="small muted num">A ${sv.filter(r=>r.group==="A").length} · B ${sv.filter(r=>r.group==="B").length}</span></div>
       <div><span class="small muted">${esc(t("avgSus"))}</span><b>${f1(mean(sv.map(r=>r.sus)))}</b><span class="small muted num">A ${f1(susBy("A"))} · B ${f1(susBy("B"))}</span></div>
       <div><span class="small muted">Trust (1–5)</span><b>${f1(mean(sv.map(r=>r.trust)))}</b><span class="small muted num">A ${f1(trustBy("A"))} · B ${f1(trustBy("B"))}</span></div>
+      <div><span class="small muted">${esc(t("recL"))}</span><b>${f1(mean(sv.map(r=>r.rec).filter(x=>x!=null)))}</b><span class="small muted num">A ${f1(mean(sv.filter(r=>r.group==="A"&&r.rec!=null).map(r=>r.rec)))} · B ${f1(mean(sv.filter(r=>r.group==="B"&&r.rec!=null).map(r=>r.rec)))}</span></div>
+      <div><span class="small muted">${esc(t("intentL"))}</span><b>${f1(mean(sv.map(r=>r.intent)))}</b><span class="small muted num">A ${f1(mean(sv.filter(r=>r.group==="A").map(r=>r.intent)))} · B ${f1(mean(sv.filter(r=>r.group==="B").map(r=>r.intent)))}</span></div>
+      <div><span class="small muted">${esc(t("waitlistL"))}</span><b>${LS.get("waitlist",[]).length}</b><span class="small muted">2028</span></div>
+      <div><span class="small muted">${esc(t("subsL"))}</span><b>${LS.get("subs",[]).length}</b><span class="small muted">email</span></div>
     </div>
   </section>
 
@@ -1093,7 +1724,7 @@ function teamView(){
       <label for="cfg-min">${esc(t("minSaveL"))}<select id="cfg-min" data-cfg="minSaving">${[0,0.1,0.15,0.2,0.25,0.3].map(m=>`<option value="${m}" ${Math.abs(m-CFG.minSaving)<1e-9?"selected":""}>${pct(m)}</option>`).join("")}</select></label>
       <label for="cfg-hide">${esc(t("hideL"))}<select id="cfg-hide" data-cfg="hideFailing"><option value="1" ${CFG.hideFailing?"selected":""}>${esc(t("yes"))}</option><option value="0" ${!CFG.hideFailing?"selected":""}>${esc(t("no"))}</option></select></label>
       <label for="cfg-ver">${esc(t("verOnlyL"))}<select id="cfg-ver" data-cfg="verifiedOnly"><option value="1" ${CFG.verifiedOnly?"selected":""}>${esc(t("yes"))}</option><option value="0" ${!CFG.verifiedOnly?"selected":""}>${esc(t("no"))}</option></select></label>
-      <label for="cfg-margin">${esc(t("marginL"))}<select id="cfg-margin" data-cfg="margin">${[0.05,0.08,0.1,0.12,0.15,0.2].map(m=>`<option value="${m}" ${Math.abs(m-CFG.margin)<1e-9?"selected":""}>${pct(m)}</option>`).join("")}</select></label>
+      <label for="cfg-margin">${esc(t("marginL"))}<select id="cfg-margin" data-cfg="margin">${[0.05,0.08,0.1,0.12,0.15,0.2].map(m=>`<option value="${m}" ${Math.abs(m-CFG.margin)<1e-9?"selected":""}>${pct(m)}</option>`).join("")}</select></label><label for="cfg-mrare">${esc(t("marginRareL"))}<select id="cfg-mrare" data-cfg="marginRare">${[0.1,0.2,0.3,0.4,0.5].map(m=>`<option value="${m}" ${Math.abs(m-(CFG.marginRare??0.4))<1e-9?"selected":""}>${pct(m)}</option>`).join("")}</select></label>
     </div>
     <div class="scroll"><table class="data"><thead><tr><th>${esc(t("colProduct"))}</th><th>${esc(t("colStatus"))}</th><th class="r">KRW</th><th class="r">${esc(t("colKr"))}</th><th class="r">${esc(t("colLanded"))}</th><th class="r">${esc(t("colOur"))}</th><th class="r">${esc(t("colSave"))}</th><th class="r">${esc(t("colAmz"))}</th><th class="r">${esc(t("colAmzSave"))}</th><th class="r">${esc(t("colUs"))}</th></tr></thead><tbody>
       ${PRODUCTS.slice().sort((x,y)=>(breakdown(y).saving ?? 9)-(breakdown(x).saving ?? 9)).map(p=>{ const b=breakdown(p), a=amazonPrice(p), ok=passes(p); return `<tr><td>${ok?`<span class="pos">✓</span>`:`<span class="neg">✕</span>`} ${esc(p.brand)} · ${esc(p.en.split(" ").slice(0,4).join(" "))}</td><td>${p.checked?`<span class="pos">${esc(t("verifiedL"))}</span> <span class="small muted">${esc(p.usSrc)}</span>`:`<span class="muted">${esc(t("exampleL"))}</span>`}</td><td class="r">${won(p.krw)}</td><td class="r">${money(b.kr)}</td><td class="r">${money(b.landed)}</td><td class="r">${money(b.price)}</td><td class="r ${b.saving==null||b.saving>=0?"pos":"neg"}">${b.saving==null?esc(t("rareShort")):pct(b.saving)}</td><td class="r">${money(a.price)}</td><td class="r ${a.saving==null||a.saving>=0?"pos":"neg"}">${a.saving==null?"–":pct(a.saving)}</td><td class="r">${p.usNone?"–":money(p.us)}</td></tr>`; }).join("")}
@@ -1104,7 +1735,7 @@ function teamView(){
 
   <section class="section">
     <div class="section-head"><h2>${esc(t("recentOrders"))}</h2></div>
-    ${orders.length? `<div class="scroll"><table class="data"><thead><tr><th>No.</th><th>Date</th><th>Group</th><th>Items</th><th class="r">Total</th><th>State</th></tr></thead><tbody>${orders.slice().reverse().map(o=>`<tr><td>${esc(o.no)}</td><td>${esc(o.at.slice(0,16).replace("T"," "))}</td><td>${esc(o.group)}</td><td>${esc(o.items.map(i=>byId[i.id]?byId[i.id].brand+" ×"+i.q:i.id).join(", "))}</td><td class="r">${money(o.total)}</td><td>${esc(o.state)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">${esc(t("noOrders"))}</p>`}
+    ${orders.length? `<div class="scroll"><table class="data"><thead><tr><th>No.</th><th>Date</th><th>Group</th><th>Items</th><th class="r">Total</th><th>City · tax</th><th>Code</th><th>Status</th></tr></thead><tbody>${orders.slice().reverse().map(o=>`<tr><td>${esc(o.no)}</td><td>${esc(o.at.slice(0,16).replace("T"," "))}</td><td>${esc(o.group)}</td><td>${esc(o.items.map(i=>byId[i.id]?byId[i.id].brand+" ×"+i.q:i.id).join(", "))}</td><td class="r">${money(o.total)}</td><td>${esc((o.city||o.state||"")+(o.taxRate?" · "+taxPct(o.taxRate):""))}</td><td>${esc(o.coupon||"")}</td><td>${esc(o.status||"paid")}${(o.status||"paid")!=="delivered"?` <button class="linkbtn small" data-ostat="${esc(o.no)}">${esc(t("nextStatus"))} →</button>`:""}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">${esc(t("noOrders"))}</p>`}
   </section>
 
   <section class="section">
@@ -1112,6 +1743,7 @@ function teamView(){
     ${sv.length? `<div class="scroll"><table class="data"><thead><tr><th>Date</th><th>Group</th><th class="r">SUS</th><th class="r">Trust</th><th class="r">Intent</th></tr></thead><tbody>${sv.slice().reverse().map(r=>`<tr><td>${esc(r.at.slice(0,16).replace("T"," "))}</td><td>${esc(r.group)}</td><td class="r">${r.sus.toFixed(1)}</td><td class="r">${r.trust.toFixed(2)}</td><td class="r">${r.intent.toFixed(2)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">${esc(t("noSurveys"))}</p>`}
     <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
       <button class="btn ghost" data-export>${esc(t("exportJson"))}</button>
+      <button class="btn ghost" data-exportcsv>${esc(t("exportCsv"))}</button>
       ${S.confirmClear? `<button class="btn" data-clearyes>${esc(t("confirmClear"))}</button><button class="btn ghost" data-clearno>${esc(t("cancel"))}</button>` : `<button class="linkbtn" data-clear>${esc(t("clearData"))}</button>`}
     </div>
   </section>`;
@@ -1129,11 +1761,14 @@ function render(){
     case "done": body = doneView(); break;
     case "survey": body = surveyView(); break;
     case "team": body = teamView(); break;
-    case "news": body = newsView(); break;
+    case "news": body = newsView() + `<section class="section">${subscribeBox("news")}</section>`; break;
+    case "about": body = aboutView(); break;
+    case "track": body = trackView(); break;
+    case "policy": body = policyView(); break;
     default: body = homeView();
   }
-  document.getElementById("app").innerHTML = header() + `<main class="wrap">${body}</main>
-    <footer class="foot wrap"><span>${esc(t("footer"))}</span><span style="display:flex;gap:16px;flex-wrap:wrap"><button class="linkbtn" data-go="survey">${esc(t("giveFeedback"))}</button><button class="linkbtn" data-go="team">${esc(t("team"))}</button></span></footer>
+  document.getElementById("app").innerHTML = header() + `<main class="wrap">${pilotBar()}${body}</main>
+    <footer class="foot wrap"><span>${esc(t("footer"))} · <span class="num">v24 · 2026-11-08</span></span><span class="footlinks"><button class="linkbtn" data-go="track">${esc(t("trackLink"))}</button>${POLICY_TABS.map(k=>`<button class="linkbtn" data-pol="${k}">${esc(t("pol")[k].h)}</button>`).join("")}<button class="linkbtn" data-go="survey">${esc(t("giveFeedback"))}</button><button class="linkbtn" data-go="team">${esc(t("team"))}</button></span></footer>
     ${S.sheet? sheetView() : ""}${S.toast?`<div class="toast" role="status">${esc(S.toast)}</div>`:""}`;
 }
 
@@ -1219,21 +1854,37 @@ document.addEventListener("click", async e=>{
   if(el.hasAttribute("data-close")){ S.sheet = null; render(); return; }
   if(d.rate!=null){ S.sheetRate = Number(d.rate); log("tariff_toggle",{id:S.sheet, rate:S.sheetRate}); render(); return; }
   if(d.sq){ S.sheetQty = Math.max(1, Math.min(9, S.sheetQty + Number(d.sq))); render(); return; }
+  if(d.pol){ S.policy = d.pol; log("policy",{tab:d.pol}); go("policy"); return; }
+  if(el.hasAttribute("data-cprm")){ LS.set("coupon",""); render(); return; }
+  if(d.copy!=null){ try{ navigator.clipboard.writeText(d.copy); }catch(e){} toast(t("copied")); return; }
+  if(d.trackfill){ const o=LS.get("orders",[]).find(x=>x.no===d.trackfill); S.trackNo=d.trackfill; S.trackEm=o?o.email:""; S.trackRes=o||null; go("track"); return; }
+  if(d.ostat){ const os=LS.get("orders",[]); const o=os.find(x=>x.no===d.ostat); if(o){ const i=STATUS.indexOf(o.status||"paid"); if(i<STATUS.length-1){ o.status=STATUS[i+1]; if(o.status==="shipped" && !o.tracking) o.tracking="DEMO-"+String(Math.floor(Math.random()*1e10)).padStart(10,"0"); LS.set("orders",os); log("order_status",{no:o.no,status:o.status}); } } render(); return; }
+  if(d.issue!==undefined){ S.newsIdx = Number(d.issue); log("news_issue",{i:S.newsIdx}); render(); window.scrollTo({top:0,behavior:"smooth"}); return; }
+  if(el.hasAttribute("data-addset")){ const ids = S.picks.map(p=>p.id).filter(id=>byId[id]); ids.forEach(id=>{ if(!(S.cart[id]>0)) S.cart[id]=1; }); saveCart(); LS.set("routineSet", ids); log("add_routine_set",{ids}); toast(t("setAdded")); return; }
   if(d.add){ const q = d.src==="sheet" ? S.sheetQty : 1; S.cart[d.add] = (S.cart[d.add]||0) + q; saveCart(); log("add_to_cart",{id:d.add, q, src:d.src}); if(d.src==="sheet") S.sheet=null; toast(t("added")); return; }
   if(d.cq){ const n = (S.cart[d.cq]||0) + Number(d.d); if(n<=0) delete S.cart[d.cq]; else S.cart[d.cq] = Math.min(n,9); saveCart(); render(); return; }
   if(d.rm){ delete S.cart[d.rm]; saveCart(); render(); return; }
   if(d.sv){ S.survey[d.sv] = Number(d.v); S.svErr=false; render(); return; }
   if(el.hasAttribute("data-svsubmit")){
-    const keys = [...Array(10)].map((_,i)=>"sus"+(i+1)).concat(["trust1","trust2","trust3","intent1","intent2"]);
+    const keys = [...Array(10)].map((_,i)=>"sus"+(i+1)).concat(["trust1","trust2","trust3","rec1","rec2","intent1","intent2"]);
     if(keys.some(k=>!S.survey[k])){ S.svErr = true; render(); return; }
     const r = Object.assign({}, S.survey);
-    const row = { at:new Date().toISOString(), group:S.group, lang:S.lang, answers:r, sus:susScore(r), trust:mean([r.trust1,r.trust2,r.trust3]), intent:mean([r.intent1,r.intent2]) };
+    const row = { at:new Date().toISOString(), pid:S.pid||"", group:S.group, lang:S.lang, answers:r, sus:susScore(r), trust:mean([r.trust1,r.trust2,r.trust3]), rec:mean([r.rec1,r.rec2]), intent:mean([r.intent1,r.intent2]) };
     const sv = LS.get("surveys", []); sv.push(row); LS.set("surveys", sv); log("survey",{sus:row.sus});
     S.survey = {}; go("home"); toast(t("svThanks")); return; }
   if(d.group){ S.group = d.group; LS.set("group", S.group); log("group_switch",{to:S.group}); render(); return; }
   if(el.hasAttribute("data-cfgreset")){ CFG = Object.assign({}, DEFAULT_CFG); LS.set("cfg3", {}); render(); return; }
+  if(el.hasAttribute("data-exportcsv")){
+    const keys = [...Array(10)].map((_,i)=>"sus"+(i+1)).concat(["trust1","trust2","trust3","rec1","rec2","intent1","intent2"]);
+    const head = ["at","pid","group","lang","sus_score","trust","rec","intent"].concat(keys);
+    const lines = [head.join(",")].concat(LS.get("surveys",[]).map(r=>[r.at,r.pid||"",r.group,r.lang,r.sus,r.trust,r.rec,r.intent].concat(keys.map(k=>r.answers?r.answers[k]:"")).map(csvEsc).join(",")));
+    const csv = lines.join("\n");
+    if(!window.claude){ try{ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download="gyeol-survey.csv"; document.body.appendChild(a); a.click(); a.remove(); toast(t("exported")); }catch(err){ toast(t("exportFail")); } return; }
+    try{ const dl = await window.claude.use("downloads"); if(!dl) throw 0; await dl.save({ filename:"gyeol-survey.csv", data:csv }); toast(t("exported")); }
+    catch(err){ if(!(err && err.code==="declined")) toast(t("exportFail")); }
+    return; }
   if(el.hasAttribute("data-export")){
-    const payload = { exportedAt:new Date().toISOString(), group:S.group, config:CFG, events:LS.get("events",[]), orders:LS.get("orders",[]), surveys:LS.get("surveys",[]) };
+    const payload = { exportedAt:new Date().toISOString(), group:S.group, config:CFG, events:LS.get("events",[]), orders:LS.get("orders",[]), surveys:LS.get("surveys",[]), waitlist:LS.get("waitlist",[]), subscribers:LS.get("subs",[]) };
     if(!window.claude){ try{ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"})); a.download="gyeol-research-data.json"; document.body.appendChild(a); a.click(); a.remove(); toast(t("exported")); }catch(err){ toast(t("exportFail")); } return; }
     try{ const dl = window.claude ? await window.claude.use("downloads") : null; if(!dl) throw 0;
       await dl.save({ filename:"gyeol-research-data.json", data:JSON.stringify(payload,null,2) }); toast(t("exported")); }
@@ -1241,36 +1892,56 @@ document.addEventListener("click", async e=>{
     return; }
   if(el.hasAttribute("data-clear")){ S.confirmClear = true; render(); return; }
   if(el.hasAttribute("data-clearno")){ S.confirmClear = false; render(); return; }
-  if(el.hasAttribute("data-clearyes")){ ["events","orders","surveys"].forEach(k=>LS.set(k,[])); S.confirmClear=false; toast(t("cleared")); return; }
+  if(el.hasAttribute("data-clearyes")){ ["events","orders","surveys","waitlist","subs"].forEach(k=>LS.set(k,[])); LS.set("waitlisted", false); LS.set("subscribed", false); S.confirmClear=false; toast(t("cleared")); return; }
 });
 document.addEventListener("change", e=>{
   const el = e.target;
   if(el.dataset && el.dataset.langsel!=null){ S.lang = el.value; LS.set("lang", S.lang); render(); return; }
+  if(el.dataset && (el.dataset.taxcounty!=null || el.dataset.taxplace!=null)){ const d=LS.get("coDraft",{}); if(el.dataset.taxcounty!=null){ d.county=el.value; d.place=""; } else d.place=el.value; LS.set("coDraft", d); if(S.coErrors){ delete S.coErrors.county; delete S.coErrors.place; } log("tax_location",{county:d.county, place:d.place}); render(); const nx=document.getElementById(el.id.replace("county","place")); if(el.dataset.taxcounty!=null && nx) nx.focus(); return; }
   if(el.dataset && el.dataset.taxstate!=null){ S.taxState = el.value; const d=LS.get("coDraft",{}); d.state=el.value; LS.set("coDraft", d); render(); return; } if(!el.dataset || !el.dataset.cfg) return;
   const v = Number(el.value); if(!isFinite(v) || v<0) return;
   CFG[el.dataset.cfg] = v; const saved = LS.get("cfg3", {}); saved[el.dataset.cfg] = v; LS.set("cfg3", saved); render();
 });
 document.addEventListener("input", e=>{
   const el = e.target;
+  if(el.hasAttribute && el.hasAttribute("data-pid")){ S.pid = el.value.replace(/[^A-Za-z0-9_-]/g,"").slice(0,20); LS.set("pid", S.pid); return; }
   if(el.id==="search"){ S.q = el.value; const g=document.getElementById("gridArea"); if(g) g.innerHTML = gridHtml(); return; } if(!el.closest || !el.closest("#coForm")) return;
   const d = LS.get("coDraft", {}); d[el.name] = el.value; LS.set("coDraft", d);
 });
 document.addEventListener("submit", e=>{
+  const f = e.target;
+  if(f.hasAttribute && (f.hasAttribute("data-subform") || f.hasAttribute("data-wlform"))){
+    e.preventDefault();
+    const fd = Object.fromEntries(new FormData(f).entries());
+    if(!EMAIL_OK(fd.email)){ toast(t("badEmail")); return; }
+    if(f.hasAttribute("data-wlform")){ const w = LS.get("waitlist", []); w.push({ at:new Date().toISOString(), email:fd.email.trim(), state:fd.state, group:S.group }); LS.set("waitlist", w); LS.set("waitlisted", true); log("waitlist",{state:fd.state}); toast(t("wlDone")); }
+    else { const sb = LS.get("subs", []); sb.push({ at:new Date().toISOString(), email:fd.email.trim(), src:f.getAttribute("data-subform"), group:S.group }); LS.set("subs", sb); LS.set("subscribed", true); log("subscribe",{src:f.getAttribute("data-subform")}); toast(t("subDone")); }
+    return;
+  }
+  if(f.hasAttribute && f.hasAttribute("data-cpform")){ e.preventDefault(); const code=String(new FormData(f).get("code")||"").trim().toUpperCase(); LS.set("coupon", code); const tt=totals(); log("coupon",{code, ok:!!(tt.cp&&!tt.cp.err)}); render(); return; }
+  if(f.hasAttribute && f.hasAttribute("data-trackform")){ e.preventDefault(); const fd=Object.fromEntries(new FormData(f).entries()); S.trackNo=String(fd.no||"").trim().toUpperCase(); S.trackEm=String(fd.email||"").trim(); const o=LS.get("orders",[]).find(x=>x.no.toUpperCase()===S.trackNo && String(x.email).toLowerCase()===S.trackEm.toLowerCase()); S.trackRes=o||false; log("track",{found:!!o}); render(); return; }
   if(e.target.id!=="coForm") return;
   e.preventDefault();
   const fd = Object.fromEntries(new FormData(e.target).entries());
   const err = {};
-  ["name","email","addr","city","zip"].forEach(k=>{ if(!String(fd[k]||"").trim()) err[k] = t("required"); });
+  const dd = LS.get("coDraft", {}); fd.county = dd.county||""; fd.place = dd.place||"";
+  ["name","email","addr","zip"].forEach(k=>{ if(!String(fd[k]||"").trim()) err[k] = t("required"); });
+  if(!fd.county) err.county = t("required"); else if(!fd.place) err.place = t("required");
+  else if(fd.place==="__uninc" && !String(fd.city||"").trim()) err.city = t("required");
   if(fd.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fd.email)) err.email = t("badEmail");
   if(fd.zip && !/^\d{5}(-\d{4})?$/.test(fd.zip.trim())) err.zip = t("badZip");
-  S.coErrors = err; LS.set("coDraft", fd);
+  else if(fd.zip && !CA_ZIP(fd.zip)) err.zip = t("badCaZip");
+  S.coErrors = err; LS.set("coDraft", Object.assign({}, dd, fd));
   if(Object.keys(err).length){ render(); return; }
   const tt = totals();
   const no = "GY-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
-  const order = { no, at:new Date().toISOString(), group:S.group, items:Object.entries(S.cart).map(([id,q])=>({id,q,price:breakdown(byId[id]).price})), subtotal:tt.sub, tax:tt.tax, taxRate:tt.rate, total:tt.total, state:fd.state, email:fd.email };
+  const order = { no, at:new Date().toISOString(), group:S.group, items:Object.entries(S.cart).map(([id,q])=>({id,q,price:breakdown(byId[id]).price})), subtotal:Math.round(tt.sub*100)/100, discount:tt.disc, routineSet:!!tt.disc, tax:tt.tax, taxRate:tt.rate, taxAsOf:CA_TAX_ASOF, county:tt.loc.county, city:tt.loc.uninc?(fd.city||"").trim():tt.loc.city, unincorporated:!!tt.loc.uninc, coupon:tt.cpAmt?tt.cp.code:"", couponAmt:tt.cpAmt, eta:tt.eta, status:"paid", tracking:"", refCode:makeRef(), name:(fd.name||"").trim(), total:Math.round(tt.total*100)/100, state:"CA", email:fd.email, remind:!!fd.remind, pid:S.pid||"" };
+  if(fd.remind){ const sb = LS.get("subs", []); sb.push({ at:new Date().toISOString(), email:fd.email, src:"checkout", group:S.group }); LS.set("subs", sb); }
   const orders = LS.get("orders", []); orders.push(order); LS.set("orders", orders);
   log("order",{ no, total:tt.total, items:order.items.length });
-  S.cart = {}; saveCart(); LS.set("coDraft", {}); S.lastOrder = order; go("done");
+  if(order.coupon==="WELCOME10") LS.set("usedWelcome", true);
+  LS.set("myRef", order.refCode); LS.set("coupon", "");
+  S.cart = {}; saveCart(); LS.set("routineSet", []); const keep=LS.get("coDraft",{}); LS.set("coDraft", {county:keep.county, place:keep.place}); S.lastOrder = order; go("done");
 });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape" && S.sheet){ S.sheet=null; render(); } });
 
